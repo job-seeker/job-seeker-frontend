@@ -1,0 +1,22 @@
+{
+  "name": "job-seeker-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack -p",
+    "watch": "webpack-dev-server --inline --hot",
+    "test": "jest -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/job-seeker/frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/job-seeker/frontend/issues"
+  },
+  "homepage": "https://github.com/job-seeker/frontend#readme"
+}
