@@ -23,7 +23,7 @@ export const signupRequest = (user) => (dispatch) => {
       }
       return res;
     });
-}
+};
 
 export const loginRequest = (user) => (dispatch) => {
   return request.get(`${__API_URL__}/login`)
@@ -33,4 +33,4 @@ export const loginRequest = (user) => (dispatch) => {
       dispatch(tokenSet(res.text));
       return;
     });
-}
+};
