@@ -6,7 +6,9 @@
   "scripts": {
     "build": "webpack -p",
     "watch": "webpack-dev-server --inline --hot",
-    "test": "jest -i"
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p --progress",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/job-seeker/frontend/issues"
   },
-  "homepage": "https://github.com/job-seeker/frontend#readme"
+  "homepage": "https://github.com/job-seeker/frontend#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
