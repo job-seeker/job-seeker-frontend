@@ -22,10 +22,10 @@ export const jobDelete = job => ({
   payload: job,
 });
 
-export const jobGrabRequest = () => dispatch => {
+export const jobFetchRequest = () => dispatch => {
   return superagent.get(`${__API_URL__}/api/jobs`) // probably need to fix these endpoints
     .then(res => {
-      dispatch(jobGrab(res.body));
+      dispatch(jobFetch(res.body));
       return res;
     });
 };
