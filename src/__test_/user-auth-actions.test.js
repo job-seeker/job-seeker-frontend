@@ -39,4 +39,16 @@ describe('Auth Actions', () => {
       done();
     });
   });
+
+  test('loginRequest should return a token', done => {
+    superagent.get(`http://localhost:3000/login`)
+    .auth(tempUser.username, tempUser.password)
+    .end((err, res) => {
+      expect(res.text).toBeTruthy();
+      expect(typeof res.text).toEqual('string');
+      expect(err).toEqual(null);
+      console.log('login::::', tempUser);
+      done();
+    });
+  });
 });
