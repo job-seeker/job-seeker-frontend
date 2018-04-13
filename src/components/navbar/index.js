@@ -10,6 +10,8 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 
+import './_navbar.scss';
+
 // HELP ON THIS PAGE FROM:
 // https://stackoverflow.com/questions/40495608/is-it-possible-to-set-up-material-ui-appbar-toolbar-to-have-a-horizontal-tab-men
 // https://stackoverflow.com/questions/36862334/get-viewport-window-height-in-reactjs/36997691
@@ -55,7 +57,9 @@ export default class NavBar extends Component {
     );
 
     const MobileNavLinks = () => {
-      return <DropDownMenu iconButton={<NavigationMenu />}>
+      return <DropDownMenu 
+        className='dropdown-nav' 
+        iconButton={<NavigationMenu />}>
         <MenuItem value={2} primaryText='Sign Up' />
         <MenuItem value={3 }primaryText='Sign In' />
         <MenuItem value={4} primaryText='About Us' />
@@ -66,9 +70,9 @@ export default class NavBar extends Component {
       <nav>
         {this.state.screenWidth < 620 ?
           <AppBar 
+            className='mobile-nav'
             title='Job Seeker'
             zDepth={0}
-            // iconElementRight={<IconButton><NavigationMenu /></IconButton>}
             iconElementLeft={<IconButton><SearchIcon /></IconButton>}
             iconElementRight={<MobileNavLinks />}
           />

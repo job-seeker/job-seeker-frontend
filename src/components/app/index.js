@@ -12,7 +12,7 @@ export default class App extends Component {
     return (
       <div className='app'>
         <BrowserRouter>
-          <div>
+          <div className='routes'>
             <Route path='*' component={NavBar} />
             <Route exact path='/' component={HomePage} />
             {/* <Route exact path='/welcome' component={} />

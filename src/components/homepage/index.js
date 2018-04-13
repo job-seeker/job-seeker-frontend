@@ -8,8 +8,6 @@ export default class HomePage extends Component {
     return (
       <section className='homepage'>
         <RaisedButton primary={true} label='Hello world' />
-        <h1>Job Seeker </h1>
-        <p>Get Started </p>
       </section>
     );
   }
