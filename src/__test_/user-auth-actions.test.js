@@ -19,4 +19,11 @@ describe('Auth Actions', () => {
     expect(action.payload).toBeTruthy();
     expect(action.payload.token).toBe('12345');
   });
+
+  test('should return a LOGOUT action', () => {
+    let action = logout();
+    expect(action).toEqual({
+      type: 'LOGOUT'
+    })
+  });
 });
