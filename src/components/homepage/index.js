@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import NavBar from '../navbar';
 
@@ -9,7 +10,11 @@ export default class HomePage extends Component {
     return (
       <section className='homepage'>
         <NavBar />
-        <RaisedButton primary={true} label='Hello world' />
+        <RaisedButton 
+          primary={true} 
+          label='Dashboard link'
+          containerElement={<Link to='/dashboard' />}
+        />
       </section>
     );
   }
