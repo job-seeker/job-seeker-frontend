@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 
 import AppBar from 'material-ui/AppBar';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+
+// HELP ON THIS PAGE FROM:
+// https://stackoverflow.com/questions/40495608/is-it-possible-to-set-up-material-ui-appbar-toolbar-to-have-a-horizontal-tab-men
+// https://stackoverflow.com/questions/36862334/get-viewport-window-height-in-reactjs/36997691
 
 // This is a placeholder icon...
 import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
@@ -26,7 +32,6 @@ export default class NavBar extends Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
-  // https://stackoverflow.com/questions/36862334/get-viewport-window-height-in-reactjs/36997691
   componentWillMount() {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
@@ -41,13 +46,21 @@ export default class NavBar extends Component {
   }
   
   render() {
-    const NavLinks = () => (
+    const DesktopNavLinks = () => (
       <ToolbarGroup>
-        <FlatButton label='Sign Up' containerElement={<Link to='dashboard' />} />
-        <FlatButton label='Sign In' containerElement={<Link to='dashboard' />} />
-        <FlatButton label='About Us' containerElement={<Link to='dashboard' />} />
+        <FlatButton label='Sign Up' containerElement={<Link to='/' />} />
+        <FlatButton label='Sign In' containerElement={<Link to='/' />} />
+        <FlatButton label='About Us' containerElement={<Link to='/' />} />
       </ToolbarGroup>
     );
+
+    const MobileNavLinks = () => {
+      return <DropDownMenu iconButton={<NavigationMenu />}>
+        <MenuItem value={2} primaryText='Sign Up' />
+        <MenuItem value={3 }primaryText='Sign In' />
+        <MenuItem value={4} primaryText='About Us' />
+      </DropDownMenu>;
+    };
 
     return (
       <Fragment>
@@ -55,15 +68,16 @@ export default class NavBar extends Component {
           <AppBar 
             title='Job Seeker'
             zDepth={0}
-            iconElementRight={<IconButton><NavigationMenu /></IconButton>}
+            // iconElementRight={<IconButton><NavigationMenu /></IconButton>}
             iconElementLeft={<IconButton><SearchIcon /></IconButton>}
+            iconElementRight={<MobileNavLinks />}
           />
           :
           <AppBar 
             title='Job Seeker'
             zDepth={0}
             iconElementLeft={<IconButton><SearchIcon /></IconButton>}
-            iconElementRight={<NavLinks />}
+            iconElementRight={<DesktopNavLinks />}
           />
         }
       </Fragment>
