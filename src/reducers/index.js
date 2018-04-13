@@ -2,7 +2,7 @@
 
 import { combineReducers } from 'redux';
 import auth from './user-auth-reducer';
-// import {} from '';
+import company from './company-reducer';
 // import {} from '';
 // import {} from '';
 
