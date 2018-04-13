@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // import Navbar from '../navbar';
 import HomePage from '../homepage';
 import NavBar from '../navbar';
+import './_app.scss';
 
 export default class App extends Component {
   render() {

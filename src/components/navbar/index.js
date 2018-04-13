@@ -63,7 +63,7 @@ export default class NavBar extends Component {
     };
 
     return (
-      <Fragment>
+      <nav>
         {this.state.screenWidth < 620 ?
           <AppBar 
             title='Job Seeker'
@@ -80,7 +80,7 @@ export default class NavBar extends Component {
             iconElementRight={<DesktopNavLinks />}
           />
         }
-      </Fragment>
+      </nav>
     );
   }
 }
