@@ -1,6 +1,6 @@
 import userAuthReducer from '../reducer/user-auth-reducer.js';
 
-describe('Auth Reducer', () => {
+describe(' User Auth Reducer', () => {
   test('initial state should be null', () => {
     let result = authReducer(undefined, { type: null });
     expect(result).toEqual(null);
