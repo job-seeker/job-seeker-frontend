@@ -26,4 +26,17 @@ describe('Auth Actions', () => {
       type: 'LOGOUT'
     })
   });
+
+  test('signupRequest should return a token', done => {
+    superagent.post(`http://localhost:3000/signup`)
+    .send(mockUser)
+    .end((err, res) => {
+      expect(res.text).toBeTruthy();
+      expect(typeof res.text).toEqual('string');
+      expect(err).toEqual(null);
+      tempUser = mockUser;
+      console.log('signup:::', tempUser);
+      done();
+    });
+  });
 });
