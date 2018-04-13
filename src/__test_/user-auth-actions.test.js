@@ -1,3 +1,4 @@
+import userAuthActions from '../action/user-auth-actions.js';
 import superagent from 'superagent';
 
 const randomNum = max => {
