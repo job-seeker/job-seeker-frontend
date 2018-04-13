@@ -1,20 +1,19 @@
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Link} from 'react-router-dom';
 
-import React from 'react';
-import {connect} from 'react-redux';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
-
+import { connect } from 'react-redux';
 // import Navbar from '../navbar';
+import HomePage from '../homepage';
+import NavBar from '../navbar';
 
-class App extends React.Component {
-  componentDidMount(){
-  }
-
-  render(){
+export default class App extends Component {
+  render() {
     return (
       <div className='app'>
         <BrowserRouter>
           <div>
-            {/* <Route path='*' component={Navbar} /> */}
+            <Route path='*' component={NavBar} />
+            <Route exact path='/' component={HomePage} />
             {/* <Route exact path='/welcome' component={} />
             <Route exact path='/' component={} />
             <Route exact path='/' component={} />
@@ -26,12 +25,12 @@ class App extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => ({
+// let mapStateToProps = (state) => ({
 
-});
+// });
 
-let mapDispatchToProps = (dispatch) => ({
+// let mapDispatchToProps = (dispatch) => ({
   
-});
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect(mapStateToProps, mapDispatchToProps)(App);

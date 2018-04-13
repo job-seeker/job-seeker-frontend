@@ -19,11 +19,9 @@ const AppContainer = () => {
   return (
     <main>
       <MuiThemeProvider muiTheme={getMuiTheme(customMuiTheme)}>
-        <RaisedButton primary={true} label='Hello world' />
-
-        {/* <Provider store={store}>
-          <App />
-        </Provider> */}
+        {/* <Provider store={store}> */}
+        <App />
+        {/* </Provider> */}
       </MuiThemeProvider>
     </main>
   );
