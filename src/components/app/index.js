@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
 
 import { connect } from 'react-redux';
-// import Navbar from '../navbar';
+
 import HomePage from '../homepage';
-import NavBar from '../navbar';
+import Dashboard from '../dashboard';
 import './_app.scss';
 
 export default class App extends Component {
@@ -13,11 +13,9 @@ export default class App extends Component {
       <div className='app'>
         <BrowserRouter>
           <div className='routes'>
-            <Route path='*' component={NavBar} />
             <Route exact path='/' component={HomePage} />
-            {/* <Route exact path='/welcome' component={} />
-            <Route exact path='/' component={} />
-            <Route exact path='/' component={} />
+            <Route exact path='/dashboard' component={Dashboard} />
+            {/* <Route exact path='/' component={} />
             <Route exact path='/' component={} /> */}
           </div>
         </BrowserRouter>
