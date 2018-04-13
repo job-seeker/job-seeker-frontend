@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import NavBar from '../navbar';
 
-export default class HomePage extends React.Component{
-  constructor(props){
-    super(props);
-  }
-  render(){
-    return; 
-    <section>
-      <h1>Job Seeker </h1>
-      <p>Get Started </p>
-    </section>;
+import './_homepage.scss';
+
+export default class HomePage extends Component {
+  render() {
+    return (
+      <section className='homepage'>
+        <NavBar />
+        <RaisedButton primary={true} label='Hello world' />
+      </section>
+    );
   }
 }
 
