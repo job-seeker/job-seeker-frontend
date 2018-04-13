@@ -15,15 +15,15 @@ import { lightBaseTheme } from 'material-ui/styles';
 import { white, grey800 } from 'material-ui/styles/colors';
 
 // TO DO: COMPLETE REDUCERS IN ORDER FOR STORE TO WORK
-// let store = appCreateStore();
+let store = appCreateStore();
 
 const AppContainer = () => {
   return (
     <main>
       <MuiThemeProvider muiTheme={muiTheme}>
-        {/* <Provider store={store}> */}
-        <App />
-        {/* </Provider> */}
+        <Provider store={store}>
+          <App />
+        </Provider>
       </MuiThemeProvider>
     </main>
   );
