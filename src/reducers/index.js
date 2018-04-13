@@ -1,7 +1,7 @@
 'use strict';
 
 import { combineReducers } from 'redux';
-// import {} from '';
+import auth from './user-auth-reducer';
 // import {} from '';
 // import {} from '';
 // import {} from '';
