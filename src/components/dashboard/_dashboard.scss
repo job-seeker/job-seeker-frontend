@@ -1,10 +1,18 @@
 .dashboard {
   height: 100%;
   background: #FFF;
-
+  
+  // .dashboard-nav {
+  //   z-index: -1;
+  // }
+  
   .profile-icon {
     margin: 13px 13px 0 0;
   }
+
+  // .drawer div {
+  //   z-index: 10 !important;
+  // }
 
   .dashboard-content {
     margin: 0 2vw 0 2vw;
@@ -13,5 +21,9 @@
     p {
       margin: 2vw 0 0 0;
     }
+  }
+
+  footer {
+    z-index: 99;
   }
 }
