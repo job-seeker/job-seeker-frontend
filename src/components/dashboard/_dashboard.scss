@@ -1,4 +1,17 @@
 .dashboard {
   height: 100%;
   background: #FFF;
+
+  .profile-icon {
+    margin: 13px 13px 0 0;
+  }
+
+  .dashboard-content {
+    margin: 0 2vw 0 2vw;
+    border-top: 1px solid rgb(192, 192, 192);
+
+    p {
+      margin: 2vw 0 0 0;
+    }
+  }
 }

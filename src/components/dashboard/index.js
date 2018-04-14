@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
 import ArrowIcon from 'material-ui/svg-icons/navigation/chevron-left';
-import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import ProfileIcon from 'material-ui/svg-icons/social/person';
 
 import './_dashboard.scss';
 
@@ -26,12 +28,14 @@ export default class Dashboard extends Component {
   render() {
     return (
       <section className='dashboard'>
-        <NavigationMenu  
-          label='open'
-          onClick={this.handleToggle} 
+        <AppBar 
+          className='dashboard-nav'
+          zDepth={0}
+          onLeftIconButtonClick={this.handleToggle}
+          iconElementRight={<ProfileIcon className='profile-icon' />}
         />
 
-        <Drawer 
+        <Drawer
           docked={false}
           width={200}
           open={this.state.open}
@@ -44,6 +48,10 @@ export default class Dashboard extends Component {
           <MenuItem onClick={this.handleClose}>Job Applications</MenuItem>
           <MenuItem onClick={this.handleClose}>Events</MenuItem>
         </Drawer>
+
+        <section className='dashboard-content'>
+          <p>Content here</p>
+        </section>
       </section>
     );
   }

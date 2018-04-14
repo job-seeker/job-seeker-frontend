@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import RaisedButton from 'material-ui/RaisedButton';
-import NavBar from '../navbar';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
+import NavBar from '../navbar';
 import './_homepage.scss';
 
 export default class HomePage extends Component {
