@@ -12,11 +12,16 @@ export default class HomePage extends Component {
     return (
       <section className='homepage'>
         <NavBar />
-        <RaisedButton 
-          primary={true} 
-          label='Dashboard link'
-          containerElement={<Link to='/dashboard' />}
-        />
+        <div className='title-div'>
+          <h2>Lorem ipsum dolor sit amet.</h2>
+          <h3>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+          <RaisedButton 
+            primary={true} 
+            label='Dashboard link'
+            containerElement={<Link to='/dashboard' />}
+          />
+        </div>
+
         <Footer />
       </section>
     );
