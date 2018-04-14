@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
 
         <Drawer
           docked={false}
-          width={200}
+          width={175}
           open={this.state.open}
           onRequestChange={open => this.setState({ open })}
           overlayStyle={{ 'background': 'none' }}
