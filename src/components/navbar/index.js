@@ -19,14 +19,6 @@ import './_navbar.scss';
 // This is a placeholder icon...
 import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
 
-// let NavLink = (props) => (
-//   <li className='nav-bar' >
-//     <Link to={App}>
-//       {props.route}
-//     </Link>
-//   </li>
-// );
-
 export default class NavBar extends Component {
   constructor(props) {
     super(props);
