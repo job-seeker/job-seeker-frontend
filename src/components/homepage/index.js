@@ -1,20 +1,53 @@
-import React from 'react';
+import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import NavBar from '../navbar';
 
-export default class HomePage extends React.Component{
-  constructor(props){
-    super(props);
+import './_homepage.scss';
+
+export default class HomePage extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
   }
 
   login() {
     this.props.auth.login();
   }
-  
-  render(){
-    return; 
-    <section>
-      <h1>Job Seeker </h1>
-      <p>Get Started </p>
-    </section>;
+
+  logout() {
+    this.props.auth.logout();
+  }
+
+  render() {
+    const { isAuthenticated } = this.props.auth;
+    return (
+      <section className='homepage'>
+        <NavBar />
+        <RaisedButton primary={true} label='Hello world' />
+        <div className="container">
+          {
+            isAuthenticated() && (
+              <h4>
+                You are logged in!
+              </h4>
+            )
+          }
+          {
+            !isAuthenticated() && (
+              <h4>
+                You are not logged in! Please{' '}
+                <a
+                  style={{ cursor: 'pointer' }}
+                  onClick={this.login.bind(this)}
+                >
+                  Log In
+                </a>
+                {' '}to continue.
+              </h4>
+            )
+          }
+        </div>
+      </section>
+    );
   }
 }
 
