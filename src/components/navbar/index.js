@@ -10,14 +10,12 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 
+import JSIcon from '../../assets/logo.png';
 import './_navbar.scss';
 
 // HELP ON THIS PAGE FROM:
 // https://stackoverflow.com/questions/40495608/is-it-possible-to-set-up-material-ui-appbar-toolbar-to-have-a-horizontal-tab-men
 // https://stackoverflow.com/questions/36862334/get-viewport-window-height-in-reactjs/36997691
-
-// This is a placeholder icon...
-import SearchIcon from 'material-ui/svg-icons/action/youtube-searched-for';
 
 export default class NavBar extends Component {
   constructor(props) {
@@ -65,14 +63,14 @@ export default class NavBar extends Component {
             className='mobile-nav'
             title='Job Seeker'
             zDepth={0}
-            iconElementLeft={<IconButton><SearchIcon /></IconButton>}
+            iconElementLeft={<img src={JSIcon} />}
             iconElementRight={<MobileNavLinks />}
           />
           :
           <AppBar 
             title='Job Seeker'
             zDepth={0}
-            iconElementLeft={<IconButton><SearchIcon /></IconButton>}
+            iconElementLeft={<img src={JSIcon} />}
             iconElementRight={<DesktopNavLinks />}
           />
         }
