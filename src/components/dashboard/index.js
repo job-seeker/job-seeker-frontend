@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import ArrowIcon from 'material-ui/svg-icons/navigation/chevron-left';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
+import CompanyFields from '../form-field/company-field';
 
 import './_dashboard.scss';
 import Footer from '../footer';
