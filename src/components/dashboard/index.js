@@ -9,15 +9,23 @@ import AppBar from 'material-ui/AppBar';
 import ArrowIcon from 'material-ui/svg-icons/navigation/chevron-left';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
+import IconButton from 'material-ui/IconButton';
+import FlatButton from 'material-ui/FlatButton';
 
 import './_dashboard.scss';
 import Footer from '../footer';
 import ListingTable from '../listing-table';
+import AddModal from '../add-modal';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-    this.state = { open: true };
+    this.state = { 
+      drawerOpen: true,
+      modalOpen: false,
+    };
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
@@ -30,15 +38,37 @@ class Dashboard extends Component {
     });
   }
 
+  handleModalOpen() {
+    this.setState({ modalOpen: true });
+  }
+
+  handleModalClose() {
+    console.log('whyyy')
+    this.setState({ modalOpen: false });
+  }
+
   handleToggle() {
-    this.setState({ open: !this.state.open });
+    this.setState({ drawerOpen: !this.state.drawerOpen });
   }
 
   handleClose() {
-    this.setState({ open: false });
+    this.setState({ drawerOpen: false });
   }
 
   render() {
+    const actions = [
+      <FlatButton
+        label='Cancel'
+        primary={true}
+        onClick={this.handleModalClose}
+      />,
+      <FlatButton
+        label='Submit'
+        primary={true}
+        onClick={this.handleModalClose}
+      />,
+    ];
+
     return (
       <section className='dashboard'>
         <AppBar 
@@ -52,8 +82,8 @@ class Dashboard extends Component {
           className='drawer'
           docked={false}
           width={175}
-          open={this.state.open}
-          onRequestChange={open => this.setState({ open })}
+          open={this.state.drawerOpen}
+          onRequestChange={drawerOpen => this.setState({ drawerOpen })}
           overlayStyle={{ 'background': 'none' }}
         >
           <MenuItem onClick={this.handleClose}><ArrowIcon /></MenuItem>
@@ -66,9 +96,15 @@ class Dashboard extends Component {
         <section className='dashboard-content'>
           <p>Content here</p>
           <ListingTable />
-          <div>
-            <AddIcon onClick={() => alert('hi')} />
-          </div>
+
+          <IconButton onClick={this.handleModalOpen}>
+            <AddIcon />
+          </IconButton>
+
+          <AddModal 
+            open={this.state.modalOpen}
+            actions={actions} 
+          />
         </section>
         <Footer />
       </section>
