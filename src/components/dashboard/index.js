@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { profileCreateRequest } from '../../actions/profile-actions';
 import EventSelector from '../select-field/event-select-field';
+import JobStatusSelector from '../select-field/job-status-field';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -109,6 +110,7 @@ class Dashboard extends Component {
           />
 
           <EventSelector />
+          <JobStatusSelector />
         </section>
         <Footer />
       </section>
