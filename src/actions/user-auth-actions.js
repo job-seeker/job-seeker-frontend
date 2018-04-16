@@ -11,7 +11,7 @@ export const tokenDelete = () => ({
 });
 
 export const signupRequest = (user) => (dispatch) => {
-  return request.post(`${__API_URL__}/signup`)
+  return request.post(`${__API_URL__}/api/signup`)
     .withCredentials()
     .send(user)
     .then(res => {
@@ -25,9 +25,10 @@ export const signupRequest = (user) => (dispatch) => {
     });
 };
 
-export const loginRequest = (user) => (dispatch) => {
-  return request.get(`${__API_URL__}/login`)
-    .withCredentials()
+export const signinRequest = (user) => (dispatch) => {
+
+  return request.get(`${__API_URL__}/api/signin`)
+    // .withCredentials()
     .auth(user.username, user.password)
     .then(res => {
       dispatch(tokenSet(res.text));

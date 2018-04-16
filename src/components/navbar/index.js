@@ -59,7 +59,7 @@ class NavBar extends Component {
 
     const MobileNavLinks = () => {
       return <DropDownMenu 
-        className='dropdown-nav' 
+        className='dropdown-nav'
         iconButton={<NavigationMenu />}>
         <MenuItem value={2} primaryText='Sign Up' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} signup auth0={auth} />}  />
         <MenuItem value={3} primaryText='Log In' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} login auth0={auth} />}/>
@@ -80,6 +80,7 @@ class NavBar extends Component {
           :
           <AppBar 
             title='Job Seeker'
+            className='desktop-nav'
             zDepth={0}
             iconElementLeft={<img src={JSIcon} />}
             iconElementRight={<DesktopNavLinks />}

@@ -8,4 +8,4 @@ import event from './event-reducer';
 import job from './job-reducer';
 import auth from './auth';
 
-export default combineReducers({ auth, token,  company, contact, event, job });
+export default combineReducers({ auth, token, profile, company, contact, event, job });
