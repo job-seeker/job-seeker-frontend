@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 
-export default class ContactFields {
+export default class ContactFields extends React.Component {
   render () {
     return (
       <div>
