@@ -8,9 +8,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import ArrowIcon from 'material-ui/svg-icons/navigation/chevron-left';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
+import AddIcon from 'material-ui/svg-icons/content/add-circle';
 
 import './_dashboard.scss';
 import Footer from '../footer';
+import ListingTable from '../listing-table';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -63,6 +65,10 @@ class Dashboard extends Component {
 
         <section className='dashboard-content'>
           <p>Content here</p>
+          <ListingTable />
+          <div>
+            <AddIcon onClick={() => alert('hi')} />
+          </div>
         </section>
         <Footer />
       </section>
