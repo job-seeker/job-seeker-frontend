@@ -9,6 +9,11 @@ const CleanPlugin = require('clean-webpack-plugin');
 const UglifyPlugin = require('uglifyjs-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 
+const env = process.env.NODE_ENV;
+const AUTH0_CLIENTID = '7GRVNGAy44r55fc6s27M6VpF6SgfQwwH';
+const AUTH0_DOMAIN = 'jobseeker.auth0.com';
+
+
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractPlugin('bundle-[hash].css'),
@@ -16,6 +21,9 @@ let plugins = [
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production),
     __API_URL__: JSON.stringify(process.env.API_URL),
+    'process.env.NODE_ENV': JSON.stringify(env),
+    'process.env.AUTH0_CLIENTID': JSON.stringify(AUTH0_CLIENTID),
+    'process.env.AUTH0_DOMAIN': JSON.stringify(AUTH0_DOMAIN),
   }),
 ];
 

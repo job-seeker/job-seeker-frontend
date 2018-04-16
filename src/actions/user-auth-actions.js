@@ -34,3 +34,13 @@ export const loginRequest = (user) => (dispatch) => {
       return;
     });
 };
+
+export const getAccessTokenAction = (email) =>  (dispatch) => {
+  console.log('handleauth',__API_URL__);
+  return request.post(`${__API_URL__}/api/handleAuth`)
+    .send({ email })
+    .then(res => {
+      dispatch(tokenSet(res.text));
+      return;
+    });
+};
