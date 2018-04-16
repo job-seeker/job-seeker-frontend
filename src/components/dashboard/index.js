@@ -90,8 +90,8 @@ class Dashboard extends Component {
           <MenuItem onClick={this.handleClose}><ArrowIcon /></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/dashboard'>Dashboard</Link></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/companies'>Companies</Link></MenuItem>
-          <MenuItem onClick={this.handleClose}>Job Applications</MenuItem>
-          <MenuItem onClick={this.handleClose}>Events</MenuItem>
+          <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
+          <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
         </Drawer>
 
         <section className='dashboard-content'>
