@@ -37,7 +37,7 @@ export default class NavBar extends Component {
     this.setState({ screenWidth: window.innerWidth });
   }
   
-  render() {
+  render() {    
     const DesktopNavLinks = () => (
       <ToolbarGroup>
         <FlatButton label='Sign Up' containerElement={<Link to='/' />} />
@@ -48,7 +48,7 @@ export default class NavBar extends Component {
 
     const MobileNavLinks = () => {
       return <DropDownMenu 
-        className='dropdown-nav' 
+        className='dropdown-nav'
         iconButton={<NavigationMenu />}>
         <MenuItem value={2} primaryText='Sign Up' />
         <MenuItem value={3 }primaryText='Sign In' />
@@ -69,6 +69,7 @@ export default class NavBar extends Component {
           :
           <AppBar 
             title='Job Seeker'
+            className='desktop-nav'
             zDepth={0}
             iconElementLeft={<img src={JSIcon} />}
             iconElementRight={<DesktopNavLinks />}

@@ -11,6 +11,7 @@ const muiTheme = getMuiTheme({
   appBar: {
     color: transparent,
     textColor: blueGrey900,
+    titleFontWeight: 500,
   },
   drawer: {
     color: grey300,

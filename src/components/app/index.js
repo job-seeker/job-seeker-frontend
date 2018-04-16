@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import { signinRequest } from '../../actions/user-auth-actions.js';
 
 import HomePage from '../homepage';
 import Dashboard from '../dashboard';
 import './_app.scss';
 
-export default class App extends Component {
+class App extends Component {
+  componentWillMount() {
+    // request to backend to log in with username and password.
+    this.props.userLogin({
+      username: 'mbc',
+      password: '123abc',
+    });
+  }
+
   render() {
     return (
       <div className='app'>
@@ -27,8 +36,8 @@ export default class App extends Component {
 
 // });
 
-// let mapDispatchToProps = (dispatch) => ({
-  
-// });
+let mapDispatchToProps = (dispatch) => ({
+  userLogin: user => dispatch(signinRequest(user)),
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
