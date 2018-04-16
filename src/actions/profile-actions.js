@@ -12,10 +12,10 @@ export const profileUpdate = (profile) => ({
 
 export const profileCreateRequest = (profile) => (dispatch, getState) => {
   let { auth } = getState();
-  return request.post(`${__API_URL__}/profiles`)
+
+  return request.post(`${__API_URL__}/api/profile`)
     .set('Authorization', `Bearer ${auth}`)
-    .field('name', profile.name)
-    .field('email', profile.email)
+    .send(profile)
     .then(res => {
       dispatch(profileCreate(res.body));
       return res;

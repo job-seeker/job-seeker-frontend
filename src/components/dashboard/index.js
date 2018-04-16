@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { profileCreateRequest } from '../../actions/profile-actions';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -10,12 +12,20 @@ import ProfileIcon from 'material-ui/svg-icons/social/person';
 import './_dashboard.scss';
 import Footer from '../footer';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = { open: true };
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.profileCreate({
+      name: 'Melanie',
+      email: 'melaniebcohen@gmail.com',
+      auth: this.props.auth,
+    });
   }
 
   handleToggle() {
@@ -59,3 +69,14 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+let mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+let mapDispatchToProps = (dispatch) => ({
+  userLogin: user => dispatch(signinRequest(user)),
+  profileCreate: profile => dispatch(profileCreateRequest(profile)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
