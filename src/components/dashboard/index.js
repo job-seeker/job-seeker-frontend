@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { profileCreateRequest } from '../../actions/profile-actions';
+// import { profileCreateRequest } from '../../actions/profile-actions';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -32,13 +32,13 @@ class Dashboard extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
-  componentDidMount() {
-    this.props.profileCreate({
-      name: 'Melanie',
-      email: 'melaniebcohen@gmail.com',
-      auth: this.props.auth,
-    });
-  }
+  // componentDidMount() {
+  //   this.props.profileCreate({
+  //     name: 'Melanie',
+  //     email: 'melaniebcohen@gmail.com',
+  //     auth: this.props.auth,
+  //   });
+  // }
 
   handleModalOpen() {
     this.setState({ modalOpen: true });
@@ -118,7 +118,7 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = (dispatch) => ({
-  userLogin: user => dispatch(signinRequest(user)),
+  // userLogin: user => dispatch(signinRequest(user)),
   profileCreate: profile => dispatch(profileCreateRequest(profile)),
 });
 

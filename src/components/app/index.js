@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signinRequest } from '../../actions/user-auth-actions.js';
+// import { signinRequest } from '../../actions/user-auth-actions.js';
 import { profileCreateRequest } from '../../actions/profile-actions';
 
 import HomePage from '../homepage';
@@ -9,13 +9,13 @@ import Dashboard from '../dashboard';
 import './_app.scss';
 
 class App extends Component {
-  componentWillMount() {
-    // request to backend to log in with username and password.
-    this.props.userLogin({
-      username: 'mbc',
-      password: '123abc',
-    });
-  }
+  // componentWillMount() {
+  //   // request to backend to log in with username and password.
+  //   this.props.userLogin({
+  //     username: 'mbc',
+  //     password: '123abc',
+  //   });
+  // }
 
 
   render() {
