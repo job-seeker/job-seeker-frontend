@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signinRequest } from '../../actions/user-auth-actions.js';
+import { profileCreateRequest } from '../../actions/profile-actions';
 
 import HomePage from '../homepage';
 import Dashboard from '../dashboard';
@@ -15,6 +16,7 @@ class App extends Component {
       password: '123abc',
     });
   }
+
 
   render() {
     return (
@@ -38,6 +40,7 @@ class App extends Component {
 
 let mapDispatchToProps = (dispatch) => ({
   userLogin: user => dispatch(signinRequest(user)),
+  profileCreate: profile => dispatch(profileCreateRequest(profile)),
 });
 
 export default connect(null, mapDispatchToProps)(App);
