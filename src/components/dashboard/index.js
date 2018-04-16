@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { profileCreateRequest } from '../../actions/profile-actions';
+import EventSelector from '../select-field/event-select-field';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -106,6 +107,8 @@ class Dashboard extends Component {
             open={this.state.modalOpen}
             actions={actions} 
           />
+
+          <EventSelector />
         </section>
         <Footer />
       </section>
