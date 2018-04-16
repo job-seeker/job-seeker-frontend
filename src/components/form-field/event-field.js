@@ -6,17 +6,17 @@ export default class EventFields extends React.Component {
     return (
       <div>
         <TextField
-          hintText="Add a Event"
+          hintText="Add an Event"
           floatingLabelText="Event Type"
           floatingLabelFixed={true}
         /><br />
         <TextField
-          hintText="Add a Event"
+          hintText="Add an Event"
           floatingLabelText="Event Title"
           floatingLabelFixed={true}
         /><br />
         <TextField
-          hintText="Add a Event"
+          hintText="Add an Event"
           floatingLabelText="Event Date"
           floatingLabelFixed={true}
         /><br />
