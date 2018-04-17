@@ -21,7 +21,7 @@ class App extends Component {
             
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/companies' component={Companies} />
+            <Route exact path='/companies' component={CompanyListings} />
             <Route exact path='/jobs' component={JobListings} />
             <Route exact path='/events' component={EventListings} />
             {/* <Route path='/' component={AuthRedirect} /> */}
