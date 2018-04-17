@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { auth } from './constants';
 import { createAction as act } from 'redux-actions';
 import { connect } from 'react-redux';
 import Auth0Lock from 'auth0-lock';
 import { getAccessTokenAction } from '../../actions/user-auth-actions';
+import { Redirect } from 'react-router-dom';
+
+import FlatButton from 'material-ui/FlatButton';
 
 class AuthComponent extends React.Component {
   constructor(props){
     super(props);
-
+    this.state = { redirectToNewPage: false };
     if(props.signup && props.login) throw new Error('You may only pass "signup" or "login".');
     this.showLoginModal = this.showLoginModal.bind(this);
     this.showSignupModal = this.showSignupModal.bind(this);
@@ -30,16 +33,13 @@ class AuthComponent extends React.Component {
       this.lock.on('authenticated', (authResult) => {
         this.lock.getUserInfo(authResult.accessToken, (error, profile) => {
           if (error) {
-            // Handle error
             console.error(error);
             return;
           }
-
           const method = this.props.signup ? 'signup' : 'login';
           this.finish(method, error, profile, authResult);
         });
       });
-
       return this.lock;
     } catch(e){
       console.log('auth0 mount error', e);
@@ -51,10 +51,11 @@ class AuthComponent extends React.Component {
 
     let auth0 = props.auth0 || {};
     let authSettings = auth0.auth || {};
-
-    if(authSettings.redirect){ //Because redirect restarts browser memory, auth0 needs to be mounted again in redirect mode for on.authenticated callback handler to be reached
-      this.mountAuth0();
-    }
+    
+    // if (authSettings.redirect){ //Because redirect restarts browser memory, auth0 needs to be mounted again in redirect mode for on.authenticated callback handler to be reached
+    // if (this.props.login) {
+    //   this.mountAuth0();
+    // }
   }
 
   componentWillReceiveProps(nextProps){
@@ -117,21 +118,25 @@ class AuthComponent extends React.Component {
   render(){
     let { props } = this;
 
-    const LOGGED_OUT = (
-      <div className="login-signup">
-        {
-          props.signup ? '' : <div className="login">
-            <a href="#" className="btn btn-default" onClick={this.showLoginModal}>Login</a>
-          </div>
-        }
-        {props.login || props.signup ? '' : <span>or</span>}
-        {
-          props.login ? '' : <div className="signup">
-            <a href="#" className="btn btn-default" onClick={this.showSignupModal}>Signup</a>
-          </div>
-        }
-      </div>
-    );
+    // const LOGGED_OUT = (
+    //   <a href="#" className="btn btn-default" onClick={this.showSignupModal}>Sign In</a>
+    //   <div className="login-signup">
+    //     {
+    //       props.signup ? '' : 
+    //         <div className="login">
+    //           <a href="#" className="btn btn-default" onClick={this.showLoginModal}>Login</a>
+    //         </div>
+    //     }
+    //     {props.login || props.signup ? '' : 
+    //       <span>or</span>}
+    //     {
+    //       props.login ? '' : 
+    //         <div className="signup">
+    //           <a href="#" className="btn btn-default" onClick={this.showSignupModal}>Sign Up</a>
+    //         </div>
+    //     }
+    //   </div>
+    // );
 
     const LOGGED_IN = (
       <div className="logout">
@@ -139,7 +144,14 @@ class AuthComponent extends React.Component {
       </div>
     );
 
-    return props.auth.token ? LOGGED_IN : LOGGED_OUT;
+    return (
+      <Fragment>
+        {props.auth.token 
+          ? LOGGED_IN 
+          : <FlatButton className='auth-sign-in' onClick={this.showSignupModal}>Sign In</FlatButton>
+        }
+      </Fragment>
+    );
   }
 }
 
@@ -158,14 +170,14 @@ AuthComponent.defaultProps = {
 //   onAuthenticated: React.PropTypes.func
 // };
 
-
-
 // const mapStateToProps = ({ auth }) => ({ auth });
 // const mapDispatchToProps = dispatch => ({
 //   getAccessToken: (email) => dispatch(getAccessTokenAction(email)),
 // });
 
-export default connect((state)=>{
+let mapStateToProps = (state) => {
   let { auth } = state;
   return { auth };
-})(AuthComponent);
+};
+
+export default connect(mapStateToProps, null)(AuthComponent);

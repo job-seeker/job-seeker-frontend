@@ -7,17 +7,9 @@ import { profileCreateRequest } from '../../actions/profile-actions';
 import HomePage from '../homepage';
 import Dashboard from '../dashboard';
 import './_app.scss';
+import AuthRedirect from '../auth-redirect';
 
 class App extends Component {
-  // componentWillMount() {
-  //   // request to backend to log in with username and password.
-  //   this.props.userLogin({
-  //     username: 'mbc',
-  //     password: '123abc',
-  //   });
-  // }
-
-
   render() {
     return (
       <div className='app'>
@@ -28,6 +20,7 @@ class App extends Component {
             {/* <Route exact path='/companies' component={} />
             <Route exact path='/jobs' component={} />
             <Route exact path='/events' component={} /> */}
+            <Route path='/' component={AuthRedirect} />
           </div>
         </BrowserRouter>
       </div>
