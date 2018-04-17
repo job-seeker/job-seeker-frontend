@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import ReactReduxAuth0 from '../auth-landing/component';
+import AuthComponent from '../auth-landing/component';
 import { connect } from 'react-redux';
 import { auth, token, profile } from '../auth-landing/constants';
 import { createAction as act } from 'redux-actions';
@@ -43,16 +43,28 @@ class NavBar extends Component {
   updateWindowDimensions() {
     this.setState({ screenWidth: window.innerWidth });
   }
-  onAuthenticated(token, profile) { //if loginResult is null, it's likely because a token was already set
+  onAuthenticated(token, profile) { 
+    //if loginResult is null, it's likely because a token was already set
     console.log(`Login token ${JSON.stringify(token)},\n\nProfile\n ${JSON.stringify(profile)}`);
   }
 
   render() {
     const DesktopNavLinks = () => (
       <ToolbarGroup>
-        <FlatButton label='Sign Up' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} signup auth0={auth} />} />
-        <FlatButton label='Log In' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} login auth0={auth} />} />
-        <FlatButton label='About Us' containerElement={<Link to='/' />} />
+        <FlatButton 
+          label='Sign Up'
+          containerElement={<AuthComponent />}
+          // onAuthenticated={this.onAuthenticated} signup 
+          // auth0={auth} 
+          // />} 
+        />
+
+        {/* <FlatButton label='Log In' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} login auth0={auth} />} /> */}
+        <FlatButton 
+          label='About Us' 
+          className='about-us-button'
+          containerElement={<Link to='/' />} 
+        />
       </ToolbarGroup>
     );
 
@@ -60,9 +72,17 @@ class NavBar extends Component {
       return <DropDownMenu 
         className='dropdown-nav'
         iconButton={<NavigationMenu />}>
-        <MenuItem value={2} primaryText='Sign Up' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} signup auth0={auth} />}  />
-        <MenuItem value={3} primaryText='Log In' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} login auth0={auth} />}/>
-        <MenuItem value={4} primaryText='About Us' />
+        <MenuItem 
+          value={2} 
+          // primaryText='Sign Up' 
+          className='auth-sign-in'
+          containerElement={<AuthComponent />}
+          // <ReactReduxAuth0 onAuthenticated={this.onAuthenticated} signup auth0={auth} />}  
+        />
+        <MenuItem 
+          value={4} 
+          primaryText='About Us' 
+        />
       </DropDownMenu>;
     };
     let { auth } = this.props;
@@ -85,23 +105,14 @@ class NavBar extends Component {
             iconElementRight={<DesktopNavLinks />}
           />
         }
-        
-        
       </nav>
     );
   }
 }
 
-// let mapStateToProps = (state) => ({
-//   auth : state,
-// });
-
-// let mapDispatchToProps = (dispatch) => ({
-//   authCheck : auth => dispatch(authcheck())
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
-export default connect((state) => {
+let mapStateToProps = (state) => {
   let { auth } = state;
   return { auth };
-})(NavBar);
+};
+
+export default connect(mapStateToProps, null)(NavBar);
