@@ -6,7 +6,7 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 
 import DashboardNav from '../dashboard-navbar';
 import ListingTable from '../listing-table';
-import AddModal from '../add-modal';
+import CompanyModal from '../company-modal';
 
 export default class EventListings extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ export default class EventListings extends Component {
           <AddIcon />
         </IconButton>
 
-        <AddModal 
+        <CompanyModal 
           open={this.state.modalOpen}
           actions={actions} 
         />
