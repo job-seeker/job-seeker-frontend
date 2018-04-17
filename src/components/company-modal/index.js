@@ -30,7 +30,6 @@ export default class CompanyModal extends Component {
   };
 
   handleSubmit(e) {
-    console.log(this.props);
     e.preventDefault();
     
     return this.props.onComplete(this.state)
@@ -99,7 +98,6 @@ export default class CompanyModal extends Component {
           primary={true}
           onClick={this.props.modalClose}
         />
-
       </Dialog>
     );
   }
