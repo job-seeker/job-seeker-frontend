@@ -10,6 +10,10 @@ nav {
   }
   
   .desktop-nav {
+    .auth-sign-in {
+      width: 0%;
+    }
+    
     a {
       margin: 10px 16px !important;
     }
@@ -21,3 +25,8 @@ nav {
     }
   }
 }
+
+.auth-sign-in, .about-us-button {
+  width: 100%;
+}
+
