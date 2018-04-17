@@ -17,6 +17,9 @@ class App extends Component {
           <div className='routes'>
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={Dashboard} />
+            {/* <Route exact path='/companies' component={} />
+            <Route exact path='/jobs' component={} />
+            <Route exact path='/events' component={} /> */}
             <Route path='/' component={AuthRedirect} />
           </div>
         </BrowserRouter>

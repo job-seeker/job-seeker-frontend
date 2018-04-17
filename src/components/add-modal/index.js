@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import CompanyFields from '../form-field/event-field';
 
 export default class AddModal extends Component {
   render() {
@@ -14,7 +15,7 @@ export default class AddModal extends Component {
         open={this.props.open}
       >
 
-        <p>oops</p>
+        <CompanyFields />
 
       </Dialog>
     );

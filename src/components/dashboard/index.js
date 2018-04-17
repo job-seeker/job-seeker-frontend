@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { profileCreateRequest } from '../../actions/profile-actions';
+import EventSelector from '../select-field/event-select-field';
+import JobStatusSelector from '../select-field/job-status-field';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -8,6 +11,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import ArrowIcon from 'material-ui/svg-icons/navigation/chevron-left';
 import ProfileIcon from 'material-ui/svg-icons/social/person';
+import CompanyFields from '../form-field/company-field';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -21,7 +25,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      drawerOpen: true,
+      drawerOpen: false,
       modalOpen: false,
     };
     this.handleModalOpen = this.handleModalOpen.bind(this);
@@ -89,10 +93,10 @@ class Dashboard extends Component {
           overlayStyle={{ 'background': 'none' }}
         >
           <MenuItem onClick={this.handleClose}><ArrowIcon /></MenuItem>
-          <MenuItem onClick={this.handleClose}>Dashboard</MenuItem>
-          <MenuItem onClick={this.handleClose}>Companies</MenuItem>
-          <MenuItem onClick={this.handleClose}>Job Applications</MenuItem>
-          <MenuItem onClick={this.handleClose}>Events</MenuItem>
+          <MenuItem onClick={this.handleClose}><Link to='/dashboard'>Dashboard</Link></MenuItem>
+          <MenuItem onClick={this.handleClose}><Link to='/companies'>Companies</Link></MenuItem>
+          <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
+          <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
         </Drawer>
 
         <section className='dashboard-content'>
@@ -107,6 +111,9 @@ class Dashboard extends Component {
             open={this.state.modalOpen}
             actions={actions} 
           />
+
+          <EventSelector />
+          <JobStatusSelector />
         </section>
         <Footer />
       </section>
