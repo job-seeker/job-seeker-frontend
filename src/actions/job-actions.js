@@ -1,6 +1,8 @@
 'use strict';
 
 import superagent from 'superagent';
+import { profile } from '../components/auth-landing/constants';
+import { companyCreate } from './company-actions';
 
 export const jobFetch = jobs => ({
   type: 'JOB_FETCH',
@@ -23,7 +25,7 @@ export const jobDelete = job => ({
 });
 
 export const jobFetchRequest = () => dispatch => {
-  return superagent.get(`${__API_URL__}/api/jobs`) // probably need to fix these endpoints
+  return superagent.get(`${__API_URL__}/api/profile/${profile._id}/allProfileJobs`) // probably need to fix these endpoints
     .then(res => {
       dispatch(jobFetch(res.body));
       return res;
@@ -31,7 +33,7 @@ export const jobFetchRequest = () => dispatch => {
 };
 
 export const jobCreateRequest = (job) = dispatch => {
-  return superagent.post(`${__API_URL__}/api/jobs`) // probably need to fix these endpoints
+  return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/job`) // probably need to fix these endpoints
     .send(job)
     .then(res => {
       dispatch(jobCreate(res.body));
@@ -40,7 +42,7 @@ export const jobCreateRequest = (job) = dispatch => {
 };
 
 export const jobDeleteRequest = (job) = dispatch => {
-  return superagent.delete(`${__API_URL__}/api/job/${job._id}`) // probably need to fix these endpoints
+  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/job/${job._id}`) // probably need to fix these endpoints
     .then(res => {
       dispatch(jobDelete(job));
       return res;
