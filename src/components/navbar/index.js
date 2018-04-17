@@ -53,7 +53,7 @@ class NavBar extends Component {
       <ToolbarGroup>
         <FlatButton 
           label='Sign Up'
-          containerElement={<AuthComponent />}
+          containerElement={<AuthComponent auth0={auth}/>}
           // onAuthenticated={this.onAuthenticated} signup 
           // auth0={auth} 
           // />} 
@@ -76,7 +76,7 @@ class NavBar extends Component {
           value={2} 
           // primaryText='Sign Up' 
           className='auth-sign-in'
-          containerElement={<AuthComponent />}
+          containerElement={<AuthComponent auth0={auth}/>}
           // <ReactReduxAuth0 onAuthenticated={this.onAuthenticated} signup auth0={auth} />}  
         />
         <MenuItem 
