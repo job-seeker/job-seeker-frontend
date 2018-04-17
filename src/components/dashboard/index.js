@@ -30,6 +30,9 @@ class Dashboard extends Component {
     this.handleClose = this.handleClose.bind(this);
   }
 
+  componentWillReceiveProps() {
+    console.log('will receive props',this.props);
+  }
   // componentDidMount() {
   //   this.props.profileCreate({
   //     name: 'Melanie',
@@ -43,7 +46,6 @@ class Dashboard extends Component {
   }
 
   handleModalClose() {
-    console.log('whyyy')
     this.setState({ modalOpen: false });
   }
 
