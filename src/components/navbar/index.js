@@ -51,15 +51,8 @@ class NavBar extends Component {
   render() {
     const DesktopNavLinks = () => (
       <ToolbarGroup>
-        <FlatButton 
-          label='Sign Up'
-          containerElement={<AuthComponent auth0={auth}/>}
-          // onAuthenticated={this.onAuthenticated} signup 
-          // auth0={auth} 
-          // />} 
-        />
+        <AuthComponent auth0={auth} />
 
-        {/* <FlatButton label='Log In' containerElement={<ReactReduxAuth0 onAuthenticated={this.onAuthenticated} login auth0={auth} />} /> */}
         <FlatButton 
           label='About Us' 
           className='about-us-button'
@@ -72,11 +65,11 @@ class NavBar extends Component {
       return <DropDownMenu 
         className='dropdown-nav'
         iconButton={<NavigationMenu />}>
-        <MenuItem 
+        <AuthComponent 
           value={2} 
           // primaryText='Sign Up' 
           className='auth-sign-in'
-          containerElement={<AuthComponent auth0={auth}/>}
+          // containerElement={<AuthComponent />}
           // <ReactReduxAuth0 onAuthenticated={this.onAuthenticated} signup auth0={auth} />}  
         />
         <MenuItem 
