@@ -10,6 +10,7 @@ import Dashboard from '../dashboard';
 import CompanyListings from '../company-listings';
 import JobListings from '../job-listings';
 import EventListings from '../event-listings';
+import CompanyView from '../company-view';
 import AuthRedirect from '../auth-redirect';
 
 class App extends Component {
@@ -18,12 +19,12 @@ class App extends Component {
       <div className='app'>
         <BrowserRouter>
           <div className='routes'>
-            
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={Dashboard} />
             <Route exact path='/companies' component={CompanyListings} />
             <Route exact path='/jobs' component={JobListings} />
             <Route exact path='/events' component={EventListings} />
+            <Route exact path='/company' component={CompanyView} />
             {/* <Route path='/' component={AuthRedirect} /> */}
           </div>
         </BrowserRouter>
@@ -31,10 +32,6 @@ class App extends Component {
     );
   }
 }
-
-// let mapStateToProps = (state) => ({
-
-// });
 
 let mapDispatchToProps = (dispatch) => ({
   userLogin: user => dispatch(signinRequest(user)),
