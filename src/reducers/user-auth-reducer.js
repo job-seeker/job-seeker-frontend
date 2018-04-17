@@ -4,7 +4,7 @@ export default (state=null, action) => {
   switch(type) {
   case 'TOKEN_SET':
     return payload;
-  case 'TOKEN_DELETE':
+  case 'auth_logout':
     return null;
   default:
     return state;
