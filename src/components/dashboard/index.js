@@ -17,7 +17,7 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 import './_dashboard.scss';
-import AddModal from '../add-modal';
+import CompanyModal from '../company-modal';
 import ListingTable from '../listing-table';
 import DashboardNav from '../dashboard-navbar';
 
@@ -63,7 +63,7 @@ class Dashboard extends Component {
           <AddIcon />
         </IconButton>
 
-        <AddModal 
+        <CompanyModal 
           open={this.state.modalOpen}
           actions={actions} 
         />

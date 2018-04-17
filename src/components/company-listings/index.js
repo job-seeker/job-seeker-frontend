@@ -1,14 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
 import DashboardNav from '../dashboard-navbar';
 import CompanyFields from '../form-field/company-field';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import ListingTable from '../listing-table';
-import AddModal from '../add-modal/';
+import CompanyModal from '../company-modal/';
+import { companyCreateRequest } from '../../actions/company-actions';
 
-
-export default class CompanyListings extends React.Component {
+class CompanyListings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,19 +30,6 @@ export default class CompanyListings extends React.Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label='Cancel'
-        primary={true}
-        onClick={this.handleModalClose}
-      />,
-      <FlatButton
-        label='Submit'
-        primary={true}
-        onClick={this.handleModalClose}
-      />,
-    ];
-
     return (
       <section className='dashboard-content'>
         <DashboardNav />
@@ -50,14 +39,18 @@ export default class CompanyListings extends React.Component {
           <AddIcon />
         </IconButton>
 
-        <AddModal 
+        <CompanyModal 
           open={this.state.modalOpen}
-          actions={actions} 
+          onComplete={this.props.companyCreate}
+          modalClose={this.handleModalClose}
         />
-
-        {/* <EventSelector />
-        <JobStatusSelector /> */}
       </section>
     );
   }
 }
+
+let mapDispatchToProps = (dispatch) => ({
+  companyCreate: company => dispatch(companyCreateRequest(company)),
+});
+
+export default connect(null, mapDispatchToProps)(CompanyListings);
