@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 // import { signinRequest } from '../../actions/user-auth-actions.js';
 import { profileCreateRequest } from '../../actions/profile-actions';
 
+import './_app.scss';
 import HomePage from '../homepage';
 import Dashboard from '../dashboard';
-import './_app.scss';
+import CompanyListings from '../company-listings';
+import JobListings from '../job-listings';
+import EventListings from '../event-listings';
 import AuthRedirect from '../auth-redirect';
 
 class App extends Component {
@@ -15,12 +18,13 @@ class App extends Component {
       <div className='app'>
         <BrowserRouter>
           <div className='routes'>
+            
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={Dashboard} />
-            {/* <Route exact path='/companies' component={} />
-            <Route exact path='/jobs' component={} />
-            <Route exact path='/events' component={} /> */}
-            <Route path='/' component={AuthRedirect} />
+            <Route exact path='/companies' component={Companies} />
+            <Route exact path='/jobs' component={JobListings} />
+            <Route exact path='/events' component={EventListings} />
+            {/* <Route path='/' component={AuthRedirect} /> */}
           </div>
         </BrowserRouter>
       </div>
