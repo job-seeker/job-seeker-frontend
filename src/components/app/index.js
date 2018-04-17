@@ -10,6 +10,7 @@ import Dashboard from '../dashboard';
 import CompanyListings from '../company-listings';
 import JobListings from '../job-listings';
 import EventListings from '../event-listings';
+import CompanyView from '../company-view';
 import AuthRedirect from '../auth-redirect';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path='/companies' component={CompanyListings} />
             <Route exact path='/jobs' component={JobListings} />
             <Route exact path='/events' component={EventListings} />
+            <Route exact path='/company' component={CompanyView} />
             {/* <Route path='/' component={AuthRedirect} /> */}
           </div>
         </BrowserRouter>
