@@ -45,7 +45,6 @@ class NavBar extends Component {
   }
   onAuthenticated(token, profile) { //if loginResult is null, it's likely because a token was already set
     console.log(`Login token ${JSON.stringify(token)},\n\nProfile\n ${JSON.stringify(profile)}`);
-    
   }
 
   render() {
