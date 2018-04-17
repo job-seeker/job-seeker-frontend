@@ -52,10 +52,10 @@ class AuthComponent extends React.Component {
     let auth0 = props.auth0 || {};
     let authSettings = auth0.auth || {};
     
-    // if (authSettings.redirect){ //Because redirect restarts browser memory, auth0 needs to be mounted again in redirect mode for on.authenticated callback handler to be reached
+    if (authSettings.redirect){ //Because redirect restarts browser memory, auth0 needs to be mounted again in redirect mode for on.authenticated callback handler to be reached
     // if (this.props.login) {
-    //   this.mountAuth0();
-    // }
+      this.mountAuth0();
+    }
   }
 
   componentWillReceiveProps(nextProps){
@@ -86,6 +86,7 @@ class AuthComponent extends React.Component {
   }
 
   finish(method, err, profile, token){
+    // console.log('method',method);
     let { props } = this;
     let action;
     let obj;
@@ -138,16 +139,16 @@ class AuthComponent extends React.Component {
     //   </div>
     // );
 
-    const LOGGED_IN = (
-      <div className="logout">
-        <a href="#" onClick={this.logout} className="logout">Logout</a>
-      </div>
-    );
+    // const LOGGED_IN = (
+    //   <div className="logout">
+    //     <a href="#" onClick={this.logout} className="logout">Logout</a>
+    //   </div>
+    // );
 
     return (
       <Fragment>
         {props.auth.token 
-          ? LOGGED_IN 
+          ? <FlatButton className='auth-sign-out' onClick={this.logout}>Logout</FlatButton>
           : <FlatButton className='auth-sign-in' onClick={this.showSignupModal}>Sign In</FlatButton>
         }
       </Fragment>
