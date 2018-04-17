@@ -1,5 +1,7 @@
 import request from 'superagent';
 
+import { profileCreate } from './profile-actions.js';
+
 export const tokenSet = (token) => ({
   type: 'TOKEN_SET',
   payload: token,
@@ -39,8 +41,9 @@ export const signinRequest = (user) => (dispatch) => {
 export const getAccessTokenAction = (email) =>  (dispatch) => {
   return request.post(`${__API_URL__}/api/handleAuth`)
     .send({ email })
-    .then(res => {
-      dispatch(tokenSet(res.text));
+    .then(({ body: { token, profile }}) => {
+      dispatch(tokenSet(token));
+      dispatch(profileCreate(profile));
       return;
     });
 };
