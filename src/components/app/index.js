@@ -18,7 +18,6 @@ class App extends Component {
       <div className='app'>
         <BrowserRouter>
           <div className='routes'>
-            
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={Dashboard} />
             <Route exact path='/companies' component={CompanyListings} />
@@ -31,10 +30,6 @@ class App extends Component {
     );
   }
 }
-
-// let mapStateToProps = (state) => ({
-
-// });
 
 let mapDispatchToProps = (dispatch) => ({
   userLogin: user => dispatch(signinRequest(user)),
