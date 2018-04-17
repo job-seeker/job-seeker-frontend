@@ -23,7 +23,7 @@ export const eventDelete = event => ({
 });
 
 export const eventFetchRequest = () => dispatch => {
-  return superagent.get(`${__API_URL__}/api/events`) // probably need to fix these endpoints
+  return superagent.get(`${__API_URL__}/api/profile/${profile._id}/allProfileEvents`) // probably need to fix these endpoints
     .then(res => {
       dispatch(eventFetch(res.body));
       return res;
@@ -31,7 +31,7 @@ export const eventFetchRequest = () => dispatch => {
 };
 
 export const eventCreateRequest = (event) = dispatch => {
-  return superagent.post(`${__API_URL__}/api/events`) // probably need to fix these endpoints
+  return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/event`) // probably need to fix these endpoints
     .send(event)
     .then(res => {
       dispatch(eventCreate(res.body));
@@ -40,7 +40,7 @@ export const eventCreateRequest = (event) = dispatch => {
 };
 
 export const eventDeleteRequest = (event) = dispatch => {
-  return superagent.delete(`${__API_URL__}/api/event/${event._id}`) // probably need to fix these endpoints
+  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/event/${event._id}`) // probably need to fix these endpoints
     .then(res => {
       dispatch(eventDelete(event));
       return res;

@@ -1,45 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
+import DashboardNav from '../dashboard-navbar';
+import EventFields from '../form-field/event-field';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
-
-import DashboardNav from '../dashboard-navbar';
 import ListingTable from '../listing-table';
-import CompanyModal from '../company-modal';
+import EventModal from '../event-modal';
+import { eventCreateRequest } from '../../actions/event-actions';
 
-export default class EventListings extends Component {
+class EventListings extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       modalOpen: false,
     };
+
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
   }
-
+  
   handleModalOpen() {
     this.setState({ modalOpen: true });
-  }
-
+  }  
+  
   handleModalClose() {
     this.setState({ modalOpen: false });
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label='Cancel'
-        primary={true}
-        onClick={this.handleModalClose}
-      />,
-      <FlatButton
-        label='Submit'
-        primary={true}
-        onClick={this.handleModalClose}
-      />,
-    ];
-
     return (
       <section className='dashboard-content'>
         <DashboardNav />
@@ -49,14 +39,18 @@ export default class EventListings extends Component {
           <AddIcon />
         </IconButton>
 
-        <CompanyModal 
+        <EventModal 
           open={this.state.modalOpen}
-          actions={actions} 
+          onComplete={this.props.eventCreate}
+          modalClose={this.handleModalClose}
         />
-
-        {/* <EventSelector />
-        <JobStatusSelector /> */}
       </section>
     );
   }
 }
+
+let mapDispatchToProps = (dispatch) => ({
+  eventCreate: event => dispatch(eventCreateRequest(event)),
+});
+
+export default connect(null, mapDispatchToProps)(EventListings);

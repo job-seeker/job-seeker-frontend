@@ -12,14 +12,15 @@ const styles = {
   },
 };
 
-export default class CompanyModal extends Component {
+export default class JobModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      companyName: '',
-      companyWebsite: '',
-      companyAddress: '',
-      companyNotes: '',
+      jobTitle: '',
+      jobLink: '',
+      jobStatus: '',
+      jobType: '',
+      jobNotes: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,43 +46,55 @@ export default class CompanyModal extends Component {
   render() {
     return (
       <Dialog
-        title='Add Company'
+        title='Add a job'
         actions={this.props.actions}
         modal={false}
         open={this.props.open}>
 
         <div>
           <TextField
-            name='companyName'
-            value={this.state.companyName}
+            name='jobTitle'
+            value={this.state.jobTitle}
             onChange={this.handleChange}
-            hintText="Add a Company"
-            floatingLabelText="Company Name"
+            hintText="Add a job"
+            floatingLabelText="Job Title"
             floatingLabelFixed={true}
             errorText="This field is required"
-            errorStyle={styles.errorStyle}
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='companyWebsite'
-            value={this.state.companyWebsite}
+            name='jobLink'
+            value={this.state.jobLink}
             onChange={this.handleChange}
-            hintText="Add a Company"
-            floatingLabelText="Company Website"
+            hintText="Add a job"
+            floatingLabelText="Job Link"
             floatingLabelFixed={true}
             errorText="This field is required"
-            errorStyle={styles.errorStyle}                    
+            errorStyle={styles.errorStyle}                   
           /><br />
           <TextField
-            name='companyAddress'
-            value={this.state.companyAddress}
+            name='jobStatus'
+            value={this.state.jobStatus}
             onChange={this.handleChange}
-            hintText="Add a company"
-            floatingLabelText="Company Address"
+            hintText="Add a job"
+            floatingLabelText="Job Status"
             floatingLabelFixed={true}
+            errorText="This field is required"
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='companyNotes'
-            value={this.state.companyNotes}
+            name='jobType'
+            value={this.state.jobType}
+            onChange={this.handleChange}
+            hintText="Add a job"
+            floatingLabelText="Job Type"
+            floatingLabelFixed={true}
+            errorText="This field is required"
+            errorStyle={styles.errorStyle}            
+          /><br />
+          <TextField
+            name='jobNotes'
+            value={this.state.jobNotes}
             onChange={this.handleChange}
             hintText="Additional Notes"
             floatingLabelText="Notes"
