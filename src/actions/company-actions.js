@@ -30,7 +30,7 @@ export const companyFetchRequest = () => dispatch => {
     });
 };
 
-export const companyCreateRequest = (company) = dispatch => {
+export const companyCreateRequest = (company) => dispatch => {
   return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company`) // probably need to fix these endpoints
     .send(company)
     .then(res => {
@@ -39,7 +39,7 @@ export const companyCreateRequest = (company) = dispatch => {
     });
 };
 
-export const companyDeleteRequest = (company) = dispatch => {
+export const companyDeleteRequest = (company) => dispatch => {
   return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/${company._id}`) // probably need to fix these endpoints
     .then(res => {
       dispatch(companyDelete(company));

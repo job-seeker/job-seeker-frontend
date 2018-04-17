@@ -4,6 +4,13 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
+import {orange500, blue500} from 'material-ui/styles/colors';
+
+const styles = {
+  errorStyle: {
+    color: orange500,
+  },
+};
 
 export default class JobModal extends Component {
   constructor(props) {
@@ -39,7 +46,7 @@ export default class JobModal extends Component {
   render() {
     return (
       <Dialog
-        title='Add an job'
+        title='Add a job'
         actions={this.props.actions}
         modal={false}
         open={this.props.open}>
@@ -49,10 +56,11 @@ export default class JobModal extends Component {
             name='jobTitle'
             value={this.state.jobTitle}
             onChange={this.handleChange}
-            hintText="Add aa job"
+            hintText="Add a job"
             floatingLabelText="Job Title"
             floatingLabelFixed={true}
             errorText="This field is required"
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
             name='jobLink'
@@ -61,7 +69,8 @@ export default class JobModal extends Component {
             hintText="Add a job"
             floatingLabelText="Job Link"
             floatingLabelFixed={true}
-            errorText="This field is required"          
+            errorText="This field is required"
+            errorStyle={styles.errorStyle}                   
           /><br />
           <TextField
             name='jobStatus'
@@ -70,6 +79,8 @@ export default class JobModal extends Component {
             hintText="Add a job"
             floatingLabelText="Job Status"
             floatingLabelFixed={true}
+            errorText="This field is required"
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
             name='jobType'
@@ -78,6 +89,8 @@ export default class JobModal extends Component {
             hintText="Add a job"
             floatingLabelText="Job Type"
             floatingLabelFixed={true}
+            errorText="This field is required"
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
             name='jobNotes'

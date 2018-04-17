@@ -4,6 +4,13 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
+import {orange500, blue500} from 'material-ui/styles/colors';
+
+const styles = {
+  errorStyle: {
+    color: orange500,
+  },
+};
 
 export default class CompanyModal extends Component {
   constructor(props) {
@@ -52,6 +59,7 @@ export default class CompanyModal extends Component {
             floatingLabelText="Company Name"
             floatingLabelFixed={true}
             errorText="This field is required"
+            errorStyle={styles.errorStyle}
           /><br />
           <TextField
             name='companyWebsite'
@@ -60,7 +68,8 @@ export default class CompanyModal extends Component {
             hintText="Add a Company"
             floatingLabelText="Company Website"
             floatingLabelFixed={true}
-            errorText="This field is required"          
+            errorText="This field is required"
+            errorStyle={styles.errorStyle}                    
           /><br />
           <TextField
             name='companyAddress'

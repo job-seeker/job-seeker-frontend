@@ -4,6 +4,13 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
+import {orange500, blue500} from 'material-ui/styles/colors';
+
+const styles = {
+  errorStyle: {
+    color: orange500,
+  },
+};
 
 export default class EventModal extends Component {
   constructor(props) {
@@ -52,6 +59,7 @@ export default class EventModal extends Component {
             floatingLabelText="Event Type"
             floatingLabelFixed={true}
             errorText="This field is required"
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
             name='eventTitle'
@@ -60,7 +68,8 @@ export default class EventModal extends Component {
             hintText="Add an event"
             floatingLabelText="Event Title"
             floatingLabelFixed={true}
-            errorText="This field is required"          
+            errorText="This field is required"   
+            errorStyle={styles.errorStyle}                   
           /><br />
           <TextField
             name='eventDate'
@@ -69,6 +78,8 @@ export default class EventModal extends Component {
             hintText="Add an event"
             floatingLabelText="Event Date"
             floatingLabelFixed={true}
+            errorText="This field is required"
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
             name='eventNotes'

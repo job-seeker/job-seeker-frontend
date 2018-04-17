@@ -32,7 +32,7 @@ export const jobFetchRequest = () => dispatch => {
     });
 };
 
-export const jobCreateRequest = (job) = dispatch => {
+export const jobCreateRequest = (job) => dispatch => {
   return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/job`) // probably need to fix these endpoints
     .send(job)
     .then(res => {
@@ -41,7 +41,7 @@ export const jobCreateRequest = (job) = dispatch => {
     });
 };
 
-export const jobDeleteRequest = (job) = dispatch => {
+export const jobDeleteRequest = (job) => dispatch => {
   return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/job/${job._id}`) // probably need to fix these endpoints
     .then(res => {
       dispatch(jobDelete(job));
