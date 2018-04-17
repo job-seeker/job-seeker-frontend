@@ -9,15 +9,23 @@ export default class ContactFields extends React.Component {
           hintText="Add a Contact"
           floatingLabelText="Contact Name"
           floatingLabelFixed={true}
+          errorText="This field is required"          
         /><br />
         <TextField
           hintText="Add a Contact"
           floatingLabelText="Contact Number"
           floatingLabelFixed={true}
+          errorText="This field is required"          
         /><br />
         <TextField
           hintText="Add a Contact"
           floatingLabelText="Contact Email"
+          floatingLabelFixed={true}
+          errorText="This field is required"          
+        /><br />
+        <TextField
+          hintText="Additional Notes"
+          floatingLabelText="Notes"
           floatingLabelFixed={true}
         /><br />
       </div>
