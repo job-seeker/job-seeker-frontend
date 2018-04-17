@@ -1,15 +1,35 @@
 .homepage {
   height: 100%;
   font-family: Avenir;
+  background-image: url('../../assets/desk-photo.jpg');
+  background-size: cover;
+  left: 0;
+  top: 0;
+  background-color: hsla(0,0%,100%,0.70);
+  background-blend-mode: overlay;  
 
-  .title-div {
+  // https://stackoverflow.com/questions/396145/how-to-vertically-center-a-div-for-all-browsers#6182661
+  .outer {
+    display: table;
     margin: 0 auto;
+    height: 85%;
+    width: 90%;
+  }
+
+  .middle {
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
-    padding: 6vw 5.5vw;
+  }
+
+  .inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80vw;
 
     h2 {
       color: #01579B;
-      font-size: 5vw;
+      font-size: 4.5vw;
       font-weight: bold;
     }
     

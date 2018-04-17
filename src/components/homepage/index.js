@@ -12,16 +12,19 @@ export default class HomePage extends Component {
     return (
       <section className='homepage'>
         <NavBar />
-        <div className='title-div'>
-          <h2>Lorem ipsum dolor sit amet.</h2>
-          <h3>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
-          <RaisedButton 
-            primary={true} 
-            label='Dashboard link'
-            containerElement={<Link to='/dashboard' />}
-          />
+        <div class='outer'>
+          <div class='middle'>
+            <div class='inner'>
+              <h2>The personal database for all of your job-seeking activities.</h2>
+              <h3>Job Seeker allows you to track potential career opportunities, including associated companies, job postings, events, and contact information. I'm not good at fancy headlines.</h3>
+              <RaisedButton 
+                primary={true} 
+                label='Dashboard link'
+                containerElement={<Link to='/dashboard' />}
+              />
+            </div>
+          </div>
         </div>
-
         <Footer />
       </section>
     );
