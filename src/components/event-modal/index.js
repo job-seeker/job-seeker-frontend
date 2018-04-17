@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
+import EventSelector from '../select-field/event-select-field';
 
 const styles = {
   errorStyle: {
@@ -51,7 +52,7 @@ export default class EventModal extends Component {
         open={this.props.open}>
 
         <div>
-          <TextField
+          {/* <TextField
             name='eventType'
             value={this.state.eventType}
             onChange={this.handleChange}
@@ -60,7 +61,7 @@ export default class EventModal extends Component {
             floatingLabelFixed={true}
             errorText="This field is required"
             errorStyle={styles.errorStyle}            
-          /><br />
+          /><br /> */}
           <TextField
             name='eventTitle'
             value={this.state.eventTitle}
@@ -89,6 +90,7 @@ export default class EventModal extends Component {
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
+          <EventSelector />
         </div>
 
         <FlatButton

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import DashboardNav from '../dashboard-navbar';
-import CompanyFields from '../form-field/company-field';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';

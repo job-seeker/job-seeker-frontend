@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
+import JobStatusSelector from '../select-field/job-status-field';
 
 const styles = {
   errorStyle: {
@@ -72,7 +73,7 @@ export default class JobModal extends Component {
             errorText="This field is required"
             errorStyle={styles.errorStyle}                   
           /><br />
-          <TextField
+          {/* <TextField
             name='jobStatus'
             value={this.state.jobStatus}
             onChange={this.handleChange}
@@ -81,7 +82,8 @@ export default class JobModal extends Component {
             floatingLabelFixed={true}
             errorText="This field is required"
             errorStyle={styles.errorStyle}            
-          /><br />
+          /><br /> */}
+
           <TextField
             name='jobType'
             value={this.state.jobType}
@@ -100,6 +102,7 @@ export default class JobModal extends Component {
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
+          <JobStatusSelector />
         </div>
 
         <FlatButton
