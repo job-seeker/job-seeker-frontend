@@ -7,7 +7,7 @@ import { profileCreateRequest } from '../../actions/profile-actions';
 import './_app.scss';
 import HomePage from '../homepage';
 import Dashboard from '../dashboard';
-import CompanyListings from '../company-listings';
+// import CompanyListings from '../company-listings';
 import JobListings from '../job-listings';
 import EventListings from '../event-listings';
 import AuthRedirect from '../auth-redirect';
@@ -21,7 +21,7 @@ class App extends Component {
             
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/companies' component={Companies} />
+            {/* <Route exact path='/companies' component={Companies} /> */}
             <Route exact path='/jobs' component={JobListings} />
             <Route exact path='/events' component={EventListings} />
             {/* <Route path='/' component={AuthRedirect} /> */}
