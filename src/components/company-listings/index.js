@@ -45,7 +45,7 @@ class CompanyListings extends React.Component {
           profile={this.props.profile}
         />
 
-        <IconButton class='add-icon' onClick={this.handleModalOpen}>
+        <IconButton className='add-icon' onClick={this.handleModalOpen}>
           <AddIcon color={amber800} />
         </IconButton>
 

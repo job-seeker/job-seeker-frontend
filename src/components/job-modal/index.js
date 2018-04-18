@@ -6,6 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import JobStatusSelector from '../select-field/job-status-field';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 const styles = {
   errorStyle: {
@@ -17,13 +19,14 @@ export default class JobModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      jobTitle: '',
-      jobLink: '',
-      jobStatus: '',
-      jobType: '',
-      jobNotes: '',
+      title: '',
+      link: '',
+      type: '',
+      notes: '',
+      status: 1,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -31,16 +34,15 @@ export default class JobModal extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleSelectChange(event, index, value) {
+    this.setState({ status: value });
+  };
+
   handleSubmit(e) {
-    console.log(this.props);
     e.preventDefault();
     
-    return this.props.onComplete(this.state)
-      .then(console.log()) // we should probably change this...
-      // if (!this.props.profile) {
-      //   this.setState({ description: '', preview: '', photo: null });
-      // }
-      // })
+    return this.props.onComplete(this.props.company, this.state)
+      .then(this.props.modalClose)
       .catch(console.error);
   }
 
@@ -54,8 +56,8 @@ export default class JobModal extends Component {
 
         <div>
           <TextField
-            name='jobTitle'
-            value={this.state.jobTitle}
+            name='title'
+            value={this.state.title}
             onChange={this.handleChange}
             hintText="Add a job"
             floatingLabelText="Job Title"
@@ -64,8 +66,8 @@ export default class JobModal extends Component {
             errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='jobLink'
-            value={this.state.jobLink}
+            name='link'
+            value={this.state.link}
             onChange={this.handleChange}
             hintText="Add a job"
             floatingLabelText="Job Link"
@@ -73,20 +75,9 @@ export default class JobModal extends Component {
             errorText="This field is required"
             errorStyle={styles.errorStyle}                   
           /><br />
-          {/* <TextField
-            name='jobStatus'
-            value={this.state.jobStatus}
-            onChange={this.handleChange}
-            hintText="Add a job"
-            floatingLabelText="Job Status"
-            floatingLabelFixed={true}
-            errorText="This field is required"
-            errorStyle={styles.errorStyle}            
-          /><br /> */}
-
           <TextField
-            name='jobType'
-            value={this.state.jobType}
+            name='type'
+            value={this.state.type}
             onChange={this.handleChange}
             hintText="Add a job"
             floatingLabelText="Job Type"
@@ -95,14 +86,23 @@ export default class JobModal extends Component {
             errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='jobNotes'
-            value={this.state.jobNotes}
+            name='notes'
+            value={this.state.notes}
             onChange={this.handleChange}
             hintText="Additional Notes"
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
-          <JobStatusSelector />
+          <SelectField
+            floatingLabelText="Job Status"
+            value={this.state.status}
+            onChange={this.handleSelectChange}
+            required
+          >
+            <MenuItem value={'review'} primaryText="Under Review" />
+            <MenuItem value={'accepted'} primaryText="Accepted" />
+            <MenuItem value={'rejected'} primaryText="Rejected" />
+          </SelectField>
         </div>
 
         <FlatButton
