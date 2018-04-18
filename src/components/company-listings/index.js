@@ -7,8 +7,10 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 
+import './_company-listings.scss';
 import ListingTable from '../listing-table';
 import CompanyModal from '../company-modal/';
+import { amber800 } from 'material-ui/styles/colors';
 
 class CompanyListings extends React.Component {
   constructor(props) {
@@ -32,7 +34,9 @@ class CompanyListings extends React.Component {
     return (
       <section className='dashboard-content'>
         <DashboardNav />
+        
         <ListingTable 
+          style={{ 'padding-bottom': '20px' }}
           header='All Companies'
           column1='Company'
           column2='Website'
@@ -41,8 +45,8 @@ class CompanyListings extends React.Component {
           profile={this.props.profile}
         />
 
-        <IconButton onClick={this.handleModalOpen}>
-          <AddIcon />
+        <IconButton class='add-icon' onClick={this.handleModalOpen}>
+          <AddIcon color={amber800} />
         </IconButton>
 
         <CompanyModal 

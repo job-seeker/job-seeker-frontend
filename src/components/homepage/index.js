@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
-import Footer from '../footer';
 import NavBar from '../navbar';
 import './_homepage.scss';
 
@@ -26,7 +25,6 @@ export default class HomePage extends Component {
             </div>
           </div>
         </div>
-        <Footer />
       </section>
     );
   }

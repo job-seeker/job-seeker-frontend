@@ -30,7 +30,7 @@ class App extends Component {
         <BrowserRouter>
           <div className='routes'>
             <Route exact path='/' component={HomePage} />
-            <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/dashboard' component={CompanyListings} />
             <Route exact path='/companies' component={CompanyListings} />
             <Route exact path='/jobs' component={JobListings} />
             <Route exact path='/events' component={EventListings} />
