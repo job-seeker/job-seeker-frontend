@@ -28,8 +28,8 @@ export default class JobStatusSelector extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         >
-          <MenuItem value={1} primaryText="Accepted" />
-          <MenuItem value={2} primaryText="Under Review" />
+          <MenuItem value={1} primaryText="Under Review" />
+          <MenuItem value={2} primaryText="Accepted" />
           <MenuItem value={3} primaryText="Rejected" />
         </SelectField>
       </div>
