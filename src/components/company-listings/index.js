@@ -40,6 +40,7 @@ class CompanyListings extends React.Component {
 
         <CompanyModal 
           open={this.state.modalOpen}
+          profile={this.props.profile}
           onComplete={this.props.companyCreate}
           modalClose={this.handleModalClose}
         />
@@ -48,8 +49,12 @@ class CompanyListings extends React.Component {
   }
 }
 
-let mapDispatchToProps = (dispatch) => ({
-  companyCreate: company => dispatch(companyCreateRequest(company)),
+let mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
-export default connect(null, mapDispatchToProps)(CompanyListings);
+let mapDispatchToProps = (dispatch) => ({
+  companyCreate: (profile, company) => dispatch(companyCreateRequest(profile, company)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyListings);

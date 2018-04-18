@@ -30,8 +30,8 @@ export const companyFetchRequest = () => dispatch => {
     });
 };
 
-export const companyCreateRequest = (company) => dispatch => {
-  return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company`) // probably need to fix these endpoints
+export const companyCreateRequest = (profile, company) => dispatch => {
+  return superagent.post(`${__API_URL__}/api/profile/${profile._id}/createCompany`)
     .send(company)
     .then(res => {
       dispatch(companyCreate(res.body));

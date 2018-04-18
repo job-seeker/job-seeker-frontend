@@ -17,8 +17,8 @@ export default class CompanyModal extends Component {
     super(props);
     this.state = { 
       companyName: '',
-      companyWebsite: '',
-      companyAddress: '',
+      website: '',
+      streetAddress: '',
       companyNotes: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -31,8 +31,9 @@ export default class CompanyModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    
-    return this.props.onComplete(this.state)
+    // console.log(this.props.profile)
+    // console.log(this.state)
+    return this.props.onComplete(this.props.profile, this.state)
       .then(console.log()) // we should probably change this...
       // if (!this.props.profile) {
       //   this.setState({ description: '', preview: '', photo: null });
@@ -61,8 +62,8 @@ export default class CompanyModal extends Component {
             errorStyle={styles.errorStyle}
           /><br />
           <TextField
-            name='companyWebsite'
-            value={this.state.companyWebsite}
+            name='website'
+            value={this.state.website}
             onChange={this.handleChange}
             hintText="Add a Company"
             floatingLabelText="Company Website"
@@ -71,8 +72,8 @@ export default class CompanyModal extends Component {
             errorStyle={styles.errorStyle}                    
           /><br />
           <TextField
-            name='companyAddress'
-            value={this.state.companyAddress}
+            name='streetAddress'
+            value={this.state.streetAddress}
             onChange={this.handleChange}
             hintText="Add a company"
             floatingLabelText="Company Address"

@@ -12,9 +12,9 @@ export default class HomePage extends Component {
     return (
       <section className='homepage'>
         <NavBar />
-        <div class='outer'>
-          <div class='middle'>
-            <div class='inner'>
+        <div className='outer'>
+          <div className='middle'>
+            <div className='inner'>
               <h2>The personal database for all of your job-seeking activities.</h2>
               <h3>Job Seeker allows you to track potential career opportunities, including associated companies, job postings, events, and contact information. I'm not good at fancy headlines.</h3>
               <RaisedButton 
