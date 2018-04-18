@@ -21,3 +21,12 @@ export const profileCreateRequest = (profile) => (dispatch, getState) => {
       return res;
     });
 };
+
+export const profileFetchRequest = (token) => (dispatch, getState) => {
+  return request.get(`${__API_URL__}/api/profile`)
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => {
+      dispatch(profileCreate(res.body));
+      return res;
+    });
+};

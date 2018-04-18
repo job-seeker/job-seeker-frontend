@@ -147,7 +147,7 @@ class AuthComponent extends React.Component {
 
     return (
       <Fragment>
-        {props.auth.token 
+        {props.auth.token || props.token
           ? <FlatButton className='auth-sign-out' onClick={this.logout}>Logout</FlatButton>
           : <FlatButton className='auth-sign-in' onClick={this.showSignupModal}>Sign In</FlatButton>
         }
@@ -177,8 +177,8 @@ AuthComponent.defaultProps = {
 // });
 
 let mapStateToProps = (state) => {
-  let { auth } = state;
-  return { auth };
+  let { auth, token } = state;
+  return { auth, token };
 };
 
 export default connect(mapStateToProps, null)(AuthComponent);
