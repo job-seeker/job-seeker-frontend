@@ -19,7 +19,7 @@ export default class CompanyModal extends Component {
     this.state = { 
       companyName: '',
       website: '',
-      streetAddress: '',
+      cityState: '',
       companyNotes: '',
     };
     this.handleChange = this.handleChange.bind(this);
@@ -67,8 +67,8 @@ export default class CompanyModal extends Component {
             errorStyle={styles.errorStyle}                    
           /><br />
           <TextField
-            name='City/State'
-            value={this.state.streetAddress}
+            name='cityState'
+            value={this.state.cityState}
             onChange={this.handleChange}
             hintText="Add a company"
             floatingLabelText="Company City/State"

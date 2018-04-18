@@ -66,7 +66,7 @@ export default class ListingTable extends Component {
                   <TableRow key={company._id}>
                     <TableRowColumn><Link to={'/company/'+company._id}>{company.companyName}</Link></TableRowColumn>
                     <TableRowColumn>{company.website}</TableRowColumn>
-                    <TableRowColumn>{company.streetAddress}</TableRowColumn>
+                    <TableRowColumn>{company.cityState}</TableRowColumn>
                     <TableRowColumn>{company.created}</TableRowColumn>
                   </TableRow>
                 ))
