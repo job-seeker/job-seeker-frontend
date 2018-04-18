@@ -24,7 +24,7 @@ class CompanyView extends Component {
     this.state = { 
       companyName: '',
       companyWebsite: '',
-      streetAddress: '',
+      cityState: '',
       companyNotes: '',
       created: '',
     };
@@ -36,7 +36,7 @@ class CompanyView extends Component {
         this.setState({
           companyName: res.body.companyName,
           website: res.body.website,
-          streetAddress: res.body.streetAddress || 'N/A',
+          cityState: res.body.cityState,
           companyNotes: res.body.companyNotes,
           created: res.body.created,
         });
@@ -57,7 +57,7 @@ class CompanyView extends Component {
             </IconButton>
             <Divider />
             <p><span>Website:</span>{this.state.website}</p>
-            {/* <p><span>City, State:</span>{this.state.cityState}</p> */}
+            <p><span>City, State:</span>{this.state.cityState}</p>
             <p><span>Created:</span>{this.state.created}</p>
             <p><span>Notes:</span></p>
             <textarea readOnly placeholder={this.state.companyNotes} />
