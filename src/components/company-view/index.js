@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { singleCompanyFetchRequest } from '../../actions/company-actions';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -16,26 +18,37 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import './_company-view.scss';
 import DashboardNav from '../dashboard-navbar';
 
-export default class CompanyView extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { 
-  //     companyName: '',
-  //     companyWebsite: '',
-  //     companyAddress: '',
-  //     companyNotes: '',
-  //   };
-  //   this.handleChange = this.handleChange.bind(this);
-  //   this.handleSubmit = this.handleSubmit.bind(this);
-  // }
+class CompanyView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      companyName: '',
+      companyWebsite: '',
+      streetAddress: '',
+      companyNotes: '',
+      created: '',
+    };
+  }
+
+  componentWillMount() {
+    this.props.companyFetch(this.props.profile, this.props.match.params.companyId)
+      .then(res => {
+        this.setState({
+          companyName: res.body.companyName,
+          website: res.body.website,
+          streetAddress: res.body.streetAddress || 'N/A',
+          companyNotes: res.body.companyNotes,
+          created: res.body.created,
+        });
+      });
+  }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <DashboardNav />
         <div className='company-view'>
-          <Subheader style={{ padding: 0 }} >{this.props.name}</Subheader>
+          <Subheader style={{ padding: 0 }}>{this.state.companyName}</Subheader>
         
           <section className='company-info'>
             <h3>Company Info</h3>
@@ -43,11 +56,11 @@ export default class CompanyView extends Component {
               <EditIcon />
             </IconButton>
             <Divider />
-            <p><span>Website:</span> this.props.website</p>
-            <p><span>Address:</span> this.props.address</p>
-            <p><span>Phone:</span> this.props.phone</p>
+            <p><span>Website:</span>{this.state.website}</p>
+            {/* <p><span>City, State:</span>{this.state.cityState}</p> */}
+            <p><span>Created:</span>{this.state.created}</p>
             <p><span>Notes:</span></p>
-            <textarea readOnly/>
+            <textarea readOnly placeholder={this.state.companyNotes} />
           </section>
 
           <section className='company-job-postings'>
@@ -81,3 +94,16 @@ export default class CompanyView extends Component {
     );
   }
 }
+
+let mapStateToProps = (state) => ({
+  token: state.token,
+  profile: state.profile,
+  company: state.company,
+});
+
+let mapDispatchToProps = (dispatch) => ({
+  companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
+  // profileFetch: token => dispatch(profileFetchRequest(token)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);
