@@ -19,7 +19,7 @@ export const signupRequest = (user) => (dispatch) => {
     .then(res => {
       dispatch(tokenSet(res.text));
       try {
-        localStorage.token = res.text;
+        localStorage.jobSeekerToken = res.text;
       } catch(err) {
         console.error(err);
       }
@@ -33,6 +33,7 @@ export const signinRequest = (user) => (dispatch) => {
     .auth(user.username, user.password)
     .then(res => {
       dispatch(tokenSet(res.text));
+      localStorage.jobSeekerToken = res.text;
       return;
     });
 };
@@ -42,6 +43,7 @@ export const getAccessTokenAction = (email) =>  (dispatch) => {
     .send({ email })
     .then(({ body: { token, profile }}) => {
       dispatch(tokenSet(token));
+      localStorage.jobSeekerToken = token;
       dispatch(profileCreate(profile));
       return;
     });
