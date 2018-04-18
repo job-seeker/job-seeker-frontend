@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { profileCreateRequest } from '../../actions/profile-actions';
+import { profileFetchRequest } from '../../actions/profile-actions';
 import EventSelector from '../select-field/event-select-field';
 import JobStatusSelector from '../select-field/job-status-field';
 
@@ -15,7 +15,7 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
-import './_dashboard.scss';
+// import './_dashboard.scss';
 import CompanyModal from '../company-modal';
 import CompanyListings from '../company-listings';
 import ListingTable from '../listing-table';
@@ -31,6 +31,13 @@ class Dashboard extends Component {
     this.handleModalClose = this.handleModalClose.bind(this);
   }
 
+  componentWillMount() {
+    let localToken = localStorage.jobSeekerToken;
+    if (localToken) {
+      this.props.profileFetch(localToken);
+    }
+  }
+
   handleModalOpen() {
     this.setState({ modalOpen: true });
   }
@@ -40,38 +47,10 @@ class Dashboard extends Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label='Cancel'
-        primary={true}
-        onClick={this.handleModalClose}
-      />,
-      <FlatButton
-        label='Submit'
-        primary={true}
-        onClick={this.handleModalClose}
-      />,
-    ];
-
     return (
-      <section className='dashboard-content'>
-        {/* <DashboardNav /> */}
+      <Fragment>
         <CompanyListings />
-        {/* <p>Content here</p>
-        <ListingTable />
-
-        <IconButton onClick={this.handleModalOpen}>
-          <AddIcon />
-        </IconButton>
-
-        <CompanyModal 
-          open={this.state.modalOpen}
-          actions={actions} 
-        />
-
-        <EventSelector />
-        <JobStatusSelector /> */}
-      </section>
+      </Fragment>
     );
   }
 }
@@ -81,7 +60,7 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = (dispatch) => ({
-  // userLogin: user => dispatch(signinRequest(user)),
+  profileFetch: token => dispatch(profileFetchRequest(token)),
   profileCreate: profile => dispatch(profileCreateRequest(profile)),
 });
 

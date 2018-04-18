@@ -1,16 +1,12 @@
 body {
-  height: 100vh;
   font-family: Avenir, sans-serif;
 };
 
-#root {
-  height: 100%;
-};
-
-main {
-  height: 100%;
-};
-
-.app {
-  height: 100%;
-};
+footer {
+  background: #1D2731;
+  position: fixed;
+  height: 60px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

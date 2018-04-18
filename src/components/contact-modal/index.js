@@ -4,7 +4,6 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
-
 import {orange500, blue500} from 'material-ui/styles/colors';
 
 const styles = {
@@ -13,14 +12,15 @@ const styles = {
   },
 };
 
-export default class CompanyModal extends Component {
+export default class ContactModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      companyName: '',
-      website: '',
-      cityState: '',
-      companyNotes: '',
+      contactName: '',
+      contactPhone: '',
+      contactEmail: '',
+      contactLinkedIn: '',
+      contactNotes: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,52 +31,68 @@ export default class CompanyModal extends Component {
   };
 
   handleSubmit(e) {
+    console.log(this.props);
     e.preventDefault();
-    return this.props.onComplete(this.props.profile, this.state)
-      .then(this.props.modalClose)
+    
+    return this.props.onComplete(this.state)
+      .then(console.log()) // we should probably change this...
+      // if (!this.props.profile) {
+      //   this.setState({ description: '', preview: '', photo: null });
+      // }
+      // })
       .catch(console.error);
   }
 
   render() {
     return (
       <Dialog
-        title='Add Company'
+        title='Add a Contact'
         actions={this.props.actions}
         modal={false}
         open={this.props.open}>
 
         <div>
           <TextField
-            name='companyName'
-            value={this.state.companyName}
+            name='contactName'
+            value={this.state.contactName}
             onChange={this.handleChange}
-            hintText="Add a Company"
-            floatingLabelText="Company Name"
+            hintText="Add a Contact"
+            floatingLabelText="Contact Name"
             floatingLabelFixed={true}
             errorText="This field is required"
-            errorStyle={styles.errorStyle}
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='website'
-            value={this.state.website}
+            name='contactPhone'
+            value={this.state.contactPhone}
             onChange={this.handleChange}
-            hintText="Add a Company"
-            floatingLabelText="Company Website"
+            hintText="Add a Contact"
+            floatingLabelText="Contact Phone"
+            floatingLabelFixed={true}
+            errorText="This field is required"   
+            errorStyle={styles.errorStyle}                   
+          /><br />
+          <TextField
+            name='contactEmail'
+            value={this.state.contactEmail}
+            onChange={this.handleChange}
+            hintText="Add a Contact"
+            floatingLabelText="Contact Email"
             floatingLabelFixed={true}
             errorText="This field is required"
-            errorStyle={styles.errorStyle}                    
+            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='cityState'
-            value={this.state.cityState}
+            name='contactLinkedIn'
+            value={this.state.contactLinkedIn}
             onChange={this.handleChange}
-            hintText="Add a company"
-            floatingLabelText="Company City/State"
+            hintText="Additional Notes"
+            floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
           <TextField
-            name='companyNotes'
-            value={this.state.companyNotes}
+            name='contactNotes'
+            value={this.state.contactNotes}
             onChange={this.handleChange}
             hintText="Additional Notes"
             floatingLabelText="Notes"
@@ -94,6 +110,7 @@ export default class CompanyModal extends Component {
           primary={true}
           onClick={this.props.modalClose}
         />
+
       </Dialog>
     );
   }

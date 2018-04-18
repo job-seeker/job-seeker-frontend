@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { profileFetchRequest } from '../../actions/profile-actions';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -13,9 +14,8 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 import './_dashboard-navbar.scss';
-import Footer from '../footer';
 
-export default class DashboardNav extends Component {
+class DashboardNav extends Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -57,9 +57,13 @@ export default class DashboardNav extends Component {
           <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
         </Drawer>
-
-        <Footer />
       </section>
     );
   }
 }
+
+let mapDispatchToProps = (dispatch) => ({
+  profileFetch: token => dispatch(profileFetchRequest(token)),
+});
+
+export default connect(null, mapDispatchToProps)(DashboardNav);

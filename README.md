@@ -19,3 +19,5 @@ References:
   * Log out: https://material.io/icons/#ic_power_settings_new
   * Search: https://material.io/icons/#ic_search
   * Minimize drawer arrow: https://material.io/icons/#ic_chevron_left or https://material.io/icons/#ic_arrow_back
+
++ CSS reset
