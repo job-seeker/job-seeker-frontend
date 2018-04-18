@@ -22,8 +22,16 @@ export const companyDelete = company => ({
   payload: company,
 });
 
+export const singleCompanyFetchRequest = (profile, company) => dispatch => {
+  return superagent.get(`${__API_URL__}/api/profile/${profile._id}/company/${company}`)
+    .then(res => {
+      dispatch(companyFetch(res.body));
+      return res;
+    });
+};
+
 export const companyFetchRequest = () => dispatch => {
-  return superagent.get(`${__API_URL__}/api/profile/${profile._id}/company`) // probably need to fix these endpoints
+  return superagent.get(`${__API_URL__}/api/profile/${profile._id}/company`)
     .then(res => {
       dispatch(companyFetch(res.body));
       return res;
@@ -40,7 +48,7 @@ export const companyCreateRequest = (profile, company) => dispatch => {
 };
 
 export const companyDeleteRequest = (company) => dispatch => {
-  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/${company._id}`) // probably need to fix these endpoints
+  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/${company._id}`)
     .then(res => {
       dispatch(companyDelete(company));
       return res;
