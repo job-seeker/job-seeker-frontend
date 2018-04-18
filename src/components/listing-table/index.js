@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Table,
@@ -39,7 +40,6 @@ const tableData = [
 
 export default class ListingTable extends Component {
   render() {
-    // console.log(this.props)
     return (
       <div className='listing-table'>
         <Subheader>{this.props.header}</Subheader>
@@ -58,15 +58,17 @@ export default class ListingTable extends Component {
             showRowHover={true}
             displayRowCheckbox={false}>
 
-            {this.props.header === 'All Companies'
-              ? this.props.profile.companies.map((company) => (
-                <TableRow key={company._id}>
-                  <TableRowColumn>{company.companyName}</TableRowColumn>
-                  <TableRowColumn>{company.website}</TableRowColumn>
-                  <TableRowColumn>{company.streetAddress}</TableRowColumn>
-                  <TableRowColumn>{company.created}</TableRowColumn>
-                </TableRow>
-              )) 
+            {this.props.profile 
+              ? this.props.header === 'All Companies'
+                ? this.props.profile.companies.map((company) => (
+                  <TableRow key={company._id}>
+                    <TableRowColumn>{company.companyName}</TableRowColumn>
+                    <TableRowColumn>{company.website}</TableRowColumn>
+                    <TableRowColumn>{company.streetAddress}</TableRowColumn>
+                    <TableRowColumn>{company.created}</TableRowColumn>
+                  </TableRow>
+                ))
+                : undefined
               : tableData.map((row, index) => (
                 <TableRow key={index}>
                   <TableRowColumn>{row.prop1}</TableRowColumn>

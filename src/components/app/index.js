@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { signinRequest } from '../../actions/user-auth-actions.js';
 import { profileCreateRequest, profileFetchRequest } from '../../actions/profile-actions';
 import { tokenSet } from  '../../actions/user-auth-actions';
 
@@ -35,7 +34,7 @@ class App extends Component {
             <Route exact path='/companies' component={CompanyListings} />
             <Route exact path='/jobs' component={JobListings} />
             <Route exact path='/events' component={EventListings} />
-            <Route exact path='/company' component={CompanyView} />
+            <Route exact path='/company/:companyId' component={CompanyView} />
             <Route exact path='/event' component={EventView} />
             <Route exact path='/job' component={JobView} />
             {/* <Route path='/' component={AuthRedirect} /> */}
@@ -46,6 +45,10 @@ class App extends Component {
   }
 }
 
+let mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
 let mapDispatchToProps = (dispatch) => ({
   userLogin: user => dispatch(signinRequest(user)),
   profileCreate: profile => dispatch(profileCreateRequest(profile)),
@@ -53,4 +56,4 @@ let mapDispatchToProps = (dispatch) => ({
   tokenSet: token => dispatch(tokenSet(token)),
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

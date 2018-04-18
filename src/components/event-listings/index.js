@@ -15,7 +15,6 @@ class EventListings extends React.Component {
     this.state = {
       modalOpen: false,
     };
-
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
   }

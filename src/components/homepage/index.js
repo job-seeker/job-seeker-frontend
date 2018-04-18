@@ -8,15 +8,7 @@ import Footer from '../footer';
 import NavBar from '../navbar';
 import './_homepage.scss';
 
-class HomePage extends Component {
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('this.props',this.props)
-  //   console.log('nextprops', nextProps)
-  //   if (!this.props.token && nextProps.token) {
-  //     this.props.history.push('/');
-  //   }
-  // }
-
+export default class HomePage extends Component {
   render() {
     return (
       <section className='homepage'>
@@ -39,9 +31,3 @@ class HomePage extends Component {
     );
   }
 }
-
-let mapStateToProps = (state) => ({
-  token: state.token,
-});
-
-export default connect(mapStateToProps, null)(HomePage);
