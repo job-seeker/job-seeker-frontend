@@ -17,6 +17,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import './_dashboard.scss';
 import CompanyModal from '../company-modal';
+import CompanyListings from '../company-listings';
 import ListingTable from '../listing-table';
 import DashboardNav from '../dashboard-navbar';
 
@@ -54,8 +55,9 @@ class Dashboard extends Component {
 
     return (
       <section className='dashboard-content'>
-        <DashboardNav />
-        <p>Content here</p>
+        {/* <DashboardNav /> */}
+        <CompanyListings />
+        {/* <p>Content here</p>
         <ListingTable />
 
         <IconButton onClick={this.handleModalOpen}>
@@ -68,7 +70,7 @@ class Dashboard extends Component {
         />
 
         <EventSelector />
-        <JobStatusSelector />
+        <JobStatusSelector /> */}
       </section>
     );
   }

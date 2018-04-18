@@ -29,10 +29,18 @@ class CompanyListings extends React.Component {
   }
 
   render() {
+    console.log(this.props.profile);
     return (
       <section className='dashboard-content'>
         <DashboardNav />
-        <ListingTable />
+        <ListingTable 
+          header='All Companies'
+          column1='Company'
+          column2='Website'
+          column3='City'
+          column4='Date Added'
+          profile={this.props.profile}
+        />
 
         <IconButton onClick={this.handleModalOpen}>
           <AddIcon />
