@@ -38,8 +38,7 @@ export default class AboutModal extends Component {
             avatar="https://media.licdn.com/dms/image/C5603AQE-7Tahqu82Vw/profile-displayphoto-shrink_200_200/0?e=1529272800&v=beta&t=uhO67Y_UhuPTyrH26orq3OAtrBe_CqpiBiH2_9a_EV4"
           />
           <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Ex-Army linguist who believes coding can make the world a better place.  Technology is my jam.
           </CardText>
         </Card>
         <Card>
@@ -60,8 +59,7 @@ export default class AboutModal extends Component {
             avatar="https://media.licdn.com/dms/image/C5603AQGo_j2TEvk58g/profile-displayphoto-shrink_800_800/0?e=1529272800&v=beta&t=Hl89OLSU_VLBTxI4um_rPR28Sf_ImDIWmV-LSK8GfkE"
           />
           <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Unfortionately Ahmed broke his foot partway through our Front-End build and could not join us. 
           </CardText>
         </Card>
         <FlatButton

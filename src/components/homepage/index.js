@@ -16,7 +16,7 @@ export default class HomePage extends Component {
           <div className='middle'>
             <div className='inner'>
               <h2>The personal database for all of your job-seeking activities.</h2>
-              <h3>Job Seeker allows you to track potential career opportunities, including associated companies, job postings, events, and contact information. I'm not good at fancy headlines.</h3>
+              <h3>Job Seeker allows you to track potential career opportunities, including their associated companies, job postings, events, and contact information. I'm not good at fancy headlines.</h3>
               <RaisedButton 
                 primary={true} 
                 label='Dashboard link'
