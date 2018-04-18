@@ -12,6 +12,7 @@ import JobListings from '../job-listings';
 import EventListings from '../event-listings';
 import CompanyView from '../company-view';
 import EventView from '../event-view';
+import JobView from '../job-view';
 import AuthRedirect from '../auth-redirect';
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path='/events' component={EventListings} />
             <Route exact path='/company' component={CompanyView} />
             <Route exact path='/event' component={EventView} />
+            <Route exact path='/job' component={JobView} />
             {/* <Route path='/' component={AuthRedirect} /> */}
           </div>
         </BrowserRouter>
