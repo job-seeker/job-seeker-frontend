@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import './_listing-table.scss';
 import CompanyView from '../company-view';
 
 import {

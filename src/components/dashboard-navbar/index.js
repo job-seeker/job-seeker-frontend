@@ -14,7 +14,6 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 import './_dashboard-navbar.scss';
-import Footer from '../footer';
 
 class DashboardNav extends Component {
   constructor(props) {
@@ -58,8 +57,6 @@ class DashboardNav extends Component {
           <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
         </Drawer>
-
-        <Footer />
       </section>
     );
   }
