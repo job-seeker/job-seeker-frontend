@@ -13,6 +13,7 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import AboutModal from '../about-modal';
 
 import JSIcon from '../../assets/logo.png';
 import './_navbar.scss';
@@ -24,10 +25,24 @@ import './_navbar.scss';
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = { screenWidth: 0 };
+    this.state = { 
+      screenWidth: 0, 
+      modalOpen: false,
+    };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     this.onAuthenticated = this.onAuthenticated.bind(this);
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
+
+  handleModalOpen() {
+    this.setState({ modalOpen: true });
+  }
+
+  handleModalClose() {
+    this.setState({ modalOpen: false });
+  }
+
 
   componentWillMount() {
     this.updateWindowDimensions();
@@ -58,7 +73,7 @@ class NavBar extends Component {
         <FlatButton 
           label='About Us' 
           className='about-us-button'
-          containerElement={<Link to='/' />} 
+          onClick={this.handleModalOpen}
         />
       </ToolbarGroup>
     );
@@ -74,6 +89,7 @@ class NavBar extends Component {
         <MenuItem 
           value={4} 
           primaryText='About Us' 
+          onClick={this.handleModalOpen}
         />
       </DropDownMenu>;
     };
@@ -97,6 +113,12 @@ class NavBar extends Component {
             iconElementRight={<DesktopNavLinks />}
           />
         }
+        <AboutModal
+          open={this.state.modalOpen}
+          profile={this.props.profile}
+          onComplete={this.props.companyCreate}
+          modalClose={this.handleModalClose}
+        />
       </nav>
     );
   }
