@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { singleCompanyFetchRequest } from '../../actions/company-actions';
+import { jobCreateRequest } from '../../actions/job-actions';
 
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -9,11 +10,10 @@ import TextField from  'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
-import SvgIcon from 'material-ui/SvgIcon';
-
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
-import { amber800 } from 'material-ui/styles/colors';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import { amber800 } from 'material-ui/styles/colors';
+
 
 import './_company-view.scss';
 import DashboardNav from '../dashboard-navbar';
@@ -130,6 +130,7 @@ class CompanyView extends Component {
 
             <JobModal 
               open={this.state.jobModalOpen}
+              company={this.props.company}
               onComplete={this.props.jobCreate}
               modalClose={this.handleJobModalClose}
             />
@@ -178,7 +179,7 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = (dispatch) => ({
   companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
-  // profileFetch: token => dispatch(profileFetchRequest(token)),
+  jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);

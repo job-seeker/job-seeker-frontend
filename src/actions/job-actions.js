@@ -31,8 +31,9 @@ export const jobFetchRequest = () => dispatch => {
       return res;
     });
 };
-
 export const jobCreateRequest = (company, job) => dispatch => {
+  console.log(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/jobCreate`)
+
   return superagent.post(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/jobCreate`)
     .send(job)
     .then(res => {
