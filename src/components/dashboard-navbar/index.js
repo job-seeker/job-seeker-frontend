@@ -12,6 +12,7 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
+import './_dashboard-navbar.scss';
 import Footer from '../footer';
 
 export default class DashboardNav extends Component {

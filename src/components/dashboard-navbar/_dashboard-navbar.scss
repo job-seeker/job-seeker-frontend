@@ -1,0 +1,16 @@
+.dashboard-nav {
+  a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .drawer div {
+    z-index: 1100 !important;
+  }
+
+  footer {
+    z-index: 1200;
+  }
+}
