@@ -30,11 +30,12 @@ export default class CompanyView extends Component {
   // }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <DashboardNav />
         <div className='company-view'>
-          <Subheader style={{ padding: 0 }} >Company Name</Subheader>
+          <Subheader style={{ padding: 0 }} >{this.props.name}</Subheader>
         
           <section className='company-info'>
             <h3>Company Info</h3>
@@ -42,7 +43,8 @@ export default class CompanyView extends Component {
               <EditIcon />
             </IconButton>
             <Divider />
-            <p><span>Website:</span> this.props.website</p>            <p><span>Address:</span> this.props.address</p>
+            <p><span>Website:</span> this.props.website</p>
+            <p><span>Address:</span> this.props.address</p>
             <p><span>Phone:</span> this.props.phone</p>
             <p><span>Notes:</span></p>
             <textarea readOnly/>

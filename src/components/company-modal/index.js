@@ -4,6 +4,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
+
 import {orange500, blue500} from 'material-ui/styles/colors';
 
 const styles = {
@@ -31,14 +32,8 @@ export default class CompanyModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // console.log(this.props.profile)
-    // console.log(this.state)
     return this.props.onComplete(this.props.profile, this.state)
-      .then(console.log()) // we should probably change this...
-      // if (!this.props.profile) {
-      //   this.setState({ description: '', preview: '', photo: null });
-      // }
-      // })
+      .then(this.props.modalClose)
       .catch(console.error);
   }
 
