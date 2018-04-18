@@ -49,7 +49,7 @@ class JobListings extends React.Component {
 }
 
 let mapDispatchToProps = (dispatch) => ({
-  jobCreate: job => dispatch(jobCreateRequest(job)),
+  jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
 });
 
 export default connect(null, mapDispatchToProps)(JobListings);
