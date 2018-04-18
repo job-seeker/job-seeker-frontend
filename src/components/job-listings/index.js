@@ -7,6 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import ListingTable from '../listing-table';
 import JobModal from '../job-modal';
+import CompanyModal from '../company-modal';
 import { jobCreateRequest } from '../../actions/job-actions';
 
 class JobListings extends React.Component {

@@ -17,6 +17,8 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 
 import './_company-view.scss';
 import DashboardNav from '../dashboard-navbar';
+import JobModal from '../job-modal';
+import EventModal from '../event-modal';
 
 class CompanyView extends Component {
   constructor(props) {
@@ -27,8 +29,20 @@ class CompanyView extends Component {
       cityState: '',
       companyNotes: '',
       created: '',
+      modalOpen: false,
     };
+    this.handleModalOpen = this.handleModalOpen.bind(this);
+    this.handleModalClose = this.handleModalClose.bind(this);
   }
+  handleModalOpen() {
+    this.setState({ modalOpen: true });
+  }  
+  handleModalClose() {
+    this.setState({ modalOpen: false });
+  }
+
+
+
 
   componentWillMount() {
     this.props.companyFetch(this.props.profile, this.props.match.params.companyId)
@@ -67,9 +81,15 @@ class CompanyView extends Component {
             <h3>Job Postings</h3>
             <Divider />
 
-            <IconButton>
-              <AddIcon color={amber800} />
+            <IconButton onClick={this.handleModalOpen}>
+              <AddIcon color={amber800}/>
             </IconButton>
+
+            <JobModal 
+              open={this.state.modalOpen}
+              onComplete={this.props.jobCreate}
+              modalClose={this.handleModalClose}
+            />
           </section>
 
           <section className='company-upcoming-events'>
