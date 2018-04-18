@@ -9,6 +9,9 @@ export default (state=null, action) => {
     return {...state, ...payload};
   case 'LOGOUT': 
     return null;
+  case 'COMPANY_CREATE':
+    const updatedCompanies = [...state.companies, payload];
+    return Object.assign({}, state, { companies: updatedCompanies });
   default:
     return state;
   }
