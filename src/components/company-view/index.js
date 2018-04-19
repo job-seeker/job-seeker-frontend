@@ -13,7 +13,7 @@ import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
-import DeleteIcon from 'material-ui/svg-icons/content/clear';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { List, ListItem } from 'material-ui/List';
 import { amber800 } from 'material-ui/styles/colors';
 
@@ -98,7 +98,16 @@ class CompanyView extends Component {
                     // // }
                     // onClick={this.renderJobView}
                     primaryText={companyJob.title} 
-                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                    rightIconButton={
+                      <div>
+                        <IconButton iconStyle={{ height: 15, width: 15 }}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton iconStyle={{ height: 15, width: 15 }}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </div>
+                    }
                   />
                 )}
               </List>
@@ -134,7 +143,16 @@ class CompanyView extends Component {
                       </Link>
                     }
                     primaryText={event.eventTitle} 
-                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                    rightIconButton={
+                      <div>
+                        <IconButton iconStyle={{ height: 15, width: 15 }}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton iconStyle={{ height: 15, width: 15 }}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </div>
+                    }
                   />
                 )}
               </List>
@@ -169,7 +187,16 @@ class CompanyView extends Component {
                         <ContactView contact={contact}/>
                       </Link>}
                     primaryText={contact.name} 
-                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                    rightIconButton={
+                      <div>
+                        <IconButton iconStyle={{ height: 15, width: 15 }}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton iconStyle={{ height: 15, width: 15 }}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </div>
+                    }
                   />
                 )}
               </List>
