@@ -72,7 +72,8 @@ export default class EventModal extends Component {
             <MenuItem value={'round-2-interview'} primaryText="Round 2 Interview" />
             <MenuItem value={'in-person-interview'} primaryText="In-Person Interview" />
             <MenuItem value={'offer'} primaryText="Offer" />
-          </SelectField>
+          </SelectField><br />
+
           <TextField
             name='eventTitle'
             value={this.state.eventTitle}
