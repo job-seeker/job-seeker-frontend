@@ -32,6 +32,14 @@ export const singleCompanyFetchRequest = (profile, company) => dispatch => {
 
 export const companyFetchRequest = () => dispatch => {
   return superagent.get(`${__API_URL__}/api/profile/${profile._id}/company`)
+    .populate({
+      path: 'companies',
+      populate: [
+        { path: 'jobPosting' },
+        { path: 'events' },
+        { path: 'contacts' },
+      ],
+    })
     .then(res => {
       dispatch(companyFetch(res.body));
       return res;

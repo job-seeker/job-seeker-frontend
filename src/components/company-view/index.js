@@ -26,11 +26,11 @@ class CompanyView extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      companyName: '',
-      companyWebsite: '',
-      cityState: '',
-      companyNotes: '',
-      created: '',
+      // companyName: '',
+      // companyWebsite: '',
+      // cityState: '',
+      // companyNotes: '',
+      // created: '',
       jobModalOpen: false,
       contactModalOpen: false,
       eventModalOpen: false,
@@ -48,6 +48,7 @@ class CompanyView extends Component {
     this.handleCompanyModalOpen = this.handleCompanyModalOpen.bind(this);
     this.handleCompanyModalClose = this.handleCompanyModalClose.bind(this);
   }
+  
   handleJobModalOpen() {
     this.setState({ jobModalOpen: true });
   }
@@ -81,24 +82,58 @@ class CompanyView extends Component {
   }
 
   componentWillMount() {
-    this.props.companyFetch(this.props.profile, this.props.match.params.companyId)
-      .then(res => {
-        this.setState({
-          companyName: res.body.companyName,
-          website: res.body.website,
-          cityState: res.body.cityState,
-          companyNotes: res.body.companyNotes,
-          created: res.body.created,
-        });
-      });
+    console.log('hi')
   }
+  // componentWillMount() {
+  //   console.log(this.props.profile)
+
+  //   this.props.profile.companies.filter(company => 
+  //     company._id === this.props.match.params.companyId
+  //   )[0];
+
+
+  //   this.props.companyFetch(this.props.profile, this.props.match.params.companyId)
+  //     .then(res => {
+  //       this.setState({
+  //         companyId: this.props.match.params.companyId,
+  //         companyName: res.body.companyName,
+  //         website: res.body.website,
+  //         cityState: res.body.cityState,
+  //         companyNotes: res.body.companyNotes,
+  //         created: res.body.created,
+  //         profileId: res.body.profileId,
+  //       });
+  //     });
+  // }
 
   render() {
+    console.log(this.props)
+    const company = this.props.profile.companies.filter(company => 
+      company._id === this.props.match.params.companyId
+    )[0];
+
+    // console.log(company)
+
+    // const companyJobs = company.jobPosting
+
+    // const companyJobs = () => {
+    //   let companyJobPostings;
+
+    //   this.props.profile.companies.map(company => {
+    //     if (company._id === this.props.match.params.companyId) {
+    //       companyJobPostings = company.jobPosting;
+    //     }
+    //   });
+    //   return companyJobPostings;
+    // };
+
+    // let companyJobsArr = this.props.profile.companies ? companyJobs() :;
+
     return (
       <div>
         <DashboardNav />
         <div className='company-view'>
-          <Subheader style={{ padding: 0 }}>{this.state.companyName}</Subheader>
+          <Subheader style={{ padding: 0 }}>{company.companyName}</Subheader>
         
           <section className='company-info'>
             <h3>Company Info</h3>
@@ -113,16 +148,24 @@ class CompanyView extends Component {
             />
             
             <Divider />
-            <p><span>Website:</span>{this.state.website}</p>
-            <p><span>City, State:</span>{this.state.cityState}</p>
-            <p><span>Created:</span>{this.state.created}</p>
+            <p><span>Website:</span>{company.website}</p>
+            <p><span>City, State:</span>{company.cityState}</p>
+            <p><span>Created:</span>{company.created}</p>
             <p><span>Notes:</span></p>
-            <textarea readOnly placeholder={this.state.companyNotes} />
+            <textarea readOnly placeholder={company.companyNotes} />
           </section>
 
           <section className='company-job-postings'>
             <h3>Job Postings</h3>
             <Divider />
+
+            {company.jobPosting
+              ? <ul>
+                {company.jobPosting.map(companyJob => 
+                  <li key={companyJob._id}>{companyJob.title}</li>)}
+              </ul>
+              : undefined
+            }
 
             <IconButton onClick={this.handleJobModalOpen}>
               <AddIcon color={amber800}/>
@@ -130,7 +173,7 @@ class CompanyView extends Component {
 
             <JobModal 
               open={this.state.jobModalOpen}
-              company={this.props.company}
+              company={company}
               onComplete={this.props.jobCreate}
               modalClose={this.handleJobModalClose}
             />
@@ -174,7 +217,6 @@ class CompanyView extends Component {
 let mapStateToProps = (state) => ({
   token: state.token,
   profile: state.profile,
-  company: state.company,
 });
 
 let mapDispatchToProps = (dispatch) => ({
