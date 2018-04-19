@@ -13,6 +13,8 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
+import HomePage from '../homepage';
+import JSIcon from '../../assets/logo.png';
 import './_dashboard-navbar.scss';
 
 class DashboardNav extends Component {
@@ -39,8 +41,12 @@ class DashboardNav extends Component {
         <AppBar 
           className='dashboard-nav'
           zDepth={0}
+          title='Job Seeker'
           onLeftIconButtonClick={this.handleToggle}
-          iconElementRight={<ProfileIcon className='profile-icon' />}
+          // iconElementRight={<ProfileIcon className='profile-icon' />}
+          // iconStyleRight={{ 
+          //   margin: '20 10 0 0', 
+          // }}
         />
 
         <Drawer
@@ -56,6 +62,7 @@ class DashboardNav extends Component {
           <MenuItem onClick={this.handleClose}><Link to='/companies'>Companies</Link></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
+          <MenuItem onClick={this.handleClose}><Link to='/'>Home</Link></MenuItem>
         </Drawer>
       </section>
     );
