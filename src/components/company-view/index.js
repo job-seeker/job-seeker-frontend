@@ -5,6 +5,7 @@ import { singleCompanyFetchRequest } from '../../actions/company-actions';
 import { jobCreateRequest } from '../../actions/job-actions';
 import { eventCreateRequest } from '../../actions/event-actions';
 import { contactCreateRequest } from '../../actions/contact-actions';
+import { companyDeleteRequest } from '../../actions/company-actions';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from  'material-ui/TextField';
@@ -18,10 +19,10 @@ import { List, ListItem } from 'material-ui/List';
 import { amber800 } from 'material-ui/styles/colors';
 
 import './_company-view.scss';
-import JobModal from '../job-modal';
-import EventModal from '../event-modal';
-import ContactModal from '../contact-modal';
-import CompanyModal from '../company-modal';
+import JobModal from '../modals/job-modal.js';
+import EventModal from '../modals/event-modal.js';
+import ContactModal from '../modals/contact-modal.js';
+import CompanyModal from '../modals/company-modal.js';
 import JobView from '../job-view';
 import EventView from '../event-view';
 import ContactView from '../contact-view';
@@ -232,6 +233,7 @@ let mapDispatchToProps = (dispatch) => ({
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
   eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
   contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
+  companyDelete: (company) => dispatch(companyDeleteRequest(company)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);

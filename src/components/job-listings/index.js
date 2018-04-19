@@ -5,8 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import ListingTable from '../listing-table';
-import JobModal from '../job-modal';
-import CompanyModal from '../company-modal';
+import JobModal from '../modals/job-modal.js';
 import { jobCreateRequest } from '../../actions/job-actions';
 import { amber800 } from 'material-ui/styles/colors';
 

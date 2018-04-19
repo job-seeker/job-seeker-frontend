@@ -34,6 +34,18 @@ export const contactCreateRequest = (company, contact) => (dispatch, getState) =
     });
 };
 
+export const contactUpdateRequest = (company, contact) => (dispatch, getState) => {
+  let { token } = getState();
+
+  return superagent.put(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact/${contact._id}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(contact)
+    .then(res => {
+      dispatch(contactUpdate(res.body));
+      return res;
+    });
+};
+
 export const contactDeleteRequest = (company, contact) => (dispatch, getState) => {
   let { token } = getState();
   return superagent.delete(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact/${contact._id}`) 

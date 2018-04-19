@@ -12,7 +12,7 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import AboutModal from '../about-modal';
+import AboutModal from '../modals/about-modal.js';
 
 import JSIcon from '../../assets/logo.png';
 import './_navbar.scss';

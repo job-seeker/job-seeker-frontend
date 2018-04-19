@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import ListingTable from '../listing-table';
-import EventModal from '../event-modal';
+import EventModal from '../modals/event-modal.js';
 import { eventCreateRequest } from '../../actions/event-actions';
 import { amber800 } from 'material-ui/styles/colors';
 

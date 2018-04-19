@@ -2,9 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { profileFetchRequest } from '../../actions/profile-actions';
-import EventSelector from '../select-field/event-select-field';
-import JobStatusSelector from '../select-field/job-status-field';
-
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -16,7 +13,7 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 // import './_dashboard.scss';
-import CompanyModal from '../company-modal';
+import CompanyModal from '../modals/company-modal.js';
 import CompanyListings from '../company-listings';
 import ListingTable from '../listing-table';
 

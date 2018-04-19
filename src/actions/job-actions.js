@@ -34,6 +34,18 @@ export const jobFetchRequest = () => (dispatch, getState) => {
     });
 };
 
+export const jobUpdateRequest = (company, job) => (dispatch, getState) => {
+  let { token } = getState();
+
+  return superagent.put(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/job/${job._id}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(job)
+    .then(res => {
+      dispatch(jobUpdate(res.body));
+      return res;
+    });
+};
+
 export const jobCreateRequest = (company, job) => (dispatch, getState) => {
   let { token } = getState();
 

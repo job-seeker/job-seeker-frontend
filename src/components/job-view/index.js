@@ -14,8 +14,6 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import { amber800 } from 'material-ui/styles/colors';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 
-import JobStatusSelector from '../select-field/job-status-field';
-
 export default class JobView extends Component {
   render() {
     return (
