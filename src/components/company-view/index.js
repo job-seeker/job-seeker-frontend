@@ -92,10 +92,11 @@ class CompanyView extends Component {
                   <ListItem
                     key={companyJob._id} 
                     primaryText={companyJob.title} 
+                    className='list-item'
                     rightIconButton={
                       <IconButton iconStyle={{ height: 15, width: 15 }}>
-                        <EditIcon />
-                        <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />
+                        <EditIcon className='edit-icon' />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(companyJob)} />
                       </IconButton>
                       /* <IconButton iconStyle={{ height: 15, width: 15 }}>
                           <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />

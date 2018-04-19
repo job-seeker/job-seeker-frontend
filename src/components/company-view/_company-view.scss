@@ -13,4 +13,16 @@
   textarea {
     display: block;
   }
+  
+  .list-item {
+    .edit-icon {
+      border: 1px orange dashed;
+      display: inline !important;
+    }
+
+    .delete-icon {
+      border: 1px orange dashed;
+      display: inline !important;
+    }
+  }
 }

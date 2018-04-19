@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import ListingTable from '../listing-table';
-// import JobModal from '../modals/job-modal.js';
+import MobileListingTable from '../mobile-listing-table';
 import { jobCreateRequest } from '../../actions/job-actions';
 import { amber800 } from 'material-ui/styles/colors';
 
@@ -13,48 +13,45 @@ class JobListings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // modalOpen: false,
+      screenWidth: 0, 
     };
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
 
-    // this.handleModalOpen = this.handleModalOpen.bind(this);
-    // this.handleModalClose = this.handleModalClose.bind(this);
+  componentWillMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ screenWidth: window.innerWidth });
   }
   
-  // handleModalOpen() {
-  //   this.setState({ modalOpen: true });
-  // }  
-  
-  // handleModalClose() {
-  //   this.setState({ modalOpen: false });
-  // }
-
   render() {
     return (
       <section className='dashboard-content'>
-        <ListingTable 
-          style={{ 'padding-bottom': '20px' }}
-          header='All Jobs'
-          column1='Job'
-          column2='Company'
-          column3='Application Status'
-          column4='Date Added'
-          profile={this.props.profile}
-        />
-
-        {/* <IconButton 
-          style={{ marginLeft: 12 }}
-          iconStyle={{ height: 35, width: 35 }}
-          className='add-icon' 
-          onClick={this.handleModalOpen}>
-          <AddIcon color={amber800} />
-        </IconButton> */}
-
-        {/* <JobModal 
-          open={this.state.modalOpen}
-          profile={this.props.profile}
-          onComplete={this.props.jobCreate}
-          modalClose={this.handleModalClose}
-        /> */}
+        {this.state.screenWidth < 620 
+          ? <MobileListingTable 
+            style={{ 'padding-bottom': '20px' }}
+            header='All Jobs'
+            column1='Job'
+            column2='Company'
+            profile={this.props.profile}
+          />
+          : <ListingTable 
+            style={{ 'padding-bottom': '20px' }}
+            header='All Jobs'
+            column1='Job'
+            column2='Company'
+            column3='Application Status'
+            column4='Date Added'
+            profile={this.props.profile}
+          />
+        }
       </section>
     );
   }
