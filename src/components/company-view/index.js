@@ -4,16 +4,15 @@ import { singleCompanyFetchRequest } from '../../actions/company-actions';
 import { jobCreateRequest } from '../../actions/job-actions';
 
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import DeleteIcon from 'material-ui/svg-icons/content/clear';
+import { List, ListItem } from 'material-ui/List';
 import { amber800 } from 'material-ui/styles/colors';
-
 
 import './_company-view.scss';
 import DashboardNav from '../dashboard-navbar';
@@ -26,11 +25,6 @@ class CompanyView extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      // companyName: '',
-      // companyWebsite: '',
-      // cityState: '',
-      // companyNotes: '',
-      // created: '',
       jobModalOpen: false,
       contactModalOpen: false,
       eventModalOpen: false,
@@ -81,53 +75,10 @@ class CompanyView extends Component {
     this.setState({ companyModalOpen: false });
   }
 
-  componentWillMount() {
-    console.log('hi')
-  }
-  // componentWillMount() {
-  //   console.log(this.props.profile)
-
-  //   this.props.profile.companies.filter(company => 
-  //     company._id === this.props.match.params.companyId
-  //   )[0];
-
-
-  //   this.props.companyFetch(this.props.profile, this.props.match.params.companyId)
-  //     .then(res => {
-  //       this.setState({
-  //         companyId: this.props.match.params.companyId,
-  //         companyName: res.body.companyName,
-  //         website: res.body.website,
-  //         cityState: res.body.cityState,
-  //         companyNotes: res.body.companyNotes,
-  //         created: res.body.created,
-  //         profileId: res.body.profileId,
-  //       });
-  //     });
-  // }
-
   render() {
-    console.log(this.props)
     const company = this.props.profile.companies.filter(company => 
       company._id === this.props.match.params.companyId
     )[0];
-
-    // console.log(company)
-
-    // const companyJobs = company.jobPosting
-
-    // const companyJobs = () => {
-    //   let companyJobPostings;
-
-    //   this.props.profile.companies.map(company => {
-    //     if (company._id === this.props.match.params.companyId) {
-    //       companyJobPostings = company.jobPosting;
-    //     }
-    //   });
-    //   return companyJobPostings;
-    // };
-
-    // let companyJobsArr = this.props.profile.companies ? companyJobs() :;
 
     return (
       <div>
@@ -137,7 +88,10 @@ class CompanyView extends Component {
         
           <section className='company-info'>
             <h3>Company Info</h3>
-            <IconButton style={{ display: 'inline-block' }} onClick={this.handleCompanyModalOpen}>
+            <IconButton 
+              style={{ display: 'inline-block' }}
+              iconStyle={{ height: 15, width: 15 }} 
+              onClick={this.handleCompanyModalOpen}>
               <EditIcon />
             </IconButton>
 
@@ -160,14 +114,21 @@ class CompanyView extends Component {
             <Divider />
 
             {company.jobPosting
-              ? <ul>
+              ? <List>
                 {company.jobPosting.map(companyJob => 
-                  <li key={companyJob._id}>{companyJob.title}</li>)}
-              </ul>
+                  <ListItem 
+                    key={companyJob._id} 
+                    primaryText={companyJob.title} 
+                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                  />
+                )}
+              </List>
               : undefined
             }
 
-            <IconButton onClick={this.handleJobModalOpen}>
+            <IconButton 
+              iconStyle={{ height: 35, width: 35 }}
+              onClick={this.handleJobModalOpen}>
               <AddIcon color={amber800}/>
             </IconButton>
 
@@ -183,7 +144,22 @@ class CompanyView extends Component {
             <h3>Upcoming Events</h3>
             <Divider />
 
-            <IconButton onClick={this.handleEventModalOpen}>
+            {company.events
+              ? <List>
+                {company.events.map(event => 
+                  <ListItem 
+                    // key={companyJob._id} 
+                    // primaryText={companyJob.title} 
+                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                  />
+                )}
+              </List>
+              : undefined
+            }
+
+            <IconButton 
+              iconStyle={{ height: 35, width: 35 }}
+              onClick={this.handleEventModalOpen}>
               <AddIcon color={amber800}/>
             </IconButton>
 
@@ -198,7 +174,22 @@ class CompanyView extends Component {
             <h3>Contacts</h3>
             <Divider />
 
-            <IconButton onClick={this.handleContactModalOpen}>
+            {company.contacts
+              ? <List>
+                {company.contacts.map(contact => 
+                  <ListItem 
+                    // key={companyJob._id} 
+                    // primaryText={companyJob.title} 
+                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                  />
+                )}
+              </List>
+              : undefined
+            }
+
+            <IconButton 
+              iconStyle={{ height: 35, width: 35 }}
+              onClick={this.handleContactModalOpen}>
               <AddIcon color={amber800}/>
             </IconButton>
 
