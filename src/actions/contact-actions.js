@@ -25,7 +25,7 @@ export const contactDelete = contact => ({
 
 export const contactCreateRequest = (company, contact) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.post(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact`) // probably need to fix these endpoints
+  return superagent.post(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact`) 
     .set('Authorization', `Bearer ${token}`)
     .send(contact)
     .then(res => {
@@ -36,7 +36,7 @@ export const contactCreateRequest = (company, contact) => (dispatch, getState) =
 
 export const contactDeleteRequest = (company, contact) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.delete(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact/${contact._id}`) // probably need to fix these endpoints
+  return superagent.delete(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact/${contact._id}`) 
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(contactDelete(contact));
