@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import DashboardNav from '../dashboard-navbar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
@@ -31,8 +30,6 @@ class EventListings extends React.Component {
   render() {
     return (
       <section className='dashboard-content'>
-        <DashboardNav />
-
         <ListingTable 
           style={{ 'padding-bottom': '20px' }}
           header='All Events'

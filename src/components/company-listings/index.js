@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { companyCreateRequest } from '../../actions/company-actions';
 
-import DashboardNav from '../dashboard-navbar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
@@ -32,9 +31,7 @@ class CompanyListings extends React.Component {
 
   render() {
     return (
-      <section className='dashboard-content'>
-        <DashboardNav />
-        
+      <section className='dashboard-content'>        
         <ListingTable 
           style={{ 'padding-bottom': '20px' }}
           header='All Companies'

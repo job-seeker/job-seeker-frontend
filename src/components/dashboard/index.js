@@ -19,7 +19,6 @@ import FlatButton from 'material-ui/FlatButton';
 import CompanyModal from '../company-modal';
 import CompanyListings from '../company-listings';
 import ListingTable from '../listing-table';
-import DashboardNav from '../dashboard-navbar';
 
 class Dashboard extends Component {
   constructor(props) {

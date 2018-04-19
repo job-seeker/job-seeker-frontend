@@ -13,7 +13,6 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import { amber800 } from 'material-ui/styles/colors';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 
-import DashboardNav from '../dashboard-navbar';
 import './_contact-view.scss';
 
 export default class ContactView extends Component {
@@ -22,7 +21,6 @@ export default class ContactView extends Component {
     // console.log('contact',contact)
     return (
       <div>
-        <DashboardNav />
         <div className='contact-view'>
           <Subheader style={{ padding: 0 }} >Contact</Subheader>
           <section className='contact-info'>

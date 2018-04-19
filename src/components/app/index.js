@@ -15,6 +15,7 @@ import EventView from '../event-view';
 import JobView from '../job-view';
 import ContactView from '../contact-view';
 import AuthRedirect from '../auth-redirect';
+import DashboardNav from '../dashboard-navbar';
 
 class App extends Component {
   componentWillMount() {
@@ -30,6 +31,7 @@ class App extends Component {
       <div className='app'>
         <BrowserRouter>
           <div className='routes'>
+            <Route path='*' component={DashboardNav} />
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={CompanyListings} />
             <Route exact path='/companies' component={CompanyListings} />
