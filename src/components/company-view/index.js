@@ -23,6 +23,7 @@ import EventModal from '../event-modal';
 import ContactModal from '../contact-modal';
 import CompanyModal from '../company-modal';
 import JobView from '../job-view';
+import EventView from '../event-view';
 
 class CompanyView extends Component {
   constructor(props) {
@@ -122,15 +123,16 @@ class CompanyView extends Component {
               ? <List>
                 {company.jobPosting.map(companyJob => 
                   <ListItem
+                    key={companyJob._id} 
                     containerElement={
-                      <Link to={'/job/'+companyJob._id}>
-                        <JobView />
+                      <Link to={'/job'}>
+                        <EventView />
                       </Link>
                     }
-                    key={companyJob._id} 
                     primaryText={companyJob.title} 
                     rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
-                  />                )}
+                  />
+                )}
               </List>
               : undefined
             }
@@ -157,8 +159,13 @@ class CompanyView extends Component {
               ? <List>
                 {company.events.map(event => 
                   <ListItem 
-                    // key={companyJob._id} 
-                    // primaryText={companyJob.title} 
+                    key={event._id}
+                    containerElement={
+                      <Link to={'/event'}>
+                        <JobView />
+                      </Link>
+                    }
+                    primaryText={event.eventTitle} 
                     rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
                   />
                 )}
@@ -174,6 +181,7 @@ class CompanyView extends Component {
 
             <EventModal 
               open={this.state.eventModalOpen}
+              company={company}
               onComplete={this.props.eventCreate}
               modalClose={this.handleEventModalClose}
             />
@@ -222,7 +230,7 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = (dispatch) => ({
   companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
-  eventCreate: (company, event) => dispatch(eventCreateRequest(company, event)),
+  eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
   contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
 });
 

@@ -7,24 +7,24 @@ export const eventFetch = events => ({
   payload: events,
 });
 
-export const eventCreate = event => ({
+export const eventCreate = jobEvent => ({
   type: 'EVENT_CREATE',
-  payload: event,
+  payload: jobEvent,
 });
 
-export const eventUpdate = event => ({
+export const eventUpdate = jobEvent => ({
   type: 'EVENT_UPDATE',
-  payload: event,
+  payload: jobEvent,
 });
 
-export const eventDelete = event => ({
+export const eventDelete = jobEvent => ({
   type: 'EVENT_DELETE',
-  payload: event,
+  payload: jobEvent,
 });
 
 export const eventFetchRequest = () => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.get(`${__API_URL__}/api/profile/${profile._id}/allProfileEvents`) // probably need to fix these endpoints
+  return superagent.get(`${__API_URL__}/api/profile/${profile._id}/allProfileEvents`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(eventFetch(res.body));
@@ -32,23 +32,24 @@ export const eventFetchRequest = () => (dispatch, getState) => {
     });
 };
 
-export const eventCreateRequest = (event) = (dispatch, getState) => {
+export const eventCreateRequest = (company, jobEvent) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/event`) // probably need to fix these endpoints
+
+  return superagent.post(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/event`)
     .set('Authorization', `Bearer ${token}`)
-    .send(event)
+    .send(jobEvent)
     .then(res => {
       dispatch(eventCreate(res.body));
       return res;
     });
 };
 
-export const eventDeleteRequest = (event) = (dispatch, getState) => {
+export const eventDeleteRequest = (company, jobEvent) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/event/${event._id}`) // probably need to fix these endpoints
+  return superagent.delete(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/event/${jobEvent._id}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
-      dispatch(eventDelete(event));
+      dispatch(eventDelete(jobEvent));
       return res;
     });
 };
