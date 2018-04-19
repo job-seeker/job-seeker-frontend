@@ -12,6 +12,7 @@ export const profileUpdate = (profile) => ({
 
 export const profileCreateRequest = (profile) => (dispatch, getState) => {
   let { token } = getState();
+
   return request.post(`${__API_URL__}/api/profile`)
     .set('Authorization', `Bearer ${token}`)
     .send(profile)

@@ -39,7 +39,7 @@ class App extends Component {
             <Route exact path='/event' component={EventView} />
             <Route exact path='/job' component={JobView} />
             <Route exact path='/contact' component={ContactView} />
-            {/* <Route path='/' component={AuthRedirect} /> */}
+            <Route path='/' component={AuthRedirect} />
           </div>
         </BrowserRouter>
       </div>

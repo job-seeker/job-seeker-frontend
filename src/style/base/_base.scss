@@ -2,6 +2,21 @@ body {
   font-family: Avenir, sans-serif;
 };
 
+a {
+  text-decoration: none;
+  color: #328CC1;
+  transition: .5s;
+  font-weight: bold;
+}
+
+a:visited {
+  color: #328CC1;
+}
+
+a:hover {
+  color: #083552;
+}
+
 footer {
   background: #1D2731;
   position: fixed;
@@ -9,4 +24,16 @@ footer {
   left: 0;
   bottom: 0;
   width: 100%;
+
+  div {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  img {
+    padding-top: 15px;
+    width: 23px;
+    height: 23px;
+  }
 }

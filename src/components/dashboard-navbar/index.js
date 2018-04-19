@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { profileFetchRequest } from '../../actions/profile-actions';
+import { auth_logout } from '../../actions/user-auth-actions';
 
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -12,6 +13,8 @@ import ProfileIcon from 'material-ui/svg-icons/social/person';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
+import LogoutButton from 'material-ui/svg-icons/action/power-settings-new';
+import HomePage from '../homepage';
 
 import './_dashboard-navbar.scss';
 
@@ -21,8 +24,14 @@ class DashboardNav extends Component {
     this.state = { 
       drawerOpen: false,
     };
+    this.handleLogout = this.handleLogout.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleLogout() {
+    localStorage.clear(); // this needs a better solution
+    location.reload();
   }
 
   handleToggle() {
@@ -39,8 +48,14 @@ class DashboardNav extends Component {
         <AppBar 
           className='dashboard-nav'
           zDepth={0}
+          title='Job Seeker'
           onLeftIconButtonClick={this.handleToggle}
-          iconElementRight={<ProfileIcon className='profile-icon' />}
+          iconElementRight={<IconButton><LogoutButton /></IconButton>}
+          onRightIconButtonClick={this.handleLogout}
+          // iconElementRight={<ProfileIcon className='profile-icon' />}
+          // iconStyleRight={{ 
+          //   margin: '20 10 0 0', 
+          // }}
         />
 
         <Drawer
@@ -56,14 +71,20 @@ class DashboardNav extends Component {
           <MenuItem onClick={this.handleClose}><Link to='/companies'>Companies</Link></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
           <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
+          {/* <MenuItem onClick={this.handleClose}><Link to='/'>Home</Link></MenuItem> */}
         </Drawer>
       </section>
     );
   }
 }
 
-let mapDispatchToProps = (dispatch) => ({
-  profileFetch: token => dispatch(profileFetchRequest(token)),
+let mapStateToProps = (state) => ({
+  token: state.token,
 });
 
-export default connect(null, mapDispatchToProps)(DashboardNav);
+let mapDispatchToProps = (dispatch) => ({
+  profileFetch: token => dispatch(profileFetchRequest(token)),
+  auth_logout: token => dispatch(auth_logout()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardNav);

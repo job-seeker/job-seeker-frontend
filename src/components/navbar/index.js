@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { auth, token, profile } from '../auth-landing/constants';
 import { createAction as act } from 'redux-actions';
 import { Redirect, Link } from 'react-router-dom';
-// const lock = require('../auth-landing/index.js');
 
 import AppBar from 'material-ui/AppBar';
 import ToolbarGroup from 'material-ui/Toolbar/ToolbarGroup';
@@ -30,7 +29,6 @@ class NavBar extends Component {
       modalOpen: false,
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    this.onAuthenticated = this.onAuthenticated.bind(this);
     this.handleModalOpen = this.handleModalOpen.bind(this);
     this.handleModalClose = this.handleModalClose.bind(this);
   }
@@ -42,7 +40,6 @@ class NavBar extends Component {
   handleModalClose() {
     this.setState({ modalOpen: false });
   }
-
 
   componentWillMount() {
     this.updateWindowDimensions();
@@ -58,23 +55,18 @@ class NavBar extends Component {
   updateWindowDimensions() {
     this.setState({ screenWidth: window.innerWidth });
   }
-  onAuthenticated(token, profile) { 
-    //if loginResult is null, it's likely because a token was already set
-    console.log(`Login token ${JSON.stringify(token)},\n\nProfile\n ${JSON.stringify(profile)}`);
-  }
 
   render() {
     const DesktopNavLinks = () => (
       <ToolbarGroup>
-        <AuthComponent 
-          // auth0={auth} 
-        />
+        <AuthComponent />
 
         <FlatButton 
           label='About Us' 
           className='about-us-button'
           onClick={this.handleModalOpen}
         />
+        
       </ToolbarGroup>
     );
 
@@ -82,10 +74,8 @@ class NavBar extends Component {
       return <DropDownMenu 
         className='dropdown-nav'
         iconButton={<NavigationMenu />}>
-        <AuthComponent 
-          // auth0={auth} 
-          className='auth-sign-in'
-        />
+        <AuthComponent className='auth-sign-in' />
+
         <MenuItem 
           value={4} 
           primaryText='About Us' 
@@ -93,7 +83,9 @@ class NavBar extends Component {
         />
       </DropDownMenu>;
     };
+
     let { auth } = this.props;
+
     return (
       <nav>
         {this.state.screenWidth < 620 ?
