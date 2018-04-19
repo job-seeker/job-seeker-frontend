@@ -9,7 +9,7 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 
 import './_company-listings.scss';
 import ListingTable from '../listing-table';
-import CompanyModal from '../company-modal/';
+import {CompanyModal} from '../all-modals';
 import { amber800 } from 'material-ui/styles/colors';
 
 class CompanyListings extends React.Component {
