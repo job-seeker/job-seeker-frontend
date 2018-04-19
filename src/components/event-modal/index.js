@@ -48,9 +48,6 @@ export default class EventModal extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.modalClose();
-    
-    // console.log(this.props.company)
-    // console.log(this.state);
 
     return this.props.onComplete(this.props.company, this.state)
       .catch(console.error);

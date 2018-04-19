@@ -35,7 +35,7 @@ export default class ContactModal extends Component {
     this.props.modalClose();
 
     
-    return this.props.onComplete(this.state)
+    return this.props.onComplete(this.props.company, this.state)
       .catch(console.error);
   }
 

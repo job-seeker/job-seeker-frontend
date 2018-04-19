@@ -45,6 +45,19 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
+  case 'CONTACT_CREATE': {
+    const updatedCompanies = state.companies.map(company => {
+      if (company._id === payload.companyId) {
+        const updatedCompany = Object.assign({}, company);
+        const updatedContacts = [...company.contacts, payload];
+        updatedCompany.contacts = updatedContacts;
+
+        return updatedCompany;
+      }
+      return company;
+    });
+    return Object.assign({}, state, { companies: updatedCompanies });
+  }
   default:
     return state;
   }

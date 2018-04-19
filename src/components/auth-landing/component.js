@@ -86,7 +86,6 @@ class AuthComponent extends React.Component {
   }
 
   finish(method, err, profile, token){
-    // console.log('method',method);
     let { props } = this;
     let action;
     let obj;
