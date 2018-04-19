@@ -22,16 +22,20 @@ export const eventDelete = event => ({
   payload: event,
 });
 
-export const eventFetchRequest = () => dispatch => {
+export const eventFetchRequest = () => (dispatch, getState) => {
+  let { token } = getState();
   return superagent.get(`${__API_URL__}/api/profile/${profile._id}/allProfileEvents`) // probably need to fix these endpoints
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(eventFetch(res.body));
       return res;
     });
 };
 
-export const eventCreateRequest = (event) = dispatch => {
+export const eventCreateRequest = (event) = (dispatch, getState) => {
+  let { token } = getState();
   return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/event`) // probably need to fix these endpoints
+    .set('Authorization', `Bearer ${token}`)
     .send(event)
     .then(res => {
       dispatch(eventCreate(res.body));
@@ -39,8 +43,10 @@ export const eventCreateRequest = (event) = dispatch => {
     });
 };
 
-export const eventDeleteRequest = (event) = dispatch => {
+export const eventDeleteRequest = (event) = (dispatch, getState) => {
+  let { token } = getState();
   return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/event/${event._id}`) // probably need to fix these endpoints
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(eventDelete(event));
       return res;

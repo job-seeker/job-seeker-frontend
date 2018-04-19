@@ -22,24 +22,30 @@ export const companyDelete = company => ({
   payload: company,
 });
 
-export const singleCompanyFetchRequest = (profile, company) => dispatch => {
+export const singleCompanyFetchRequest = (profile, company) => (dispatch, getState) => {
+  let { token } = getState();
   return superagent.get(`${__API_URL__}/api/profile/${profile._id}/company/${company}`)
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(companyFetch(res.body));
       return res;
     });
 };
 
-export const companyFetchRequest = () => dispatch => {
+export const companyFetchRequest = () => (dispatch, getState) => {
+  let { token } = getState();
   return superagent.get(`${__API_URL__}/api/profile/${profile._id}/company`)
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(companyFetch(res.body));
       return res;
     });
 };
 
-export const companyCreateRequest = (profile, company) => dispatch => {
-  return superagent.post(`${__API_URL__}/api/profile/${profile._id}/createCompany`)
+export const companyCreateRequest = (profile, company) => (dispatch, getState) => {
+  let { token } = getState();
+  return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company`)
+    .set('Authorization', `Bearer ${token}`)
     .send(company)
     .then(res => {
       dispatch(companyCreate(res.body));
@@ -47,8 +53,10 @@ export const companyCreateRequest = (profile, company) => dispatch => {
     });
 };
 
-export const companyDeleteRequest = (company) => dispatch => {
+export const companyDeleteRequest = (company) => (dispatch, getState) => {
+  let { token } = getState();
   return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/${company._id}`)
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(companyDelete(company));
       return res;
