@@ -36,6 +36,7 @@ export const jobFetchRequest = () => (dispatch, getState) => {
 
 export const jobCreateRequest = (company, job) => (dispatch, getState) => {
   let { token } = getState();
+
   return superagent.post(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/jobCreate`)
     .set('Authorization', `Bearer ${token}`)
     .send(job)

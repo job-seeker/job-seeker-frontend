@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { singleCompanyFetchRequest } from '../../actions/company-actions';
+import { jobCreateRequest } from '../../actions/job-actions';
 
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
-import SvgIcon from 'material-ui/SvgIcon';
-
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
-import { amber800 } from 'material-ui/styles/colors';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
+import DeleteIcon from 'material-ui/svg-icons/content/clear';
+import { List, ListItem } from 'material-ui/List';
+import { amber800 } from 'material-ui/styles/colors';
 
 import './_company-view.scss';
 import DashboardNav from '../dashboard-navbar';
@@ -26,11 +25,6 @@ class CompanyView extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      companyName: '',
-      companyWebsite: '',
-      cityState: '',
-      companyNotes: '',
-      created: '',
       jobModalOpen: false,
       contactModalOpen: false,
       eventModalOpen: false,
@@ -48,6 +42,7 @@ class CompanyView extends Component {
     this.handleCompanyModalOpen = this.handleCompanyModalOpen.bind(this);
     this.handleCompanyModalClose = this.handleCompanyModalClose.bind(this);
   }
+  
   handleJobModalOpen() {
     this.setState({ jobModalOpen: true });
   }
@@ -80,29 +75,23 @@ class CompanyView extends Component {
     this.setState({ companyModalOpen: false });
   }
 
-  componentWillMount() {
-    this.props.companyFetch(this.props.profile, this.props.match.params.companyId)
-      .then(res => {
-        this.setState({
-          companyName: res.body.companyName,
-          website: res.body.website,
-          cityState: res.body.cityState,
-          companyNotes: res.body.companyNotes,
-          created: res.body.created,
-        });
-      });
-  }
-
   render() {
+    const company = this.props.profile.companies.filter(company => 
+      company._id === this.props.match.params.companyId
+    )[0];
+
     return (
       <div>
         <DashboardNav />
         <div className='company-view'>
-          <Subheader style={{ padding: 0 }}>{this.state.companyName}</Subheader>
+          <Subheader style={{ padding: 0 }}>{company.companyName}</Subheader>
         
           <section className='company-info'>
             <h3>Company Info</h3>
-            <IconButton style={{ display: 'inline-block' }} onClick={this.handleCompanyModalOpen}>
+            <IconButton 
+              style={{ display: 'inline-block' }}
+              iconStyle={{ height: 15, width: 15 }} 
+              onClick={this.handleCompanyModalOpen}>
               <EditIcon />
             </IconButton>
 
@@ -113,23 +102,39 @@ class CompanyView extends Component {
             />
             
             <Divider />
-            <p><span>Website:</span>{this.state.website}</p>
-            <p><span>City, State:</span>{this.state.cityState}</p>
-            <p><span>Created:</span>{this.state.created}</p>
+            <p><span>Website:</span>{company.website}</p>
+            <p><span>City, State:</span>{company.cityState}</p>
+            <p><span>Created:</span>{new Date(company.created).toDateString()}</p>
             <p><span>Notes:</span></p>
-            <textarea readOnly placeholder={this.state.companyNotes} />
+            <textarea readOnly placeholder={company.companyNotes} />
           </section>
 
           <section className='company-job-postings'>
             <h3>Job Postings</h3>
             <Divider />
 
-            <IconButton onClick={this.handleJobModalOpen}>
+            {company.jobPosting
+              ? <List>
+                {company.jobPosting.map(companyJob => 
+                  <ListItem 
+                    key={companyJob._id} 
+                    primaryText={companyJob.title} 
+                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                  />
+                )}
+              </List>
+              : undefined
+            }
+
+            <IconButton 
+              iconStyle={{ height: 35, width: 35 }}
+              onClick={this.handleJobModalOpen}>
               <AddIcon color={amber800}/>
             </IconButton>
 
             <JobModal 
               open={this.state.jobModalOpen}
+              company={company}
               onComplete={this.props.jobCreate}
               modalClose={this.handleJobModalClose}
             />
@@ -139,7 +144,22 @@ class CompanyView extends Component {
             <h3>Upcoming Events</h3>
             <Divider />
 
-            <IconButton onClick={this.handleEventModalOpen}>
+            {company.events
+              ? <List>
+                {company.events.map(event => 
+                  <ListItem 
+                    // key={companyJob._id} 
+                    // primaryText={companyJob.title} 
+                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                  />
+                )}
+              </List>
+              : undefined
+            }
+
+            <IconButton 
+              iconStyle={{ height: 35, width: 35 }}
+              onClick={this.handleEventModalOpen}>
               <AddIcon color={amber800}/>
             </IconButton>
 
@@ -154,7 +174,22 @@ class CompanyView extends Component {
             <h3>Contacts</h3>
             <Divider />
 
-            <IconButton onClick={this.handleContactModalOpen}>
+            {company.contacts
+              ? <List>
+                {company.contacts.map(contact => 
+                  <ListItem 
+                    // key={companyJob._id} 
+                    // primaryText={companyJob.title} 
+                    rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
+                  />
+                )}
+              </List>
+              : undefined
+            }
+
+            <IconButton 
+              iconStyle={{ height: 35, width: 35 }}
+              onClick={this.handleContactModalOpen}>
               <AddIcon color={amber800}/>
             </IconButton>
 
@@ -173,12 +208,11 @@ class CompanyView extends Component {
 let mapStateToProps = (state) => ({
   token: state.token,
   profile: state.profile,
-  company: state.company,
 });
 
 let mapDispatchToProps = (dispatch) => ({
   companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
-  // profileFetch: token => dispatch(profileFetchRequest(token)),
+  jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);
