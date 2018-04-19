@@ -12,6 +12,14 @@ class AuthRedirect extends Component {
             : <Redirect to='/' />
           : null
         }
+
+        {this.props.location.pathname === '/'
+          ? this.props.token
+            ? <Redirect to='/dashboard' />
+            : null
+          : null
+        }
+
       </div>
     );
   }

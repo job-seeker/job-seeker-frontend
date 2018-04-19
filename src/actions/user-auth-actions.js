@@ -8,7 +8,7 @@ export const tokenSet = (token) => ({
 });
 
 export const tokenDelete = () => ({
-  type: 'TOKEN_DELETE',
+  type: 'auth_logout',
   payload: null,
 });
 
