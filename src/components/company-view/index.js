@@ -174,6 +174,7 @@ class CompanyView extends Component {
 
             <EventModal 
               open={this.state.eventModalOpen}
+              company={company}
               onComplete={this.props.eventCreate}
               modalClose={this.handleEventModalClose}
             />
@@ -222,7 +223,7 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = (dispatch) => ({
   companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
-  eventCreate: (company, event) => dispatch(eventCreateRequest(company, event)),
+  eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
   contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
 });
 

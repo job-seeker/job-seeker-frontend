@@ -6,6 +6,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import EventSelector from '../select-field/event-select-field';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
 
 const styles = {
   errorStyle: {
@@ -19,11 +22,12 @@ export default class EventModal extends Component {
     this.state = { 
       eventType: '',
       eventTitle: '',
-      eventDate: '',
+      eventDate: null,
       eventNotes: '',
-      value: 1,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -31,10 +35,23 @@ export default class EventModal extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleSelectChange(event, index, value) {
+    this.setState({ eventType: value });
+  };
+
+  handleDateChange(event, date) {
+    this.setState({
+      eventDate: date,
+    });
+  };
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.modalClose();
     
+    // console.log(this.props.company)
+    // console.log(this.state);
+
     return this.props.onComplete(this.props.company, this.state)
       .catch(console.error);
   }
@@ -50,14 +67,14 @@ export default class EventModal extends Component {
         <div>
           <SelectField
             floatingLabelText="Event Type"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.eventType}
+            onChange={this.handleSelectChange}
           >
-            <MenuItem value={1} primaryText="Informational Interview" />
-            <MenuItem value={2} primaryText="Phone Interview" />
-            <MenuItem value={3} primaryText="Round 2 Interview" />
-            <MenuItem value={4} primaryText="In-Person Interview" />
-            <MenuItem value={5} primaryText="Offer" />
+            <MenuItem value={'info-interview'} primaryText="Informational Interview" />
+            <MenuItem value={'phone-interview'} primaryText="Phone Interview" />
+            <MenuItem value={'round-2-interview'} primaryText="Round 2 Interview" />
+            <MenuItem value={'in-person-interview'} primaryText="In-Person Interview" />
+            <MenuItem value={'offer'} primaryText="Offer" />
           </SelectField>
           <TextField
             name='eventTitle'
@@ -69,7 +86,7 @@ export default class EventModal extends Component {
             errorText="This field is required"   
             errorStyle={styles.errorStyle}                   
           /><br />
-          <TextField
+          {/* <TextField
             name='eventDate'
             value={this.state.eventDate}
             onChange={this.handleChange}
@@ -78,7 +95,12 @@ export default class EventModal extends Component {
             floatingLabelFixed={true}
             errorText="This field is required"
             errorStyle={styles.errorStyle}            
-          /><br />
+          /><br /> */}
+          <DatePicker
+            hintText="Pick a Date"
+            value={this.state.eventDate}
+            onChange={this.handleDateChange}
+          />
           <TextField
             name='eventNotes'
             value={this.state.eventNotes}

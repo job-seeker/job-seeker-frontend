@@ -29,7 +29,20 @@ export default (state=null, action) => {
       }
       return company;
     });
+    return Object.assign({}, state, { companies: updatedCompanies });
+  }
 
+  case 'EVENT_CREATE': {
+    const updatedCompanies = state.companies.map(company => {
+      if (company._id === payload.companyId) {
+        const updatedCompany = Object.assign({}, company);
+        const updatedEvents = [...company.events, payload];
+        updatedCompany.events = updatedEvents;
+
+        return updatedCompany;
+      }
+      return company;
+    });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
   default:
