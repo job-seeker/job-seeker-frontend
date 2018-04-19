@@ -1,0 +1,32 @@
+nav {
+  img {
+    width: 75px;
+    margin: 0 0 0 20px
+  }
+
+  h1 {
+    line-height: 70px !important;
+    padding-left: 5px;
+  }
+  
+  .desktop-nav {
+    .auth-sign-in {
+      width: 0%;
+    }
+    
+    a {
+      margin: 10px 16px !important;
+    }
+  }
+
+  .dropdown-nav div {
+      div:nth-child(4) {
+        border: none !important;
+    }
+  }
+}
+
+.auth-sign-in, .about-us-button {
+  width: 100%;
+}
+

@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+  // flex-direction: column;
+
+  .routes {
+    min-height: 100vh;
+    flex: 1;
+    overflow: scroll;
+  }
+}
