@@ -19,10 +19,10 @@ import { amber800 } from 'material-ui/styles/colors';
 
 import './_company-view.scss';
 import DashboardNav from '../dashboard-navbar';
-import JobModal from '../job-modal';
-import EventModal from '../event-modal';
-import ContactModal from '../contact-modal';
-import CompanyModal from '../company-modal';
+import JobModal from '../modals/job-modal.js';
+import EventModal from '../modals/event-modal.js';
+import ContactModal from '../modals/contact-modal.js';
+import CompanyModal from '../modals/company-modal.js';
 import JobView from '../job-view';
 import EventView from '../event-view';
 import ContactView from '../contact-view';
