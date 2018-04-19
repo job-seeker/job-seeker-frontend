@@ -42,6 +42,18 @@ export const companyFetchRequest = () => (dispatch, getState) => {
     });
 };
 
+export const companyUpdateRequest = (company) => (dispatch, getState) => {
+  let { token } = getState();
+
+  return superagent.put(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}`)
+    .set('Authorization', `Bearer ${token}`)
+    .send(company)
+    .then(res => {
+      dispatch(companyUpdate(res.body));
+      return res;
+    });
+};
+
 export const companyCreateRequest = (profile, company) => (dispatch, getState) => {
   let { token } = getState();
   return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company`)
@@ -55,7 +67,7 @@ export const companyCreateRequest = (profile, company) => (dispatch, getState) =
 
 export const companyDeleteRequest = (company) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/${company._id}`)
+  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(companyDelete(company));
