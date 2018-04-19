@@ -42,7 +42,7 @@ export const companyFetchRequest = () => (dispatch, getState) => {
     });
 };
 
-export const companyUpdateRequest = (company) => (dispatch, getState) => {
+export const companyUpdateRequest = (profile, company) => (dispatch, getState) => {
   let { token } = getState();
 
   return superagent.put(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}`)
