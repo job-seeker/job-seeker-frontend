@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { singleCompanyFetchRequest, companyDeleteRequest } from '../../actions/company-actions';
-import { jobCreateRequest, jobDeleteRequest } from '../../actions/job-actions';
-import { eventCreateRequest, eventDeleteRequest } from '../../actions/event-actions';
-import { contactCreateRequest, contactDeleteRequest } from '../../actions/contact-actions';
+import { jobCreateRequest, jobDeleteRequest, jobUpdateRequest } from '../../actions/job-actions';
+import { eventCreateRequest, eventDeleteRequest, eventUpdateRequest } from '../../actions/event-actions';
+import { contactCreateRequest, contactDeleteRequest, contactUpdateRequest } from '../../actions/contact-actions';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from  'material-ui/TextField';
@@ -94,7 +94,7 @@ class CompanyView extends Component {
                     primaryText={companyJob.title} 
                     rightIconButton={
                       <IconButton iconStyle={{ height: 15, width: 15 }}>
-                        <EditIcon />
+                        <EditIcon onClick={() => this.props.jobUpdate(job)}/>
                         <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />
                       </IconButton>
                       /* <IconButton iconStyle={{ height: 15, width: 15 }}>
@@ -140,7 +140,7 @@ class CompanyView extends Component {
                     rightIconButton={
                       <section>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <EditIcon />
+                          <EditIcon onClick={() => this.props.eventUpdate(event)}/>
                         </IconButton>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
                           <DeleteIcon onClick={() => this.props.eventDelete(event)}/>
@@ -184,7 +184,7 @@ class CompanyView extends Component {
                     rightIconButton={
                       <section>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <EditIcon />
+                          <EditIcon onClick={() => this.props.contactUpdate(contact)}/>
                         </IconButton>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
                           <DeleteIcon onClick={() => this.props.contactDelete(contact)}/>
@@ -226,10 +226,13 @@ let mapDispatchToProps = (dispatch) => ({
   companyDelete: (company) => dispatch(companyDeleteRequest(company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
   jobDelete: (job) => dispatch(jobDeleteRequest(job)),
+  jobUpdate: (job) => dispatch(jobUpdateRequest(job)),
   eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
   eventDelete: (jobEvent) => dispatch(eventDeleteRequest(jobEvent)),
+  eventUpdate: (jobEvent) => dispatch(eventUpdateRequest(jobEvent)),
   contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
   contactDelete: (contact) => dispatch(contactDeleteRequest(contact)),
+  contactUpdate: (contact) => dispatch(contactUpdateRequest(contact)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);
