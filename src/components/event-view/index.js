@@ -14,7 +14,6 @@ import { amber800 } from 'material-ui/styles/colors';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 
 import DashboardNav from '../dashboard-navbar';
-import EventSelector from '../select-field/event-select-field';
 
 export default class EventView extends Component {
   render() {
@@ -33,7 +32,7 @@ export default class EventView extends Component {
               <EditIcon />
             </IconButton>
             <Divider />
-            <EventSelector />
+            
             <p><span>Title:</span> this.props.title</p>
             <p><span>Date:</span> this.props.date</p>
             <p><span>Notes:</span></p>

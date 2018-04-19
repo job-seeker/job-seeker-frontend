@@ -24,9 +24,9 @@ export default class ContactView extends Component {
       <div>
         <DashboardNav />
         <div className='contact-view'>
-          <Subheader style={{ padding: 0 }} >Contact</Subheader>
+          <Subheader style={{ padding: 0 }} >Contact Info</Subheader>
           <section className='contact-info'>
-            <h3>Contact Info</h3>
+            <h3>Contact Name</h3>
             <IconButton
               style={{ display: 'inline-block' }}
               iconStyle={{ height: 15, width: 15 }}
@@ -35,9 +35,9 @@ export default class ContactView extends Component {
             </IconButton>
             <Divider />
             <p><span>Name:</span> Contact Name</p>
-            {/* <p><span>Email:</span> {this.props.contact.email}</p> */}
-            {/* <p><span>Phone:</span> {this.props.contact.phone}</p> */}
-            {/* <p><span>Notes:</span>{this.props.contact.notes}</p> */}
+            <p><span>Email:</span> Contact Email</p>
+            <p><span>Phone:</span> Contact Phone</p>
+            
             
           </section>
         </div>

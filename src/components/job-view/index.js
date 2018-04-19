@@ -15,7 +15,6 @@ import { amber800 } from 'material-ui/styles/colors';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 
 import DashboardNav from '../dashboard-navbar';
-import JobStatusSelector from '../select-field/job-status-field';
 
 export default class JobView extends Component {
   render() {
@@ -34,7 +33,7 @@ export default class JobView extends Component {
               <EditIcon />
             </IconButton>
             <Divider />
-            <JobStatusSelector />
+            
             <p><span>Title:</span> this.props.title</p>
             <p><span>Link:</span> this.props.link</p>
             <p><span>Type:</span> this.props.type</p>
