@@ -34,7 +34,7 @@ export const contactCreateRequest = (company, contact) => (dispatch, getState) =
     });
 };
 
-export const contactUpdateRequest = (contact) => (dispatch, getState) => {
+export const contactUpdateRequest = (company, contact) => (dispatch, getState) => {
   let { token } = getState();
 
   return superagent.put(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact/${contact._id}`)
