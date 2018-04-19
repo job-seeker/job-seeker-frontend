@@ -40,9 +40,9 @@ export default class JobModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    
+    this.props.modalClose();
+
     return this.props.onComplete(this.props.company, this.state)
-      .then(this.props.modalClose)
       .catch(console.error);
   }
 

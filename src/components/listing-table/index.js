@@ -14,33 +14,6 @@ import {
 } from 'material-ui/Table';
 import { Subheader } from 'material-ui';
 
-const tableData = [
-  {
-    prop1: 'Captain Marvel',
-    prop2: 'Employed',
-    prop3: 'Employed',
-    prop4: 'Employed',
-  },
-  {
-    prop1: 'Randal White',
-    prop2: 'Employed',
-    prop3: 'Employed',
-    prop4: 'Employed',
-  },
-  {
-    prop1: 'Stephanie Sanders',
-    prop2: 'Employed',
-    prop3: 'Employed',
-    prop4: 'Employed',
-  },
-  {
-    prop1: 'Steve Brown',
-    prop2: 'Employed',
-    prop3: 'Employed',
-    prop4: 'Employed',
-  },
-];
-
 export default class ListingTable extends Component {
   render() {
     return (
@@ -68,18 +41,11 @@ export default class ListingTable extends Component {
                     <TableRowColumn><Link to={'/company/'+company._id}>{company.companyName}</Link></TableRowColumn>
                     <TableRowColumn>{company.website}</TableRowColumn>
                     <TableRowColumn>{company.cityState}</TableRowColumn>
-                    <TableRowColumn>{company.created}</TableRowColumn>
+                    <TableRowColumn>{new Date(company.created).toDateString()}</TableRowColumn>
                   </TableRow>
                 ))
                 : undefined
-              : tableData.map((row, index) => (
-                <TableRow key={index}>
-                  <TableRowColumn>{row.prop1}</TableRowColumn>
-                  <TableRowColumn>{row.prop2}</TableRowColumn>
-                  <TableRowColumn>{row.prop3}</TableRowColumn>
-                  <TableRowColumn>{row.prop4}</TableRowColumn>
-                </TableRow>
-              ))
+              : undefined
             }
           </TableBody>
         </Table>
