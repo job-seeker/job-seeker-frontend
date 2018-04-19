@@ -46,9 +46,9 @@ export const contactUpdateRequest = (company, contact) => (dispatch, getState) =
     });
 };
 
-export const contactDeleteRequest = (company, contact) => (dispatch, getState) => {
+export const contactDeleteRequest = (contact) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.delete(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/contact/${contact._id}`) 
+  return superagent.delete(`${__API_URL__}/api/profile/${contact.profileId}/company/${contact.companyId}/contact/${contact._id}`) 
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(contactDelete(contact));

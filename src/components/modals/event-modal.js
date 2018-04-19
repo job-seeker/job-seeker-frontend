@@ -5,7 +5,6 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from  'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
-import EventSelector from '../select-field/event-select-field';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';

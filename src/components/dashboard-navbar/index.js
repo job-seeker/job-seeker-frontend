@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { profileFetchRequest } from '../../actions/profile-actions';
 import { auth_logout } from '../../actions/user-auth-actions';
 
+import { createAction as act } from 'redux-actions';
+import { auth } from '../auth-landing/constants';;
+
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -30,8 +33,9 @@ class DashboardNav extends Component {
   }
 
   handleLogout() {
-    localStorage.clear(); // this needs a better solution
-    location.reload();
+    localStorage.clear();
+    this.props.logout();  
+    this.props.history.push('/');
   }
 
   handleToggle() {
@@ -44,36 +48,33 @@ class DashboardNav extends Component {
 
   render() {
     return (
-      <section className='dashboard-nav'>
-        <AppBar 
-          className='dashboard-nav'
-          zDepth={0}
-          title='Job Seeker'
-          onLeftIconButtonClick={this.handleToggle}
-          iconElementRight={<IconButton><LogoutButton /></IconButton>}
-          onRightIconButtonClick={this.handleLogout}
-          // iconElementRight={<ProfileIcon className='profile-icon' />}
-          // iconStyleRight={{ 
-          //   margin: '20 10 0 0', 
-          // }}
-        />
+      this.props.location.pathname !== '/'
+        ? <section className='dashboard-nav'>
+          <AppBar 
+            className='dashboard-nav'
+            zDepth={0}
+            title='Job Seeker'
+            onLeftIconButtonClick={this.handleToggle}
+            iconElementRight={<IconButton><LogoutButton /></IconButton>}
+            onRightIconButtonClick={this.handleLogout}
+          />
 
-        <Drawer
-          className='drawer'
-          docked={false}
-          width={175}
-          open={this.state.drawerOpen}
-          onRequestChange={drawerOpen => this.setState({ drawerOpen })}
-          overlayStyle={{ 'background': 'none' }}
-        >
-          <MenuItem onClick={this.handleClose}><ArrowIcon /></MenuItem>
-          <MenuItem onClick={this.handleClose}><Link to='/dashboard'>Dashboard</Link></MenuItem>
-          <MenuItem onClick={this.handleClose}><Link to='/companies'>Companies</Link></MenuItem>
-          <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
-          <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
-          {/* <MenuItem onClick={this.handleClose}><Link to='/'>Home</Link></MenuItem> */}
-        </Drawer>
-      </section>
+          <Drawer
+            className='drawer'
+            docked={false}
+            width={175}
+            open={this.state.drawerOpen}
+            onRequestChange={drawerOpen => this.setState({ drawerOpen })}
+            overlayStyle={{ 'background': 'none' }}
+          >
+            <MenuItem onClick={this.handleClose}><ArrowIcon /></MenuItem>
+            <MenuItem onClick={this.handleClose}><Link to='/dashboard'>Dashboard</Link></MenuItem>
+            <MenuItem onClick={this.handleClose}><Link to='/companies'>Companies</Link></MenuItem>
+            <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
+            <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
+          </Drawer>
+        </section>
+        : null
     );
   }
 }
@@ -84,7 +85,9 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = (dispatch) => ({
   profileFetch: token => dispatch(profileFetchRequest(token)),
-  auth_logout: token => dispatch(auth_logout()),
+  // auth_logout: token => dispatch(auth_logout()),
+  tokenDelete: token => dispatch(tokenDelete(token)),
+  logout: () => dispatch(act(auth.logout)()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardNav);
