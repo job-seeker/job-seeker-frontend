@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { singleCompanyFetchRequest } from '../../actions/company-actions';
 import { jobCreateRequest } from '../../actions/job-actions';
 import { eventCreateRequest } from '../../actions/event-actions';
+import { contactCreateRequest } from '../../actions/contact-actions';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from  'material-ui/TextField';
@@ -24,6 +25,7 @@ import ContactModal from '../contact-modal';
 import CompanyModal from '../company-modal';
 import JobView from '../job-view';
 import EventView from '../event-view';
+import ContactView from '../contact-view';
 
 class CompanyView extends Component {
   constructor(props) {
@@ -126,7 +128,7 @@ class CompanyView extends Component {
                     key={companyJob._id} 
                     containerElement={
                       <Link to={'/job'}>
-                        <EventView />
+                        <JobView />
                       </Link>
                     }
                     primaryText={companyJob.title} 
@@ -162,7 +164,7 @@ class CompanyView extends Component {
                     key={event._id}
                     containerElement={
                       <Link to={'/event'}>
-                        <JobView />
+                        <EventView />
                       </Link>
                     }
                     primaryText={event.eventTitle} 
@@ -195,8 +197,12 @@ class CompanyView extends Component {
               ? <List>
                 {company.contacts.map(contact => 
                   <ListItem 
-                    // key={companyJob._id} 
-                    // primaryText={companyJob.title} 
+                    key={contact._id} 
+                    containerElement={
+                      <Link to={'/contact'}>
+                        <ContactView contact={contact}/>
+                      </Link>}
+                    primaryText={contact.name} 
                     rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
                   />
                 )}
@@ -212,6 +218,7 @@ class CompanyView extends Component {
 
             <ContactModal 
               open={this.state.contactModalOpen}
+              company={company}
               onComplete={this.props.contactCreate}
               modalClose={this.handleContactModalClose}
             />
