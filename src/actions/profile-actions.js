@@ -11,10 +11,10 @@ export const profileUpdate = (profile) => ({
 });
 
 export const profileCreateRequest = (profile) => (dispatch, getState) => {
-  let { auth } = getState();
-
+  let { token } = getState();
+  console.log(token)
   return request.post(`${__API_URL__}/api/profile`)
-    .set('Authorization', `Bearer ${auth}`)
+    .set('Authorization', `Bearer ${token}`)
     .send(profile)
     .then(res => {
       dispatch(profileCreate(res.body));
@@ -23,6 +23,7 @@ export const profileCreateRequest = (profile) => (dispatch, getState) => {
 };
 
 export const profileFetchRequest = (token) => (dispatch, getState) => {
+  let { token } = getState();
   return request.get(`${__API_URL__}/api/profile`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {

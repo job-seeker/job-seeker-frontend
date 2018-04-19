@@ -24,16 +24,20 @@ export const jobDelete = job => ({
   payload: job,
 });
 
-export const jobFetchRequest = () => dispatch => {
+export const jobFetchRequest = () => (dispatch, getState) => {
+  let { token } = getState();
   return superagent.get(`${__API_URL__}/api/profile/${profile._id}/allProfileJobs`)
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(jobFetch(res.body));
       return res;
     });
 };
 
-export const jobCreateRequest = (company, job) => dispatch => {
+export const jobCreateRequest = (company, job) => (dispatch, getState) => {
+  let { token } = getState();
   return superagent.post(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/jobCreate`)
+    .set('Authorization', `Bearer ${token}`)
     .send(job)
     .then(res => {
       dispatch(jobCreate(res.body));
@@ -41,8 +45,10 @@ export const jobCreateRequest = (company, job) => dispatch => {
     });
 };
 
-export const jobDeleteRequest = (job) => dispatch => {
+export const jobDeleteRequest = (job) => (dispatch, getState) => {
+  let { token } = getState();
   return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/job/${job._id}`)
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(jobDelete(job));
       return res;

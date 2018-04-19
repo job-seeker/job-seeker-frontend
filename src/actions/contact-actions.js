@@ -23,8 +23,10 @@ export const contactDelete = contact => ({
 });
 
 
-export const contactCreateRequest = (contact) = dispatch => {
+export const contactCreateRequest = (contact) = (dispatch, getState) => {
+  let { token } = getState();
   return superagent.post(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/contact`) // probably need to fix these endpoints
+    .set('Authorization', `Bearer ${token}`)
     .send(contact)
     .then(res => {
       dispatch(contactCreate(res.body));
@@ -32,8 +34,10 @@ export const contactCreateRequest = (contact) = dispatch => {
     });
 };
 
-export const contactDeleteRequest = (contact) = dispatch => {
+export const contactDeleteRequest = (contact) = (dispatch, getState) => {
+  let { token } = getState();
   return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}/contact/${contact._id}`) // probably need to fix these endpoints
+    .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(contactDelete(contact));
       return res;
