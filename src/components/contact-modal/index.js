@@ -16,11 +16,11 @@ export default class ContactModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      contactName: '',
-      contactPhone: '',
-      contactEmail: '',
-      contactLinkedIn: '',
-      contactNotes: '',
+      name: '',
+      email: '',
+      phone: '',
+      linkedIn: '',
+      notes: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,15 +31,11 @@ export default class ContactModal extends Component {
   };
 
   handleSubmit(e) {
-    console.log(this.props);
     e.preventDefault();
+    this.props.modalClose();
+
     
     return this.props.onComplete(this.state)
-      .then(console.log()) // we should probably change this...
-      // if (!this.props.profile) {
-      //   this.setState({ description: '', preview: '', photo: null });
-      // }
-      // })
       .catch(console.error);
   }
 
@@ -53,8 +49,8 @@ export default class ContactModal extends Component {
 
         <div>
           <TextField
-            name='contactName'
-            value={this.state.contactName}
+            name='name'
+            value={this.state.name}
             onChange={this.handleChange}
             hintText="Add a Contact"
             floatingLabelText="Contact Name"
@@ -63,36 +59,36 @@ export default class ContactModal extends Component {
             errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='contactPhone'
-            value={this.state.contactPhone}
+            name='email'
+            value={this.state.email}
             onChange={this.handleChange}
             hintText="Add a Contact"
-            floatingLabelText="Contact Phone"
+            floatingLabelText="Contact Email"
             floatingLabelFixed={true}
             errorText="This field is required"   
             errorStyle={styles.errorStyle}                   
           /><br />
           <TextField
-            name='contactEmail'
-            value={this.state.contactEmail}
+            name='phone'
+            value={this.state.phone}
             onChange={this.handleChange}
             hintText="Add a Contact"
-            floatingLabelText="Contact Email"
+            floatingLabelText="Contact Phone"
             floatingLabelFixed={true}
             errorText="This field is required"
             errorStyle={styles.errorStyle}            
           /><br />
           <TextField
-            name='contactLinkedIn'
-            value={this.state.contactLinkedIn}
+            name='linkedIn'
+            value={this.state.linkedIn}
             onChange={this.handleChange}
-            hintText="Additional Notes"
-            floatingLabelText="Notes"
+            hintText="Add a Contact"
+            floatingLabelText="Contact LinkedIn"
             floatingLabelFixed={true}
           /><br />
           <TextField
-            name='contactNotes'
-            value={this.state.contactNotes}
+            name='notes'
+            value={this.state.notes}
             onChange={this.handleChange}
             hintText="Additional Notes"
             floatingLabelText="Notes"

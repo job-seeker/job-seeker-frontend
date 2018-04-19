@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { singleCompanyFetchRequest } from '../../actions/company-actions';
 import { jobCreateRequest } from '../../actions/job-actions';
+import { eventCreateRequest } from '../../actions/event-actions';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from  'material-ui/TextField';
@@ -165,7 +166,7 @@ class CompanyView extends Component {
 
             <EventModal 
               open={this.state.eventModalOpen}
-              onComplete={this.props.jobCreate}
+              onComplete={this.props.eventCreate}
               modalClose={this.handleEventModalClose}
             />
           </section>
@@ -195,7 +196,7 @@ class CompanyView extends Component {
 
             <ContactModal 
               open={this.state.contactModalOpen}
-              onComplete={this.props.jobCreate}
+              onComplete={this.props.contactCreate}
               modalClose={this.handleContactModalClose}
             />
           </section>
@@ -213,6 +214,8 @@ let mapStateToProps = (state) => ({
 let mapDispatchToProps = (dispatch) => ({
   companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
+  eventCreate: (company, event) => dispatch(eventCreateRequest(company, event)),
+  contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);

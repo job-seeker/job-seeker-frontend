@@ -21,6 +21,7 @@ export default class EventModal extends Component {
       eventTitle: '',
       eventDate: '',
       eventNotes: '',
+      value: 1,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,15 +32,10 @@ export default class EventModal extends Component {
   };
 
   handleSubmit(e) {
-    console.log(this.props);
     e.preventDefault();
+    this.props.modalClose();
     
-    return this.props.onComplete(this.state)
-      .then(console.log()) // we should probably change this...
-      // if (!this.props.profile) {
-      //   this.setState({ description: '', preview: '', photo: null });
-      // }
-      // })
+    return this.props.onComplete(this.props.company, this.state)
       .catch(console.error);
   }
 
@@ -52,16 +48,17 @@ export default class EventModal extends Component {
         open={this.props.open}>
 
         <div>
-          {/* <TextField
-            name='eventType'
-            value={this.state.eventType}
-            onChange={this.handleChange}
-            hintText="Add an event"
+          <SelectField
             floatingLabelText="Event Type"
-            floatingLabelFixed={true}
-            errorText="This field is required"
-            errorStyle={styles.errorStyle}            
-          /><br /> */}
+            value={this.state.value}
+            onChange={this.handleChange}
+          >
+            <MenuItem value={1} primaryText="Informational Interview" />
+            <MenuItem value={2} primaryText="Phone Interview" />
+            <MenuItem value={3} primaryText="Round 2 Interview" />
+            <MenuItem value={4} primaryText="In-Person Interview" />
+            <MenuItem value={5} primaryText="Offer" />
+          </SelectField>
           <TextField
             name='eventTitle'
             value={this.state.eventTitle}
@@ -90,7 +87,6 @@ export default class EventModal extends Component {
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
-          <EventSelector />
         </div>
 
         <FlatButton
