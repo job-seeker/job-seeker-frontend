@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { singleCompanyFetchRequest } from '../../actions/company-actions';
 import { jobCreateRequest } from '../../actions/job-actions';
@@ -21,6 +22,7 @@ import JobModal from '../job-modal';
 import EventModal from '../event-modal';
 import ContactModal from '../contact-modal';
 import CompanyModal from '../company-modal';
+import JobView from '../job-view';
 
 class CompanyView extends Component {
   constructor(props) {
@@ -85,7 +87,9 @@ class CompanyView extends Component {
       <div>
         <DashboardNav />
         <div className='company-view'>
-          <Subheader style={{ padding: 0 }}>{company.companyName}</Subheader>
+          <Subheader 
+            style={{ padding: 0 }}
+          >{company.companyName}</Subheader>
         
           <section className='company-info'>
             <h3>Company Info</h3>
@@ -117,12 +121,16 @@ class CompanyView extends Component {
             {company.jobPosting
               ? <List>
                 {company.jobPosting.map(companyJob => 
-                  <ListItem 
+                  <ListItem
+                    containerElement={
+                      <Link to={'/job/'+companyJob._id}>
+                        <JobView />
+                      </Link>
+                    }
                     key={companyJob._id} 
                     primaryText={companyJob.title} 
                     rightIconButton={<IconButton iconStyle={{ height: 15, width: 15 }}><EditIcon /></IconButton>}
-                  />
-                )}
+                  />                )}
               </List>
               : undefined
             }

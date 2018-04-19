@@ -25,6 +25,9 @@ const muiTheme = getMuiTheme({
   raisedButton: {
     primaryColor: amber800,
   },
+  subheader: {
+    fontSize: 40,
+  },
 });
 
 export default muiTheme;

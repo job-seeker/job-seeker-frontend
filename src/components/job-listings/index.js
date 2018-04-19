@@ -9,6 +9,7 @@ import ListingTable from '../listing-table';
 import JobModal from '../job-modal';
 import CompanyModal from '../company-modal';
 import { jobCreateRequest } from '../../actions/job-actions';
+import { amber800 } from 'material-ui/styles/colors';
 
 class JobListings extends React.Component {
   constructor(props) {
@@ -33,14 +34,28 @@ class JobListings extends React.Component {
     return (
       <section className='dashboard-content'>
         <DashboardNav />
-        <ListingTable />
 
-        <IconButton onClick={this.handleModalOpen}>
-          <AddIcon />
-        </IconButton>
+        <ListingTable 
+          style={{ 'padding-bottom': '20px' }}
+          header='All Jobs'
+          column1='Job'
+          column2='Company'
+          column3='Application Status'
+          column4='Date Added'
+          profile={this.props.profile}
+        />
+
+        {/* <IconButton 
+          style={{ marginLeft: 12 }}
+          iconStyle={{ height: 35, width: 35 }}
+          className='add-icon' 
+          onClick={this.handleModalOpen}>
+          <AddIcon color={amber800} />
+        </IconButton> */}
 
         <JobModal 
           open={this.state.modalOpen}
+          profile={this.props.profile}
           onComplete={this.props.jobCreate}
           modalClose={this.handleModalClose}
         />
@@ -49,8 +64,12 @@ class JobListings extends React.Component {
   }
 }
 
-let mapDispatchToProps = (dispatch) => ({
-  jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
+let mapStateToProps = (state) => ({
+  profile: state.profile,
 });
 
-export default connect(null, mapDispatchToProps)(JobListings);
+let mapDispatchToProps = (dispatch) => ({
+  jobCreate: (job, company) => dispatch(jobCreateRequest(job, company)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(JobListings);
