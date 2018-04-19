@@ -41,7 +41,7 @@ export default class ListingTable extends Component {
                     <TableRowColumn><Link to={'/company/'+company._id}>{company.companyName}</Link></TableRowColumn>
                     <TableRowColumn>{company.website}</TableRowColumn>
                     <TableRowColumn>{company.cityState}</TableRowColumn>
-                    <TableRowColumn>{company.created}</TableRowColumn>
+                    <TableRowColumn>{new Date(company.created).toDateString()}</TableRowColumn>
                   </TableRow>
                 ))
                 : undefined

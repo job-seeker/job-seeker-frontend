@@ -104,7 +104,7 @@ class CompanyView extends Component {
             <Divider />
             <p><span>Website:</span>{company.website}</p>
             <p><span>City, State:</span>{company.cityState}</p>
-            <p><span>Created:</span>{company.created}</p>
+            <p><span>Created:</span>{new Date(company.created).toDateString()}</p>
             <p><span>Notes:</span></p>
             <textarea readOnly placeholder={company.companyNotes} />
           </section>
