@@ -16,7 +16,7 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 // import './_dashboard.scss';
-import CompanyModal from '../company-modal';
+import CompanyModal from '../modals/company-modal.js';
 import CompanyListings from '../company-listings';
 import ListingTable from '../listing-table';
 import DashboardNav from '../dashboard-navbar';
