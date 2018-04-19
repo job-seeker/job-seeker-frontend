@@ -30,8 +30,8 @@ export default class JobView extends Component {
               <EditIcon />
             </IconButton>
             <Divider />
-            <JobStatusSelector />
-            <p><span>Title:</span> this.props.jobTitle</p>
+            
+            <p><span>Title:</span> this.props.title</p>
             <p><span>Link:</span> this.props.link</p>
             <p><span>Type:</span> this.props.type</p>
             <p><span>Notes:</span></p>

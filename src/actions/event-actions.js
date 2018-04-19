@@ -56,9 +56,9 @@ export const eventUpdateRequest = (company, jobEvent) => (dispatch, getState) =>
     });
 };
 
-export const eventDeleteRequest = (company, jobEvent) => (dispatch, getState) => {
+export const eventDeleteRequest = (jobEvent) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.delete(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}/event/${jobEvent._id}`)
+  return superagent.delete(`${__API_URL__}/api/profile/${jobEvent.profileId}/company/${jobEvent.companyId}/event/${jobEvent._id}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(eventDelete(jobEvent));

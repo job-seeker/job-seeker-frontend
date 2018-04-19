@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { profileFetchRequest } from '../../actions/profile-actions';
+
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -13,7 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 
 // import './_dashboard.scss';
-import CompanyModal from '../modals/company-modal.js';
+// import CompanyModal from '../modals/company-modal.js';
 import CompanyListings from '../company-listings';
 import ListingTable from '../listing-table';
 
@@ -21,10 +22,10 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      modalOpen: false,
+      // modalOpen: false,
     };
-    this.handleModalOpen = this.handleModalOpen.bind(this);
-    this.handleModalClose = this.handleModalClose.bind(this);
+    // this.handleModalOpen = this.handleModalOpen.bind(this);
+    // this.handleModalClose = this.handleModalClose.bind(this);
   }
 
   componentWillMount() {
@@ -34,13 +35,13 @@ class Dashboard extends Component {
     }
   }
 
-  handleModalOpen() {
-    this.setState({ modalOpen: true });
-  }
+  // handleModalOpen() {
+  //   this.setState({ modalOpen: true });
+  // }
 
-  handleModalClose() {
-    this.setState({ modalOpen: false });
-  }
+  // handleModalClose() {
+  //   this.setState({ modalOpen: false });
+  // }
 
   render() {
     return (

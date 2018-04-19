@@ -29,7 +29,7 @@ export default class EventView extends Component {
               <EditIcon />
             </IconButton>
             <Divider />
-            <EventSelector />
+            
             <p><span>Title:</span> this.props.title</p>
             <p><span>Date:</span> this.props.date</p>
             <p><span>Notes:</span></p>

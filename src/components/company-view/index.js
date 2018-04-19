@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { singleCompanyFetchRequest } from '../../actions/company-actions';
-import { jobCreateRequest } from '../../actions/job-actions';
-import { eventCreateRequest } from '../../actions/event-actions';
-import { contactCreateRequest } from '../../actions/contact-actions';
-import { companyDeleteRequest } from '../../actions/company-actions';
+import { singleCompanyFetchRequest, companyDeleteRequest } from '../../actions/company-actions';
+import { jobCreateRequest, jobDeleteRequest } from '../../actions/job-actions';
+import { eventCreateRequest, eventDeleteRequest } from '../../actions/event-actions';
+import { contactCreateRequest, contactDeleteRequest } from '../../actions/contact-actions';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from  'material-ui/TextField';
@@ -92,22 +91,16 @@ class CompanyView extends Component {
                 {company.jobPosting.map(companyJob => 
                   <ListItem
                     key={companyJob._id} 
-                    // // containerElement={() => render <JobView />}
-                    //   // <Link to={'/job'} jobs={companyJob}>
-                    //   //   <JobView jobs={companyJob} />
-                    //   // </Link>
-                    // // }
-                    // onClick={this.renderJobView}
                     primaryText={companyJob.title} 
                     rightIconButton={
-                      <div>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <EditIcon />
-                        </IconButton>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon />
-                        </IconButton>
-                      </div>
+                      <IconButton iconStyle={{ height: 15, width: 15 }}>
+                        <EditIcon />
+                        <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />
+                      </IconButton>
+                      /* <IconButton iconStyle={{ height: 15, width: 15 }}>
+                          <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />
+                        </IconButton> */
+                      /* </Fragment> */
                     }
                   />
                 )}
@@ -138,21 +131,21 @@ class CompanyView extends Component {
                 {company.events.map(event => 
                   <ListItem 
                     key={event._id}
-                    containerElement={
-                      <Link to={'/event'}>
-                        <EventView />
-                      </Link>
-                    }
+                    // containerElement={
+                    //   <Link to={'/event'}>
+                    //     <EventView />
+                    //   </Link>
+                    // }
                     primaryText={event.eventTitle} 
                     rightIconButton={
-                      <div>
+                      <section>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
                           <EditIcon />
                         </IconButton>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon />
+                          <DeleteIcon onClick={() => this.props.eventDelete(event)}/>
                         </IconButton>
-                      </div>
+                      </section>
                     }
                   />
                 )}
@@ -183,20 +176,20 @@ class CompanyView extends Component {
                 {company.contacts.map(contact => 
                   <ListItem 
                     key={contact._id} 
-                    containerElement={
-                      <Link to={'/contact'}>
-                        <ContactView contact={contact}/>
-                      </Link>}
+                    // containerElement={
+                    //   <Link to={'/contact'}>
+                    //     <ContactView contact={contact}/>
+                    //   </Link>}
                     primaryText={contact.name} 
                     rightIconButton={
-                      <div>
+                      <section>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
                           <EditIcon />
                         </IconButton>
                         <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon />
+                          <DeleteIcon onClick={() => this.props.contactDelete(contact)}/>
                         </IconButton>
-                      </div>
+                      </section>
                     }
                   />
                 )}
@@ -230,10 +223,13 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = (dispatch) => ({
   companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
-  jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
-  eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
-  contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
   companyDelete: (company) => dispatch(companyDeleteRequest(company)),
+  jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
+  jobDelete: (job) => dispatch(jobDeleteRequest(job)),
+  eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
+  eventDelete: (jobEvent) => dispatch(eventDeleteRequest(jobEvent)),
+  contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
+  contactDelete: (contact) => dispatch(contactDeleteRequest(contact)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);
