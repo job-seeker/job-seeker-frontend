@@ -14,6 +14,7 @@ export default (state=null, action) => {
     return state.filter(item => item._id !== payload._id);
   case 'JOB_CREATE':
     const updatedJobs = [...state.jobs, payload];
+    console.log('STATE:::::', state);
     return Object.assign({}, state, { jobs: updatedJobs });
   default:
     return state;
