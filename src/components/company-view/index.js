@@ -19,6 +19,7 @@ import { amber800 } from 'material-ui/styles/colors';
 
 import './_company-view.scss';
 import JobModal from '../modals/job-modal.js';
+import JobViewModal from '../modals/job-view-modal';
 import EventModal from '../modals/event-modal.js';
 import EventViewModal from '../modals/event-view-modal';
 import ContactModal from '../modals/contact-modal.js';
@@ -33,6 +34,7 @@ class CompanyView extends Component {
     super(props);
     this.state = { 
       jobModalOpen: false,
+      jobViewModalOpen: false,
       contactModalOpen: false,
       eventModalOpen: false,
       eventViewModalOpen: false,
@@ -49,7 +51,13 @@ class CompanyView extends Component {
         eventDate: new Date(),
         eventNotes: '',
       },
-
+      job: { 
+        title: '',
+        link: '',
+        type: '',
+        notes: '',
+        status: 'None Selected',
+      },
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -73,6 +81,13 @@ class CompanyView extends Component {
     return() => {
       this.toggleModal('eventViewModalOpen')();
       this.setState({ event: event });
+    };
+  }
+
+  handleJobClick(job) {
+    return() => {
+      this.toggleModal('jobViewModalOpen')();
+      this.setState({ job: job });
     };
   }
   
@@ -117,17 +132,18 @@ class CompanyView extends Component {
 
             {company.jobPosting
               ? <List>
-                {company.jobPosting.map(companyJob => 
+                {company.jobPosting.map(job => 
                   <ListItem
-                    key={companyJob._id} 
-                    primaryText={companyJob.title} 
+                    key={job._id} 
+                    onClick={this.handleJobClick(job)}
+                    primaryText={job.title} 
                     rightIconButton={
                       <IconButton iconStyle={{ height: 15, width: 15 }}>
                         <EditIcon onClick={() => this.props.jobUpdate(job)}/>
-                        <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />
+                        <DeleteIcon onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
                       /* <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />
+                          <DeleteIcon onClick={() => this.props.jobDelete(job)} />
                         </IconButton> */
                       /* </Fragment> */
                     }
@@ -148,6 +164,12 @@ class CompanyView extends Component {
               company={company}
               onComplete={this.props.jobCreate}
               modalClose={this.toggleModal('jobModalOpen')}
+            />
+
+            <JobViewModal 
+              open={this.state.jobViewModalOpen}
+              job={this.state.job}
+              modalClose={this.toggleModal('jobViewModalOpen')}
             />
           </section>
 
