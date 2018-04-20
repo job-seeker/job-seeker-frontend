@@ -21,10 +21,12 @@ export default class ContactViewModal extends Component {
         <Card>
           <CardHeader
             title={this.props.contact.name}
+            style={{ paddingBottom: 0 }}
           />
           <CardText>
-            <List>
+            <List style={{ paddingTop: 0 }}>
               <ListItem
+                style={{ paddingTop: 0 }}
                 leftIcon={<CommunicationCall color={indigo500} />}
                 primaryText={this.props.contact.phone}
               />

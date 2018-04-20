@@ -21,10 +21,12 @@ export default class EventViewModal extends Component {
         <Card>
           <CardHeader
             title={this.props.event.eventType}
+            style={{ paddingBottom: 0 }}
           />
           <CardText>
             <List>
               <ListItem
+                style={{ paddingTop: 0 }}
                 primaryText='Event Title'
                 secondaryText={this.props.event.eventTitle}
               />

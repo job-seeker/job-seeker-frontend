@@ -21,10 +21,12 @@ export default class JobViewModal extends Component {
         <Card>
           <CardHeader
             title={this.props.job.title}
+            style={{ paddingBottom: 0 }}
           />
           <CardText>
             <List>
               <ListItem
+                style={{ paddingTop: 0 }}
                 primaryText='Job Link'
                 secondaryText={this.props.job.link}
               />
