@@ -17,9 +17,10 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import IconButton from 'material-ui/IconButton';
 import FlatButton from 'material-ui/FlatButton';
 import LogoutButton from 'material-ui/svg-icons/action/power-settings-new';
-import HomePage from '../homepage';
+import { lightBlue900 } from 'material-ui/styles/colors';
 
 import './_dashboard-navbar.scss';
+import HomePage from '../homepage';
 
 class DashboardNav extends Component {
   constructor(props) {
@@ -67,11 +68,10 @@ class DashboardNav extends Component {
             onRequestChange={drawerOpen => this.setState({ drawerOpen })}
             overlayStyle={{ 'background': 'none' }}
           >
-            <MenuItem onClick={this.handleClose}><ArrowIcon /></MenuItem>
-            <MenuItem onClick={this.handleClose}><Link to='/dashboard'>Dashboard</Link></MenuItem>
-            <MenuItem onClick={this.handleClose}><Link to='/companies'>Companies</Link></MenuItem>
-            <MenuItem onClick={this.handleClose}><Link to='/jobs'>Job Applications</Link></MenuItem>
-            <MenuItem onClick={this.handleClose}><Link to='/events'>Events</Link></MenuItem>
+            <MenuItem onClick={this.handleClose}><ArrowIcon style={{ paddingTop: '20px' }} /></MenuItem>
+            <Link to='/companies'><MenuItem style={{fontSize: 14, color: lightBlue900 }} onClick={this.handleClose}>Companies</MenuItem></Link>
+            <Link to='/jobs'><MenuItem style={{fontSize: 14, color: lightBlue900 }} onClick={this.handleClose}>Job Applications</MenuItem></Link>
+            <Link to='/events'><MenuItem style={{fontSize: 14, color: lightBlue900 }} onClick={this.handleClose}>Events</MenuItem></Link>
           </Drawer>
         </section>
         : null

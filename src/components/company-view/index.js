@@ -105,12 +105,19 @@ class CompanyView extends Component {
         
           <section className='company-info'>
             <h3>Company Info</h3>
-            <IconButton 
-              style={{ display: 'inline-block' }}
-              iconStyle={{ height: 15, width: 15 }} 
-              onClick={this.toggleModal('companyModalOpen')}>
-              <EditIcon />
-            </IconButton>
+            <div className='company-buttons'>
+              <IconButton 
+                style={{ width: '10px', display: 'inline-block' }}
+                iconStyle={{ height: 15, width: 15 }} 
+                onClick={this.toggleModal('companyModalOpen')}>
+                <EditIcon />
+              </IconButton>
+              <IconButton 
+                iconStyle={{ height: 15, width: 15 }}
+                onClick={() => this.props.jobDelete(job)}>
+                <DeleteIcon />
+              </IconButton>
+            </div>
 
             <CompanyModal
               open={this.state.companyModalOpen}
@@ -128,6 +135,11 @@ class CompanyView extends Component {
 
           <section className='company-job-postings'>
             <h3>Job Postings</h3>
+            {/* <IconButton 
+              iconStyle={{ height: 24, width: 24 }}
+              onClick={this.toggleModal('eventModalOpen')}>
+              <AddIcon color={amber800}/>
+            </IconButton> */}
             <Divider />
 
             {company.jobPosting
@@ -138,7 +150,7 @@ class CompanyView extends Component {
                     onClick={this.handleJobClick(job)}
                     primaryText={job.title} 
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' onClick={() => this.props.jobUpdate(job)} />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
@@ -181,7 +193,7 @@ class CompanyView extends Component {
                     primaryText={event.eventTitle} 
                     onClick={this.handleEventClick(event)}
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' onClick={() => this.props.eventUpdate(event)} />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.eventDelete(event)} />
                       </IconButton>
@@ -224,7 +236,7 @@ class CompanyView extends Component {
                     onClick={this.handleContactClick(contact)}
                     primaryText={contact.name}
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' onClick={() => this.props.contactUpdate(contact)} />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.contactDelete(contact)} />
                       </IconButton>
@@ -254,7 +266,7 @@ class CompanyView extends Component {
               open={this.state.contactViewModalOpen}
               contact={this.state.contact}
               modalClose={this.toggleModal('contactViewModalOpen')}
-            />;
+            />
           </section>
         </div>
       </div>

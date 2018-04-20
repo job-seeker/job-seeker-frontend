@@ -53,7 +53,6 @@ class AuthComponent extends React.Component {
     let authSettings = auth0.auth || {};
     
     if (authSettings.redirect){ //Because redirect restarts browser memory, auth0 needs to be mounted again in redirect mode for on.authenticated callback handler to be reached
-    // if (this.props.login) {
       this.mountAuth0();
     }
   }
@@ -91,7 +90,7 @@ class AuthComponent extends React.Component {
     let obj;
     let newUser = false;
 
-    if(method == 'login'){ //These both do the same thing now, but that may not be the case later
+    if(method == 'login'){
       action = act(auth.signin);
 
     } else if(method == 'signup'){
@@ -118,46 +117,17 @@ class AuthComponent extends React.Component {
   render(){
     let { props } = this;
 
-    // const LOGGED_OUT = (
-    //   <a href="#" className="btn btn-default" onClick={this.showSignupModal}>Sign In</a>
-    //   <div className="login-signup">
-    //     {
-    //       props.signup ? '' : 
-    //         <div className="login">
-    //           <a href="#" className="btn btn-default" onClick={this.showLoginModal}>Login</a>
-    //         </div>
-    //     }
-    //     {props.login || props.signup ? '' : 
-    //       <span>or</span>}
-    //     {
-    //       props.login ? '' : 
-    //         <div className="signup">
-    //           <a href="#" className="btn btn-default" onClick={this.showSignupModal}>Sign Up</a>
-    //         </div>
-    //     }
-    //   </div>
-    // );
-
-    // const LOGGED_IN = (
-    //   <div className="logout">
-    //     <a href="#" onClick={this.logout} className="logout">Logout</a>
-    //   </div>
-    // );
-
     return (
       <Fragment>
         {props.auth.token || props.token
-          ? <FlatButton style={{ 'textTransform': 'uppercase', 'font-size': 14, 'font-weight': '500'  }} className='auth-sign-out' onClick={this.logout}>Logout</FlatButton>
-          : <FlatButton style={{ 'textTransform': 'uppercase', 'font-size': 14, 'font-weight': '500' }} className='auth-sign-in' onClick={this.showSignupModal}>Sign In</FlatButton>
+          ? <FlatButton style={{ 'textTransform': 'uppercase', 'fontSize': 14, 'font-weight': '500'  }} className='auth-sign-out' onClick={this.logout}>Logout</FlatButton>
+          : <FlatButton style={{ 'textTransform': 'uppercase', 'fontSize': 14, 'font-weight': '500' }} className='auth-sign-in' onClick={this.showSignupModal}>Sign In</FlatButton>
         }
       </Fragment>
     );
   }
 }
 
-/*
- * Make redirect "false" 
- */
 AuthComponent.defaultProps = {
   auth0: {
     auth: {
@@ -165,15 +135,6 @@ AuthComponent.defaultProps = {
     },
   },
 };
-
-// AuthComponent.propTypes = {
-//   onAuthenticated: React.PropTypes.func
-// };
-
-// const mapStateToProps = ({ auth }) => ({ auth });
-// const mapDispatchToProps = dispatch => ({
-//   getAccessToken: (email) => dispatch(getAccessTokenAction(email)),
-// });
 
 let mapStateToProps = (state) => {
   let { auth, token } = state;
