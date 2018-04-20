@@ -15,7 +15,7 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { List, ListItem } from 'material-ui/List';
-import { amber800 } from 'material-ui/styles/colors';
+import { amber800, lightBlue900 } from 'material-ui/styles/colors';
 
 import './_company-view.scss';
 import JobModal from '../modals/job-modal.js';
@@ -138,14 +138,10 @@ class CompanyView extends Component {
                     onClick={this.handleJobClick(job)}
                     primaryText={job.title} 
                     rightIconButton={
-                      <IconButton iconStyle={{ height: 15, width: 15 }}>
-                        <EditIcon onClick={() => this.props.jobUpdate(job)}/>
-                        <DeleteIcon onClick={() => this.props.jobDelete(job)} />
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                        <EditIcon className='edit-icon' onClick={() => this.props.jobUpdate(job)} />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
-                      /* <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon onClick={() => this.props.jobDelete(job)} />
-                        </IconButton> */
-                      /* </Fragment> */
                     }
                   />
                 )}
@@ -182,17 +178,13 @@ class CompanyView extends Component {
                 {company.events.map(event => 
                   <ListItem 
                     key={event._id}
-                    onClick={this.handleEventClick(event)}
                     primaryText={event.eventTitle} 
+                    onClick={this.handleEventClick(event)}
                     rightIconButton={
-                      <section>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <EditIcon onClick={() => this.props.eventUpdate(event)}/>
-                        </IconButton>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon onClick={() => this.props.eventDelete(event)}/>
-                        </IconButton>
-                      </section>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                        <EditIcon className='edit-icon' onClick={() => this.props.eventUpdate(event)} />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.eventDelete(event)} />
+                      </IconButton>
                     }
                   />
                 )}
@@ -229,18 +221,14 @@ class CompanyView extends Component {
                 {company.contacts.map(contact => 
                   <ListItem 
                     key={contact._id} 
-                    // onClick={() => this.setState({ contact: contact })}
                     onClick={this.handleContactClick(contact)}
-                    primaryText={contact.name} 
+                    primaryText={contact.name}
                     rightIconButton={
-                      <section>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <EditIcon onClick={() => this.props.contactUpdate(contact)}/>
-                        </IconButton>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon onClick={() => this.props.contactDelete(contact)}/>
-                        </IconButton>
-                      </section>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                        <EditIcon className='edit-icon' onClick={() => this.props.contactUpdate(contact)} />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.contactDelete(contact)} />
+                      </IconButton>
+
                     }
                   />
                 )}

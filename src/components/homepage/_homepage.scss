@@ -8,6 +8,10 @@
   background-color: hsla(0,0%,100%,0.70);
   background-blend-mode: overlay;  
 
+  .inner button {
+    background-color: #FF8F00 !important;
+    color: #FFF !important;
+  }
   // https://stackoverflow.com/questions/396145/how-to-vertically-center-a-div-for-all-browsers#6182661
   .outer {
     display: table;

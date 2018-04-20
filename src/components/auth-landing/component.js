@@ -147,8 +147,8 @@ class AuthComponent extends React.Component {
     return (
       <Fragment>
         {props.auth.token || props.token
-          ? <FlatButton className='auth-sign-out' onClick={this.logout}>Logout</FlatButton>
-          : <FlatButton className='auth-sign-in' onClick={this.showSignupModal}>Sign In</FlatButton>
+          ? <FlatButton style={{ 'textTransform': 'uppercase', 'font-size': 14, 'font-weight': '500'  }} className='auth-sign-out' onClick={this.logout}>Logout</FlatButton>
+          : <FlatButton style={{ 'textTransform': 'uppercase', 'font-size': 14, 'font-weight': '500' }} className='auth-sign-in' onClick={this.showSignupModal}>Sign In</FlatButton>
         }
       </Fragment>
     );

@@ -4,13 +4,37 @@
   
   h3 {
     display: inline-block;
+    margin: 0 0 1vw 0;
   }
-  
+
+  hr {
+    height: .5px;
+    background-color: #01579B !important;
+  }
+
   span {
     font-weight: bold;
+    margin-right: 10px;
+  }
+
+  p {
+    margin: 1.25vw 0 0 0;
   }
 
   textarea {
     display: block;
+    width: 400px;
+    height: 100px;
+    margin: 1vw 0 3vw 0;
+    font-family: Avenir, sans-serif;
+    font-size: 15px;
+  }
+
+  .edit-icon {
+    display: inline !important;
+  }
+
+  .delete-icon {
+    display: inline !important;
   }
 }

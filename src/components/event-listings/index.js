@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import ListingTable from '../listing-table';
-// import EventModal from '../modals/event-modal.js';
+import MobileListingTable from '../mobile-listing-table';
 import { eventCreateRequest } from '../../actions/event-actions';
 import { amber800 } from 'material-ui/styles/colors';
 
@@ -13,47 +13,44 @@ class EventListings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // modalOpen: false,
+      screenWidth: 0, 
     };
-    // this.handleModalOpen = this.handleModalOpen.bind(this);
-    // this.handleModalClose = this.handleModalClose.bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);    
   }
-  
-  // handleModalOpen() {
-  //   this.setState({ modalOpen: true });
-  // }  
-  
-  // handleModalClose() {
-  //   this.setState({ modalOpen: false });
-  // }
+
+  componentWillMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ screenWidth: window.innerWidth });
+  }
 
   render() {
     return (
       <section className='dashboard-content'>
-        <ListingTable 
+        {this.state.screenWidth < 620                   ? <MobileListingTable 
           style={{ 'padding-bottom': '20px' }}
           header='All Events'
           column1='Event'
           column2='Company'
-          column3='Event Date'
-          column4='Date Added'
           profile={this.props.profile}
         />
-
-        {/* <IconButton 
-          style={{ marginLeft: 12 }}
-          iconStyle={{ height: 35, width: 35 }}
-          className='add-icon' 
-          onClick={this.handleModalOpen}>
-          <AddIcon color={amber800} />
-        </IconButton> */}
-
-        {/* <EventModal 
-          open={this.state.modalOpen}
-          profile={this.props.profile}
-          onComplete={this.props.eventCreate}
-          modalClose={this.handleModalClose}
-        /> */}
+          : <ListingTable 
+            style={{ 'padding-bottom': '20px' }}
+            header='All Events'
+            column1='Event'
+            column2='Company'
+            column3='Event Date'
+            column4='Date Added'
+            profile={this.props.profile}
+          />
+        }
       </section>
     );
   }
