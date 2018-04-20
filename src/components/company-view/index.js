@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { singleCompanyFetchRequest, companyDeleteRequest } from '../../actions/company-actions';
-import { jobCreateRequest, jobDeleteRequest } from '../../actions/job-actions';
-import { eventCreateRequest, eventDeleteRequest } from '../../actions/event-actions';
-import { contactCreateRequest, contactDeleteRequest } from '../../actions/contact-actions';
+import { jobCreateRequest, jobDeleteRequest, jobUpdateRequest } from '../../actions/job-actions';
+import { eventCreateRequest, eventDeleteRequest, eventUpdateRequest } from '../../actions/event-actions';
+import { contactCreateRequest, contactDeleteRequest, contactUpdateRequest } from '../../actions/contact-actions';
 
 import Dialog from 'material-ui/Dialog';
 import TextField from  'material-ui/TextField';
@@ -19,8 +19,11 @@ import { amber800, lightBlue900 } from 'material-ui/styles/colors';
 
 import './_company-view.scss';
 import JobModal from '../modals/job-modal.js';
+import JobViewModal from '../modals/job-view-modal';
 import EventModal from '../modals/event-modal.js';
+import EventViewModal from '../modals/event-view-modal';
 import ContactModal from '../modals/contact-modal.js';
+import ContactViewModal from '../modals/contact-view-modal.js';
 import CompanyModal from '../modals/company-modal.js';
 import JobView from '../job-view';
 import EventView from '../event-view';
@@ -31,20 +34,60 @@ class CompanyView extends Component {
     super(props);
     this.state = { 
       jobModalOpen: false,
+      jobViewModalOpen: false,
       contactModalOpen: false,
       eventModalOpen: false,
+      eventViewModalOpen: false,
       companyModalOpen: false,
-      editMode: false,
+      contactViewModalOpen: false,
+      contact: {
+        name: '',
+        email: '',
+        phone: '',
+      },
+      event: {
+        eventTitle: '',
+        eventType: '',
+        eventDate: new Date(),
+        eventNotes: '',
+      },
+      job: { 
+        title: '',
+        link: '',
+        type: '',
+        notes: '',
+        status: 'None Selected',
+      },
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
-
+  
   toggleModal(modalName) {
     return () => {
       this.setState(prevState => ({
         [modalName]: !prevState[modalName],
       })
       );
+    };
+  }
+  handleContactClick(contact) {
+    return () => {
+      this.toggleModal('contactViewModalOpen')();
+      this.setState({ contact : contact });
+    };
+  }
+
+  handleEventClick(event) {
+    return() => {
+      this.toggleModal('eventViewModalOpen')();
+      this.setState({ event: event });
+    };
+  }
+
+  handleJobClick(job) {
+    return() => {
+      this.toggleModal('jobViewModalOpen')();
+      this.setState({ job: job });
     };
   }
   
@@ -89,15 +132,15 @@ class CompanyView extends Component {
 
             {company.jobPosting
               ? <List>
-                {company.jobPosting.map(companyJob => 
+                {company.jobPosting.map(job => 
                   <ListItem
-                    key={companyJob._id} 
-                    primaryText={companyJob.title} 
-                    className='list-item'
+                    key={job._id} 
+                    onClick={this.handleJobClick(job)}
+                    primaryText={job.title} 
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
-                        <EditIcon className='edit-icon' />
-                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(companyJob)} />
+                        <EditIcon className='edit-icon' onClick={() => this.props.jobUpdate(job)} />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
                     }
                   />
@@ -118,6 +161,12 @@ class CompanyView extends Component {
               onComplete={this.props.jobCreate}
               modalClose={this.toggleModal('jobModalOpen')}
             />
+
+            <JobViewModal 
+              open={this.state.jobViewModalOpen}
+              job={this.state.job}
+              modalClose={this.toggleModal('jobViewModalOpen')}
+            />
           </section>
 
           <section className='company-upcoming-events'>
@@ -132,8 +181,8 @@ class CompanyView extends Component {
                     primaryText={event.eventTitle} 
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
-                        <EditIcon className='edit-icon' />
-                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(companyJob)} />
+                        <EditIcon className='edit-icon' onClick={() => this.props.eventUpdate(event)} />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.eventDelete(event) />
                       </IconButton>
                     }
                   />
@@ -154,6 +203,12 @@ class CompanyView extends Component {
               onComplete={this.props.eventCreate}
               modalClose={this.toggleModal('eventModalOpen')}
             />
+
+            <EventViewModal 
+              open={this.state.eventViewModalOpen}
+              event={this.state.event}
+              modalClose={this.toggleModal('eventViewModalOpen')}
+            />
           </section>
 
           <section className='company-contacts'>
@@ -165,17 +220,18 @@ class CompanyView extends Component {
                 {company.contacts.map(contact => 
                   <ListItem 
                     key={contact._id} 
-                    onClick={this.toggleModal('contactModalOpen')}
+                    onClick={this.handleContactClick(contact)}
                     primaryText={contact.name}
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
-                        <EditIcon className='edit-icon' />
-                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(companyJob)} />
+                        <EditIcon className='edit-icon' onClick={() => this.props.contactUpdate(contact)} />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.contactDelete(contact)} />
                       </IconButton>
 
                     }
                   />
                 )}
+
               </List>
               : undefined
             }
@@ -192,6 +248,12 @@ class CompanyView extends Component {
               onComplete={this.props.contactCreate}
               modalClose={this.toggleModal('contactModalOpen')}
             />
+
+            <ContactViewModal
+              open={this.state.contactViewModalOpen}
+              contact={this.state.contact}
+              modalClose={this.toggleModal('contactViewModalOpen')}
+            />;
           </section>
         </div>
       </div>
@@ -209,10 +271,13 @@ let mapDispatchToProps = (dispatch) => ({
   companyDelete: (company) => dispatch(companyDeleteRequest(company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
   jobDelete: (job) => dispatch(jobDeleteRequest(job)),
+  jobUpdate: (job) => dispatch(jobUpdateRequest(job)),
   eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
   eventDelete: (jobEvent) => dispatch(eventDeleteRequest(jobEvent)),
+  eventUpdate: (jobEvent) => dispatch(eventUpdateRequest(jobEvent)),
   contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
   contactDelete: (contact) => dispatch(contactDeleteRequest(contact)),
+  contactUpdate: (contact) => dispatch(contactUpdateRequest(contact)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);

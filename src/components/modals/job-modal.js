@@ -22,7 +22,7 @@ export default class JobModal extends Component {
       link: '',
       type: '',
       notes: '',
-      status: 1,
+      status: 'None Selected',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
