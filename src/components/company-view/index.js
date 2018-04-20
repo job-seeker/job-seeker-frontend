@@ -20,6 +20,7 @@ import { amber800 } from 'material-ui/styles/colors';
 import './_company-view.scss';
 import JobModal from '../modals/job-modal.js';
 import EventModal from '../modals/event-modal.js';
+import EventViewModal from '../modals/event-view-modal';
 import ContactModal from '../modals/contact-modal.js';
 import ContactViewModal from '../modals/contact-view-modal.js';
 import CompanyModal from '../modals/company-modal.js';
@@ -34,12 +35,19 @@ class CompanyView extends Component {
       jobModalOpen: false,
       contactModalOpen: false,
       eventModalOpen: false,
+      eventViewModalOpen: false,
       companyModalOpen: false,
       contactViewModalOpen: false,
       contact: {
         name: '',
         email: '',
         phone: '',
+      },
+      event: {
+        eventTitle: '',
+        eventType: '',
+        eventDate: new Date(),
+        eventNotes: '',
       },
 
     };
@@ -58,8 +66,14 @@ class CompanyView extends Component {
     return () => {
       this.toggleModal('contactViewModalOpen')();
       this.setState({ contact : contact });
+    };
+  }
 
-    }
+  handleEventClick(event) {
+    return() => {
+      this.toggleModal('eventViewModalOpen')();
+      this.setState({ event: event });
+    };
   }
   
   render() {
@@ -146,11 +160,7 @@ class CompanyView extends Component {
                 {company.events.map(event => 
                   <ListItem 
                     key={event._id}
-                    // containerElement={
-                    //   <Link to={'/event'}>
-                    //     <EventView />
-                    //   </Link>
-                    // }
+                    onClick={this.handleEventClick(event)}
                     primaryText={event.eventTitle} 
                     rightIconButton={
                       <section>
@@ -179,6 +189,12 @@ class CompanyView extends Component {
               company={company}
               onComplete={this.props.eventCreate}
               modalClose={this.toggleModal('eventModalOpen')}
+            />
+
+            <EventViewModal 
+              open={this.state.eventViewModalOpen}
+              event={this.state.event}
+              modalClose={this.toggleModal('eventViewModalOpen')}
             />
           </section>
 

@@ -8,11 +8,11 @@ import CommunicationEmail from 'material-ui/svg-icons/communication/email';
 import { List, ListItem } from 'material-ui';
 import { indigo500 } from 'material-ui/styles/colors';
 
-export default class ContactViewModal extends Component {
+export default class EventViewModal extends Component {
   render() {
     return (
       <Dialog
-        title='Contact Info'
+        title='Event Info'
         actions={this.props.actions}
         modal={false}
         onRequestClose={this.props.modalClose}
@@ -20,17 +20,21 @@ export default class ContactViewModal extends Component {
         autoScrollBodyContent={true}>
         <Card>
           <CardHeader
-            title={this.props.contact.name}
+            title={this.props.event.eventType}
           />
           <CardText>
             <List>
               <ListItem
-                leftIcon={<CommunicationCall color={indigo500} />}
-                primaryText={this.props.contact.phone}
+                primaryText='Event Title'
+                secondaryText={this.props.event.eventTitle}
               />
               <ListItem
-                leftIcon={<CommunicationEmail color={indigo500} />}
-                primaryText={this.props.contact.email}
+                primaryText='Event Date'
+                secondaryText={this.props.event.eventDate.toString().split('T')[0]}
+              />
+              <ListItem 
+                primaryText='Notes'
+                secondaryText={this.props.event.eventNotes}
               />
             </List>
           </CardText>
