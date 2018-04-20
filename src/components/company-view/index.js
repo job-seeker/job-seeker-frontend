@@ -105,12 +105,19 @@ class CompanyView extends Component {
         
           <section className='company-info'>
             <h3>Company Info</h3>
-            <IconButton 
-              style={{ display: 'inline-block' }}
-              iconStyle={{ height: 15, width: 15 }} 
-              onClick={this.toggleModal('companyModalOpen')}>
-              <EditIcon />
-            </IconButton>
+            <div className='company-buttons'>
+              <IconButton 
+                style={{ width: '10px', display: 'inline-block' }}
+                iconStyle={{ height: 15, width: 15 }} 
+                onClick={this.toggleModal('companyModalOpen')}>
+                <EditIcon />
+              </IconButton>
+              <IconButton 
+                iconStyle={{ height: 15, width: 15 }}
+                onClick={() => this.props.companyDelete(company)}>
+                <DeleteIcon />
+              </IconButton>
+            </div>
 
             <CompanyModal
               open={this.state.companyModalOpen}
@@ -119,6 +126,7 @@ class CompanyView extends Component {
             />
             
             <Divider />
+            <p><span>Company:</span>{company.companyName}</p>
             <p><span>Website:</span>{company.website}</p>
             <p><span>City, State:</span>{company.cityState}</p>
             <p><span>Created:</span>{new Date(company.created).toDateString()}</p>
@@ -128,8 +136,16 @@ class CompanyView extends Component {
 
           <section className='company-job-postings'>
             <h3>Job Postings</h3>
-            <Divider />
 
+            <div className='add-buttons'>
+              <IconButton 
+                iconStyle={{ height: 24, width: 24, display: 'inline-block' }}
+                onClick={this.toggleModal('jobModalOpen')}>
+                <AddIcon color={amber800}/>
+              </IconButton>
+            </div>
+
+            <Divider />
             {company.jobPosting
               ? <List>
                 {company.jobPosting.map(job => 
@@ -138,7 +154,7 @@ class CompanyView extends Component {
                     onClick={this.handleJobClick(job)}
                     primaryText={job.title} 
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' onClick={() => this.props.jobUpdate(job)} />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
@@ -148,12 +164,6 @@ class CompanyView extends Component {
               </List>
               : undefined
             }
-
-            <IconButton 
-              iconStyle={{ height: 35, width: 35 }}
-              onClick={this.toggleModal('jobModalOpen')}>
-              <AddIcon color={amber800}/>
-            </IconButton>
 
             <JobModal 
               open={this.state.jobModalOpen}
@@ -171,6 +181,13 @@ class CompanyView extends Component {
 
           <section className='company-upcoming-events'>
             <h3>Upcoming Events</h3>
+            <div className='add-buttons'>
+              <IconButton 
+                iconStyle={{ height: 24, width: 24, display: 'inline-block' }}
+                onClick={this.toggleModal('eventModalOpen')}>
+                <AddIcon color={amber800}/>
+              </IconButton>
+            </div>
             <Divider />
 
             {company.events
@@ -181,7 +198,7 @@ class CompanyView extends Component {
                     primaryText={event.eventTitle} 
                     onClick={this.handleEventClick(event)}
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' onClick={() => this.props.eventUpdate(event)} />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.eventDelete(event)} />
                       </IconButton>
@@ -191,12 +208,6 @@ class CompanyView extends Component {
               </List>
               : undefined
             }
-
-            <IconButton 
-              iconStyle={{ height: 35, width: 35 }}
-              onClick={this.toggleModal('eventModalOpen')}>
-              <AddIcon color={amber800}/>
-            </IconButton>
 
             <EventModal 
               open={this.state.eventModalOpen}
@@ -214,6 +225,15 @@ class CompanyView extends Component {
 
           <section className='company-contacts'>
             <h3>Contacts</h3>
+
+            <div className='add-buttons'>
+              <IconButton 
+                iconStyle={{ height: 24, width: 24, display: 'inline-block' }}
+                onClick={this.toggleModal('contactModalOpen')}>
+                <AddIcon color={amber800}/>
+              </IconButton>
+            </div>
+
             <Divider />
 
             {company.contacts
@@ -224,7 +244,7 @@ class CompanyView extends Component {
                     onClick={this.handleContactClick(contact)}
                     primaryText={contact.name}
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' onClick={() => this.props.contactUpdate(contact)} />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.contactDelete(contact)} />
                       </IconButton>
@@ -237,12 +257,6 @@ class CompanyView extends Component {
               : undefined
             }
 
-            <IconButton 
-              iconStyle={{ height: 35, width: 35 }}
-              onClick={this.toggleModal('contactModalOpen')}>
-              <AddIcon color={amber800}/>
-            </IconButton>
-
             <ContactModal 
               open={this.state.contactModalOpen}
               company={company}
@@ -254,7 +268,7 @@ class CompanyView extends Component {
               open={this.state.contactViewModalOpen}
               contact={this.state.contact}
               modalClose={this.toggleModal('contactViewModalOpen')}
-            />;
+            />
           </section>
         </div>
       </div>

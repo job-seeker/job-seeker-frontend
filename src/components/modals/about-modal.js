@@ -22,12 +22,11 @@ export default class AboutModal extends Component {
         <Card>
           <CardHeader
             title="Melanie Cohen"
-            subtitle="JavaScript Programmer"
+            subtitle="Full-Stack JavaScript Developer"
             avatar="https://avatars3.githubusercontent.com/u/26122258?s=460&v=4"
           />
           <CardText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+          A Program Manager-turned-Dev who is all about innovation and improving the user experience through better code. Also cats.
           </CardText>
         </Card>
         <Card>
@@ -58,7 +57,7 @@ export default class AboutModal extends Component {
             avatar="https://media.licdn.com/dms/image/C5603AQGo_j2TEvk58g/profile-displayphoto-shrink_800_800/0?e=1529272800&v=beta&t=Hl89OLSU_VLBTxI4um_rPR28Sf_ImDIWmV-LSK8GfkE"
           />
           <CardText>
-            Unfortionately Ahmed broke his foot partway through our Front-End build and could not join us. 
+            Unfortunately, Ahmed broke his foot partway through our front-end build and couldn't join us, but was part of the team for our back-end build. 
           </CardText>
         </Card>
         <FlatButton

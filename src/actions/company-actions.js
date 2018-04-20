@@ -67,7 +67,8 @@ export const companyCreateRequest = (profile, company) => (dispatch, getState) =
 
 export const companyDeleteRequest = (company) => (dispatch, getState) => {
   let { token } = getState();
-  return superagent.delete(`${__API_URL__}/api/profile/${profile._id}/company/${company._id}`)
+
+  return superagent.delete(`${__API_URL__}/api/profile/${company.profileId}/company/${company._id}`)
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       dispatch(companyDelete(company));

@@ -77,7 +77,7 @@ class NavBar extends Component {
         <AuthComponent className='auth-sign-in' />
 
         <MenuItem 
-          style={{ 'text-align': 'center', 'textTransform': 'uppercase', 'font-size': 14, 'font-weight': '500'  }}
+          style={{ 'text-align': 'center', 'textTransform': 'uppercase', 'fontSize': 14, 'font-weight': '500'  }}
           value={4} 
           primaryText='About Us' 
           onClick={this.handleModalOpen}

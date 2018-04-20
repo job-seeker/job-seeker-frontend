@@ -66,15 +66,15 @@ export default class EventModal extends Component {
             value={this.state.eventType}
             onChange={this.handleSelectChange}
             errorText="This field is required"   
-            errorStyle={styles.errorStyle}                   
-          >
-            <MenuItem value={'info-interview'} primaryText="Informational Interview" />
-            <MenuItem value={'phone-interview'} primaryText="Phone Interview" />
-            <MenuItem value={'round-2-interview'} primaryText="Round 2 Interview" />
-            <MenuItem value={'in-person-interview'} primaryText="In-Person Interview" />
-            <MenuItem value={'offer'} primaryText="Offer" />
-          </SelectField><br />
+            errorStyle={styles.errorStyle}>
+            <MenuItem value={'Informational Interview'} primaryText="Informational Interview" />
+            <MenuItem value={'Phone Interview'} primaryText="Phone Interview" />
+            <MenuItem value={'Tech Screen'} primaryText="Tech Screen" />
+            <MenuItem value={'In-Person Interview'} primaryText="In-Person Interview" />
+            <MenuItem value={'Networking Event'} primaryText="Networking Event" />
+            <MenuItem value={'Meetup'} primaryText="Meetup" />
 
+          </SelectField><br />
           <TextField
             name='eventTitle'
             value={this.state.eventTitle}

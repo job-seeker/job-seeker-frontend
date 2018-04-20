@@ -15,9 +15,14 @@ export default (state=null, action) => {
   }
   case 'COMPANY_UPDATE':
     return state.map(item => item._id === payload._id ? payload: item);
-  case 'COMPANY_DELETE':
-    return state.filter(item => item._id !== payload._id);
-
+  case 'COMPANY_DELETE': {
+    const updatedCompanies = state.companies.filter(company => {
+      // const updatedCompany = Object.assign({}, company);
+      return company._id !== payload._id;
+    });
+    return Object.assign({}, state, { companies: updatedCompanies });
+  }
+  
   case 'JOB_CREATE': {
     const updatedCompanies = state.companies.map(company => {
       if (company._id === payload.companyId) {
@@ -93,7 +98,6 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-
   case 'CONTACT_UPDATE':
     return state.map(item => item._id === payload._id ? payload: item);
   case 'CONTACT_DELETE': {

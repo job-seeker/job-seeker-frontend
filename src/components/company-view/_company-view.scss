@@ -4,13 +4,23 @@
   
   h3 {
     display: inline-block;
-    margin: 0 0 1vw 0;
+    margin: 20px 0 10px 0;
   }
 
   hr {
+    clear: both;
     height: .5px;
     background-color: #01579B !important;
   }
+
+  .company-buttons {
+    float: right;
+  }
+
+  .add-buttons {
+    float: right;
+  }
+
 
   span {
     font-weight: bold;

@@ -75,16 +75,18 @@ export default class JobModal extends Component {
             errorStyle={styles.errorStyle}                   
           /><br />
           <SelectField
-            floatingLabelText="Job Status"
+            floatingLabelText='Job Status'
             value={this.state.status}
             onChange={this.handleSelectChange}
             errorText="This field is required"   
             errorStyle={styles.errorStyle}                   
-            required
-          >
-            <MenuItem value={'review'} primaryText="Under Review" />
-            <MenuItem value={'accepted'} primaryText="Accepted" />
-            <MenuItem value={'rejected'} primaryText="Rejected" />
+            required>
+            <MenuItem value={'Application Submitted'} primaryText="Application Submitted" />
+            <MenuItem value={'Phone Interview'} primaryText="Phone Interview" />
+            <MenuItem value={'Tech Screen'} primaryText="Tech Screen" />
+            <MenuItem value={'In-Person Interview'} primaryText="In-Person Interview" />
+            <MenuItem value={'Offer Received'} primaryText="Offer Received" />
+            <MenuItem value={'Rejected/Misc.'} primaryText="Rejected/Misc." />
           </SelectField><br />
           <TextField
             name='type'
