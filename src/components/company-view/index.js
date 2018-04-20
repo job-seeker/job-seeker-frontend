@@ -114,7 +114,7 @@ class CompanyView extends Component {
               </IconButton>
               <IconButton 
                 iconStyle={{ height: 15, width: 15 }}
-                onClick={() => this.props.jobDelete(job)}>
+                onClick={() => this.props.companyDelete(company)}>
                 <DeleteIcon />
               </IconButton>
             </div>
@@ -126,6 +126,7 @@ class CompanyView extends Component {
             />
             
             <Divider />
+            <p><span>Company:</span>{company.companyName}</p>
             <p><span>Website:</span>{company.website}</p>
             <p><span>City, State:</span>{company.cityState}</p>
             <p><span>Created:</span>{new Date(company.created).toDateString()}</p>
@@ -135,13 +136,16 @@ class CompanyView extends Component {
 
           <section className='company-job-postings'>
             <h3>Job Postings</h3>
-            {/* <IconButton 
-              iconStyle={{ height: 24, width: 24 }}
-              onClick={this.toggleModal('eventModalOpen')}>
-              <AddIcon color={amber800}/>
-            </IconButton> */}
-            <Divider />
 
+            <div className='add-buttons'>
+              <IconButton 
+                iconStyle={{ height: 24, width: 24, display: 'inline-block' }}
+                onClick={this.toggleModal('jobModalOpen')}>
+                <AddIcon color={amber800}/>
+              </IconButton>
+            </div>
+
+            <Divider />
             {company.jobPosting
               ? <List>
                 {company.jobPosting.map(job => 
@@ -161,12 +165,6 @@ class CompanyView extends Component {
               : undefined
             }
 
-            <IconButton 
-              iconStyle={{ height: 35, width: 35 }}
-              onClick={this.toggleModal('jobModalOpen')}>
-              <AddIcon color={amber800}/>
-            </IconButton>
-
             <JobModal 
               open={this.state.jobModalOpen}
               company={company}
@@ -183,6 +181,13 @@ class CompanyView extends Component {
 
           <section className='company-upcoming-events'>
             <h3>Upcoming Events</h3>
+            <div className='add-buttons'>
+              <IconButton 
+                iconStyle={{ height: 24, width: 24, display: 'inline-block' }}
+                onClick={this.toggleModal('eventModalOpen')}>
+                <AddIcon color={amber800}/>
+              </IconButton>
+            </div>
             <Divider />
 
             {company.events
@@ -204,12 +209,6 @@ class CompanyView extends Component {
               : undefined
             }
 
-            <IconButton 
-              iconStyle={{ height: 35, width: 35 }}
-              onClick={this.toggleModal('eventModalOpen')}>
-              <AddIcon color={amber800}/>
-            </IconButton>
-
             <EventModal 
               open={this.state.eventModalOpen}
               company={company}
@@ -226,6 +225,15 @@ class CompanyView extends Component {
 
           <section className='company-contacts'>
             <h3>Contacts</h3>
+
+            <div className='add-buttons'>
+              <IconButton 
+                iconStyle={{ height: 24, width: 24, display: 'inline-block' }}
+                onClick={this.toggleModal('contactModalOpen')}>
+                <AddIcon color={amber800}/>
+              </IconButton>
+            </div>
+
             <Divider />
 
             {company.contacts
@@ -248,12 +256,6 @@ class CompanyView extends Component {
               </List>
               : undefined
             }
-
-            <IconButton 
-              iconStyle={{ height: 35, width: 35 }}
-              onClick={this.toggleModal('contactModalOpen')}>
-              <AddIcon color={amber800}/>
-            </IconButton>
 
             <ContactModal 
               open={this.state.contactModalOpen}

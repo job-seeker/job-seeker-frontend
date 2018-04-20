@@ -2,13 +2,9 @@
   display: block;
   margin: 0 5vw 10vh 5vw;
   
-  .company-info h3 {
-    margin: 20px 0 10px 0
-  }
-
   h3 {
     display: inline-block;
-    margin: 0 0 10px 0;
+    margin: 20px 0 10px 0;
   }
 
   hr {
@@ -20,6 +16,11 @@
   .company-buttons {
     float: right;
   }
+
+  .add-buttons {
+    float: right;
+  }
+
 
   span {
     font-weight: bold;
