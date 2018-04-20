@@ -179,10 +179,11 @@ class CompanyView extends Component {
                   <ListItem 
                     key={event._id}
                     primaryText={event.eventTitle} 
+                    onClick={this.handleEventClick(event)}
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' onClick={() => this.props.eventUpdate(event)} />
-                        <DeleteIcon className='delete-icon' onClick={() => this.props.eventDelete(event) />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.eventDelete(event)} />
                       </IconButton>
                     }
                   />
