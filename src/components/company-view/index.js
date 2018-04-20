@@ -21,6 +21,7 @@ import './_company-view.scss';
 import JobModal from '../modals/job-modal.js';
 import EventModal from '../modals/event-modal.js';
 import ContactModal from '../modals/contact-modal.js';
+import ContactViewModal from '../modals/contact-view-modal.js';
 import CompanyModal from '../modals/company-modal.js';
 import JobView from '../job-view';
 import EventView from '../event-view';
@@ -34,10 +35,17 @@ class CompanyView extends Component {
       contactModalOpen: false,
       eventModalOpen: false,
       companyModalOpen: false,
+      contactViewModalOpen: false,
+      contact: {
+        name: '',
+        email: '',
+        phone: '',
+      },
+
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
-
+  
   toggleModal(modalName) {
     return () => {
       this.setState(prevState => ({
@@ -45,6 +53,13 @@ class CompanyView extends Component {
       })
       );
     };
+  }
+  handleContactClick(contact) {
+    return () => {
+      this.toggleModal('contactViewModalOpen')();
+      this.setState({ contact : contact });
+
+    }
   }
   
   render() {
@@ -176,10 +191,8 @@ class CompanyView extends Component {
                 {company.contacts.map(contact => 
                   <ListItem 
                     key={contact._id} 
-                    // containerElement={
-                    //   <Link to={'/contact'}>
-                    //     <ContactView contact={contact}/>
-                    //   </Link>}
+                    // onClick={() => this.setState({ contact: contact })}
+                    onClick={this.handleContactClick(contact)}
                     primaryText={contact.name} 
                     rightIconButton={
                       <section>
@@ -193,6 +206,7 @@ class CompanyView extends Component {
                     }
                   />
                 )}
+
               </List>
               : undefined
             }
@@ -209,6 +223,12 @@ class CompanyView extends Component {
               onComplete={this.props.contactCreate}
               modalClose={this.toggleModal('contactModalOpen')}
             />
+
+            <ContactViewModal
+              open={this.state.contactViewModalOpen}
+              contact={this.state.contact}
+              modalClose={this.toggleModal('contactViewModalOpen')}
+            />;
           </section>
         </div>
       </div>
