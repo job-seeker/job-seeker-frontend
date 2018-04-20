@@ -8,7 +8,6 @@ export default class AboutModal extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-
   }
 
   render() {

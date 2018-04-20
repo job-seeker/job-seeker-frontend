@@ -34,7 +34,6 @@ export default class ContactModal extends Component {
     e.preventDefault();
     this.props.modalClose();
 
-    
     return this.props.onComplete(this.props.company, this.state)
       .catch(console.error);
   }
@@ -75,8 +74,6 @@ export default class ContactModal extends Component {
             hintText="Add a Contact"
             floatingLabelText="Contact Phone"
             floatingLabelFixed={true}
-            errorText="This field is required"
-            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
             name='linkedIn'
@@ -106,7 +103,6 @@ export default class ContactModal extends Component {
           primary={true}
           onClick={this.props.modalClose}
         />
-
       </Dialog>
     );
   }

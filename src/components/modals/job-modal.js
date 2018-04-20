@@ -74,6 +74,18 @@ export default class JobModal extends Component {
             errorText="This field is required"
             errorStyle={styles.errorStyle}                   
           /><br />
+          <SelectField
+            floatingLabelText="Job Status"
+            value={this.state.status}
+            onChange={this.handleSelectChange}
+            errorText="This field is required"   
+            errorStyle={styles.errorStyle}                   
+            required
+          >
+            <MenuItem value={'review'} primaryText="Under Review" />
+            <MenuItem value={'accepted'} primaryText="Accepted" />
+            <MenuItem value={'rejected'} primaryText="Rejected" />
+          </SelectField><br />
           <TextField
             name='type'
             value={this.state.type}
@@ -81,8 +93,6 @@ export default class JobModal extends Component {
             hintText="Add a job"
             floatingLabelText="Job Type"
             floatingLabelFixed={true}
-            errorText="This field is required"
-            errorStyle={styles.errorStyle}            
           /><br />
           <TextField
             name='notes'
@@ -92,16 +102,6 @@ export default class JobModal extends Component {
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
-          <SelectField
-            floatingLabelText="Job Status"
-            value={this.state.status}
-            onChange={this.handleSelectChange}
-            required
-          >
-            <MenuItem value={'review'} primaryText="Under Review" />
-            <MenuItem value={'accepted'} primaryText="Accepted" />
-            <MenuItem value={'rejected'} primaryText="Rejected" />
-          </SelectField>
         </div>
 
         <FlatButton

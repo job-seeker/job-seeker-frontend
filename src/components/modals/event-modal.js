@@ -65,6 +65,8 @@ export default class EventModal extends Component {
             floatingLabelText="Event Type"
             value={this.state.eventType}
             onChange={this.handleSelectChange}
+            errorText="This field is required"   
+            errorStyle={styles.errorStyle}                   
           >
             <MenuItem value={'info-interview'} primaryText="Informational Interview" />
             <MenuItem value={'phone-interview'} primaryText="Phone Interview" />
@@ -83,20 +85,12 @@ export default class EventModal extends Component {
             errorText="This field is required"   
             errorStyle={styles.errorStyle}                   
           /><br />
-          {/* <TextField
-            name='eventDate'
-            value={this.state.eventDate}
-            onChange={this.handleChange}
-            hintText="Add an event"
-            floatingLabelText="Event Date"
-            floatingLabelFixed={true}
-            errorText="This field is required"
-            errorStyle={styles.errorStyle}            
-          /><br /> */}
           <DatePicker
             hintText="Pick a Date"
             value={this.state.eventDate}
             onChange={this.handleDateChange}
+            errorText="This field is required"   
+            errorStyle={styles.errorStyle}
           />
           <TextField
             name='eventNotes'

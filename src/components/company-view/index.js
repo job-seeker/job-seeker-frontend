@@ -15,7 +15,7 @@ import AddIcon from 'material-ui/svg-icons/content/add-circle';
 import EditIcon from 'material-ui/svg-icons/editor/mode-edit';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
 import { List, ListItem } from 'material-ui/List';
-import { amber800 } from 'material-ui/styles/colors';
+import { amber800, lightBlue900 } from 'material-ui/styles/colors';
 
 import './_company-view.scss';
 import JobModal from '../modals/job-modal.js';
@@ -34,6 +34,7 @@ class CompanyView extends Component {
       contactModalOpen: false,
       eventModalOpen: false,
       companyModalOpen: false,
+      editMode: false,
     };
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -94,14 +95,10 @@ class CompanyView extends Component {
                     primaryText={companyJob.title} 
                     className='list-item'
                     rightIconButton={
-                      <IconButton iconStyle={{ height: 15, width: 15 }}>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(companyJob)} />
                       </IconButton>
-                      /* <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon onClick={() => this.props.jobDelete(companyJob)} />
-                        </IconButton> */
-                      /* </Fragment> */
                     }
                   />
                 )}
@@ -132,21 +129,12 @@ class CompanyView extends Component {
                 {company.events.map(event => 
                   <ListItem 
                     key={event._id}
-                    // containerElement={
-                    //   <Link to={'/event'}>
-                    //     <EventView />
-                    //   </Link>
-                    // }
                     primaryText={event.eventTitle} 
                     rightIconButton={
-                      <section>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <EditIcon />
-                        </IconButton>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon onClick={() => this.props.eventDelete(event)}/>
-                        </IconButton>
-                      </section>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                        <EditIcon className='edit-icon' />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(companyJob)} />
+                      </IconButton>
                     }
                   />
                 )}
@@ -177,20 +165,14 @@ class CompanyView extends Component {
                 {company.contacts.map(contact => 
                   <ListItem 
                     key={contact._id} 
-                    // containerElement={
-                    //   <Link to={'/contact'}>
-                    //     <ContactView contact={contact}/>
-                    //   </Link>}
-                    primaryText={contact.name} 
+                    onClick={this.toggleModal('contactModalOpen')}
+                    primaryText={contact.name}
                     rightIconButton={
-                      <section>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <EditIcon />
-                        </IconButton>
-                        <IconButton iconStyle={{ height: 15, width: 15 }}>
-                          <DeleteIcon onClick={() => this.props.contactDelete(contact)}/>
-                        </IconButton>
-                      </section>
+                      <IconButton style={{ width: 80 }} iconStyle={{ 'margin-right': 10, height: 15, width: 15 }}>
+                        <EditIcon className='edit-icon' />
+                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(companyJob)} />
+                      </IconButton>
+
                     }
                   />
                 )}
