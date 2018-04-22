@@ -1,6 +1,6 @@
-# [Job Seeker](http://www.job-seeker.net/)
-
 <h3 align="center"><img src="./src/assets/logo.png" height="125">
+
+<h1 align="center"><a href="http://www.job-seeker.net">Job Seeker</a></h1>
 
 ## Technology Used
 * **[Node.js](https://nodejs.org)**
@@ -80,12 +80,18 @@ This app is comprised of the following components:
 * Create or delete contacts associated with a company
 * Log out
 
+### Future Enhancements
+* Functionality improvements
+* Front-end testing
+* Kanban board functionality for job postings
+* Calendar view for events
 
 ## Credits
 * Logo made with [uCraft Logo Maker](https://logo-maker.ucraft.com/)
 * Icons are from Google's [Material Design](https://material.io/icons/)
 * Meyerweb [CSS Reset](https://meyerweb.com/eric/tools/css/reset/)
-
+* All-star TA [Rob Reed](https://github.com/robertmcreed)
+* Our fearless leader, [Brian Nations](https://github.com/bnates)
 
 ## Contributors
 [Alex Bowers](https://github.com/warlordlizard)
