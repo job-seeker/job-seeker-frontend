@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { singleCompanyFetchRequest, companyDeleteRequest } from '../../actions/company-actions';
+import { singleCompanyFetchRequest, companyUpdateRequest } from '../../actions/company-actions';
 import { jobCreateRequest, jobDeleteRequest, jobUpdateRequest } from '../../actions/job-actions';
 import { eventCreateRequest, eventDeleteRequest, eventUpdateRequest } from '../../actions/event-actions';
 import { contactCreateRequest, contactDeleteRequest, contactUpdateRequest } from '../../actions/contact-actions';
@@ -119,6 +119,13 @@ class CompanyView extends Component {
               open={this.state.companyModalOpen}
               onComplete={this.props.jobCreate}
               modalClose={this.toggleModal('companyModalOpen')}
+              profile={this.props.profile}
+              companyId={company._id}
+              companyNameValue={company.companyName}
+              websiteValue={company.website}
+              cityStateValue={company.cityState}
+              companyNotesValue={company.companyNotes}
+              onComplete={this.props.companyUpdate}
             />
             
             <Divider />
@@ -278,7 +285,8 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = (dispatch) => ({
-  companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
+  companyFetch: (company) => dispatch(singleCompanyFetchRequest(company)),
+  companyUpdate: (profile, company) => dispatch(companyUpdateRequest(profile, company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
   jobDelete: (job) => dispatch(jobDeleteRequest(job)),
   jobUpdate: (job) => dispatch(jobUpdateRequest(job)),

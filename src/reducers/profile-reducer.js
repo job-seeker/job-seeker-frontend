@@ -13,11 +13,17 @@ export default (state=null, action) => {
     const updatedCompanies = [...state.companies, payload];
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-  case 'COMPANY_UPDATE':
-    return state.map(item => item._id === payload._id ? payload: item);
+  case 'COMPANY_UPDATE': {
+    const updatedCompanies = state.companies.map(company => {
+      if (company._id === payload._id) {
+        return company = payload;
+      }
+      return company;
+    });
+    return Object.assign({}, state, { companies: updatedCompanies });
+  }
   case 'COMPANY_DELETE': {
     const updatedCompanies = state.companies.filter(company => {
-      // const updatedCompany = Object.assign({}, company);
       return company._id !== payload._id;
     });
     return Object.assign({}, state, { companies: updatedCompanies });

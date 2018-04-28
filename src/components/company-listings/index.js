@@ -82,6 +82,11 @@ class CompanyListings extends React.Component {
           profile={this.props.profile}
           onComplete={this.props.companyCreate}
           modalClose={this.handleModalClose}
+          companyNameHintText='Add a company'
+          websiteHintText='Add a website'
+          cityStateHintText='Add city and state'
+          companyNotesHintText='Add company notes'
+          companyId=''
         />
       </section>
     );
