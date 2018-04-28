@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { companyCreateRequest } from '../../actions/company-actions';
+import { companyCreateRequest, companyDeleteRequest } from '../../actions/company-actions';
 
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
@@ -54,6 +54,7 @@ class CompanyListings extends React.Component {
             header='All Companies'
             column1='Company'
             column2='Website'
+            column3=''
             profile={this.props.profile}
           />
 
@@ -64,6 +65,7 @@ class CompanyListings extends React.Component {
             column2='Website'
             column3='City'
             column4='Date Added'
+            column5=''
             profile={this.props.profile}
           />
         }

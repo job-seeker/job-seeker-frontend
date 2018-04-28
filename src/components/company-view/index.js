@@ -70,6 +70,7 @@ class CompanyView extends Component {
       );
     };
   }
+  
   handleContactClick(contact) {
     return () => {
       this.toggleModal('contactViewModalOpen')();
@@ -111,11 +112,6 @@ class CompanyView extends Component {
                 iconStyle={{ height: 15, width: 15 }} 
                 onClick={this.toggleModal('companyModalOpen')}>
                 <EditIcon />
-              </IconButton>
-              <IconButton 
-                iconStyle={{ height: 15, width: 15 }}
-                onClick={() => this.props.companyDelete(company)}>
-                <DeleteIcon />
               </IconButton>
             </div>
 
@@ -283,7 +279,6 @@ let mapStateToProps = (state) => ({
 
 let mapDispatchToProps = (dispatch) => ({
   companyFetch: (profile, company) => dispatch(singleCompanyFetchRequest(profile, company)),
-  companyDelete: (company) => dispatch(companyDeleteRequest(company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
   jobDelete: (job) => dispatch(jobDeleteRequest(job)),
   jobUpdate: (job) => dispatch(jobUpdateRequest(job)),
