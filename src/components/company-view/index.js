@@ -93,9 +93,10 @@ class CompanyView extends Component {
   }
   
   render() {
-    const company = this.props.profile.companies.filter(company => 
-      company._id === this.props.match.params.companyId
-    )[0];
+    // const company = this.props.profile.companies.filter(company => 
+    //   company._id === this.props.match.params.companyId
+    // )[0];
+    const company = this.props.location.state.company;
 
     return (
       <div>

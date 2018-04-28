@@ -10,7 +10,7 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import DeleteIcon from 'material-ui/svg-icons/action/delete';
-import { Subheader, IconButton } from 'material-ui';
+import { Subheader, IconButton, RaisedButton } from 'material-ui';
 
 class ListingTable extends Component {
   constructor(props) {
@@ -76,7 +76,11 @@ class ListingTable extends Component {
               ? this.props.header === 'All Companies'
                 ? this.props.profile.companies.map((company) => (
                   <TableRow key={company._id}>
-                    <TableRowColumn><Link to={'/company/'+company._id}> {company.companyName}</Link>
+                    <TableRowColumn>  
+                      <Link to={{
+                        pathname: '/company',
+                        state: { company: company },
+                      }}>{company.companyName}</Link>
                     </TableRowColumn>
                     <TableRowColumn>{company.website}</TableRowColumn>
                     <TableRowColumn>{company.cityState}</TableRowColumn>
@@ -100,7 +104,7 @@ class ListingTable extends Component {
                 ? this.props.profile.companies.map((company) => (
                   company.jobPosting.map((job) => 
                     <TableRow key={job._id}>
-                      <TableRowColumn><Link to={'/company/'+company._id}>{job.title}</Link></TableRowColumn>
+                      {/* <TableRowColumn><Link to={'/company/'+company._id}>{job.title}</Link></TableRowColumn> */}
                       <TableRowColumn>{company.companyName}</TableRowColumn>
                       <TableRowColumn>{job.status}</TableRowColumn>
                       <TableRowColumn>{new Date(job.created).toDateString()}</TableRowColumn>
@@ -116,7 +120,7 @@ class ListingTable extends Component {
                 ? this.props.profile.companies.map((company) => (
                   company.events.map((event) => 
                     <TableRow key={event._id}>
-                      <TableRowColumn><Link to={'/company/'+company._id}>{event.eventTitle}</Link></TableRowColumn>
+                      {/* <TableRowColumn><Link to={'/company/'+company._id}>{event.eventTitle}</Link></TableRowColumn> */}
                       <TableRowColumn>{company.companyName}</TableRowColumn>
                       <TableRowColumn>{new Date(event.eventDate).toDateString()}</TableRowColumn>
                       <TableRowColumn>{new Date(event.created).toDateString()}</TableRowColumn>

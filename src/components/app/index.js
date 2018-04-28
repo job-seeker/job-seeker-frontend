@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { profileCreateRequest, profileFetchRequest } from '../../actions/profile-actions';
 import { tokenSet } from  '../../actions/user-auth-actions';
@@ -37,7 +37,7 @@ class App extends Component {
             <Route exact path='/companies' component={CompanyListings} />
             <Route exact path='/jobs' component={JobListings} />
             <Route exact path='/events' component={EventListings} />
-            <Route exact path='/company/:companyId' component={CompanyView} />
+            <Route exact path='/company' component={CompanyView} />
             <Route exact path='/event' component={EventView} />
             <Route exact path='/job' component={JobView} />
             <Route exact path='/contact' component={ContactView} />
