@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import { amber800 } from 'material-ui/styles/colors';
@@ -19,11 +19,17 @@ export default class HomePage extends Component {
             <div className='inner'>
               <h2>The personal database for all of your job-seeking activities.</h2>
               <h3>Job Seeker allows you to track potential career opportunities, including their associated companies, job postings, events, and contact information all in one place.</h3>
-              <RaisedButton 
-                primary={true} 
-                label='Dashboard link'
-                containerElement={<AuthComponent className='hero-button' />}
-              />
+              {localStorage.jobSeekerToken
+                ? <RaisedButton 
+                  primary={true} 
+                  label='Go To Dashboard'
+                  containerElement={<Link to='/dashboard' />}
+                />
+                : <RaisedButton 
+                  primary={true} 
+                  containerElement={<AuthComponent className='hero-button' />}
+                />
+              }
             </div>
           </div>
         </div>
