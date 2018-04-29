@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { profileCreateRequest, profileFetchRequest } from '../../actions/profile-actions';
 import { tokenSet } from  '../../actions/user-auth-actions';

@@ -17,23 +17,33 @@ export default class CompanyModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      companyName: '',
-      website: '',
-      cityState: '',
-      companyNotes: '',
+      companyName: this.props.companyNameValue || '',
+      website: this.props.websiteValue || '',
+      cityState: this.props.cityStateValue || '',
+      companyNotes: this.props.companyNotes || '',
+      companyId: this.props.companyId || '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ 
+      [e.target.name]: e.target.value,
+    });
   };
 
   handleSubmit(e) {
     e.preventDefault();
+
     return this.props.onComplete(this.props.profile, this.state)
       .then(this.props.modalClose)
+      // .then(this.setState({
+      //   companyName: '',
+      //   website: '',
+      //   cityState: '',
+      //   companyNotes: '',  
+      // }))
       .catch(console.error);
   }
 
@@ -50,37 +60,41 @@ export default class CompanyModal extends Component {
             name='companyName'
             value={this.state.companyName}
             onChange={this.handleChange}
-            hintText="Add a Company"
-            floatingLabelText="Company Name"
+            hintText={this.props.companyNameHintText}
+            floatingLabelText='Company Name'
             floatingLabelFixed={true}
             errorText="This field is required"
             errorStyle={styles.errorStyle}
+            value={this.state.companyName}
           /><br />
           <TextField
             name='website'
             value={this.state.website}
             onChange={this.handleChange}
-            hintText="Add a Company"
+            hintText={this.props.websiteHintText}
             floatingLabelText="Company Website"
             floatingLabelFixed={true}
             errorText="This field is required"
-            errorStyle={styles.errorStyle}                    
+            errorStyle={styles.errorStyle}
+            value={this.state.website}
           /><br />
           <TextField
             name='cityState'
             value={this.state.cityState}
             onChange={this.handleChange}
-            hintText="Add a company"
+            hintText={this.props.cityStateHintText}
             floatingLabelText="Company City/State"
             floatingLabelFixed={true}
+            value={this.state.cityState}
           /><br />
           <TextField
             name='companyNotes'
             value={this.state.companyNotes}
             onChange={this.handleChange}
-            hintText="Additional Notes"
+            hintText={this.props.companyNotesHintText}
             floatingLabelText="Notes"
             floatingLabelFixed={true}
+            value={this.state.companyNotes}
           /><br />
         </div>
 
