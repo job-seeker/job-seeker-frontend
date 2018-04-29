@@ -9,7 +9,7 @@ import AuthComponent from '../auth-landing/component';
 import NavBar from '../navbar';
 import './_homepage.scss';
 
-export default class HomePage extends Component {
+class HomePage extends Component {
   render() {
     return (
       <section className='homepage'>
@@ -19,7 +19,7 @@ export default class HomePage extends Component {
             <div className='inner'>
               <h2>The personal database for all of your job-seeking activities.</h2>
               <h3>Job Seeker allows you to track potential career opportunities, including their associated companies, job postings, events, and contact information all in one place.</h3>
-              {localStorage.jobSeekerToken
+              {this.props.token
                 ? <RaisedButton 
                   primary={true} 
                   label='Go To Dashboard'
@@ -37,3 +37,9 @@ export default class HomePage extends Component {
     );
   }
 }
+let mapStateToProps = (state) => ({
+  token: state.token,
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, null)(HomePage);
