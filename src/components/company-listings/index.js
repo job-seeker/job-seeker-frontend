@@ -57,7 +57,6 @@ class CompanyListings extends React.Component {
             column3=''
             profile={this.props.profile}
           />
-
           : <ListingTable 
             style={{ 'padding-bottom': '20px' }}
             header='All Companies'

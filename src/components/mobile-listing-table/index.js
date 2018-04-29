@@ -65,7 +65,12 @@ class MobileListingTable extends Component {
             <TableRow>
               <TableHeaderColumn>{this.props.column1}</TableHeaderColumn>
               <TableHeaderColumn>{this.props.column2}</TableHeaderColumn>
-              <TableHeaderColumn>{this.props.column3}</TableHeaderColumn>
+              {this.props.profile 
+                ? this.props.header === 'All Companies'
+                  ? <TableHeaderColumn>{this.props.column3}</TableHeaderColumn>
+                  : null
+                : null
+              }
             </TableRow>
           </TableHeader>
           <TableBody

@@ -32,6 +32,7 @@ class App extends Component {
         <BrowserRouter>
           <div className='routes'>
             <Route path='*' component={DashboardNav} />
+            <Route path='*' component={AuthRedirect} />
             <Route exact path='/' component={HomePage} />
             <Route exact path='/dashboard' component={CompanyListings} />
             <Route exact path='/companies' component={CompanyListings} />
@@ -41,7 +42,6 @@ class App extends Component {
             <Route exact path='/event' component={EventView} />
             <Route exact path='/job' component={JobView} />
             <Route exact path='/contact' component={ContactView} />
-            <Route path='/' component={AuthRedirect} />
           </div>
         </BrowserRouter>
       </div>
