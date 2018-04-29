@@ -65,7 +65,12 @@ class ListingTable extends Component {
               <TableHeaderColumn>{this.props.column2}</TableHeaderColumn>
               <TableHeaderColumn>{this.props.column3}</TableHeaderColumn>
               <TableHeaderColumn>{this.props.column4}</TableHeaderColumn>
-              <TableHeaderColumn>{this.props.column5}</TableHeaderColumn>
+              {this.props.profile 
+                ? this.props.header === 'All Companies'
+                  ? <TableHeaderColumn>{this.props.column5}</TableHeaderColumn>
+                  : null
+                : null
+              }
             </TableRow>
           </TableHeader>
           <TableBody
@@ -76,12 +81,13 @@ class ListingTable extends Component {
               ? this.props.header === 'All Companies'
                 ? this.props.profile.companies.map((company) => (
                   <TableRow key={company._id}>
-                    <TableRowColumn>  
+                    <TableRowColumn><Link to={'/company/'+company._id}>{company.companyName}</Link></TableRowColumn>
+                    {/* <TableRowColumn>  
                       <Link to={{
                         pathname: '/company',
-                        state: { company: company },
-                      }}>{company.companyName}</Link>
-                    </TableRowColumn>
+                        state: { company: company }
+                      }}>{company.companyName}</Link> */}
+                    {/* </TableRowColumn> */}
                     <TableRowColumn>{company.website}</TableRowColumn>
                     <TableRowColumn>{company.cityState}</TableRowColumn>
                     <TableRowColumn>{new Date(company.created).toDateString()}</TableRowColumn>
@@ -104,7 +110,7 @@ class ListingTable extends Component {
                 ? this.props.profile.companies.map((company) => (
                   company.jobPosting.map((job) => 
                     <TableRow key={job._id}>
-                      {/* <TableRowColumn><Link to={'/company/'+company._id}>{job.title}</Link></TableRowColumn> */}
+                      <TableRowColumn><Link to={'/company/'+company._id}>{job.title}</Link></TableRowColumn>
                       <TableRowColumn>{company.companyName}</TableRowColumn>
                       <TableRowColumn>{job.status}</TableRowColumn>
                       <TableRowColumn>{new Date(job.created).toDateString()}</TableRowColumn>
@@ -120,7 +126,7 @@ class ListingTable extends Component {
                 ? this.props.profile.companies.map((company) => (
                   company.events.map((event) => 
                     <TableRow key={event._id}>
-                      {/* <TableRowColumn><Link to={'/company/'+company._id}>{event.eventTitle}</Link></TableRowColumn> */}
+                      <TableRowColumn><Link to={'/company/'+company._id}>{event.eventTitle}</Link></TableRowColumn>
                       <TableRowColumn>{company.companyName}</TableRowColumn>
                       <TableRowColumn>{new Date(event.eventDate).toDateString()}</TableRowColumn>
                       <TableRowColumn>{new Date(event.created).toDateString()}</TableRowColumn>
