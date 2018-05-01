@@ -17,12 +17,13 @@ const styles = {
 export default class JobModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      title: '',
-      link: '',
-      type: '',
-      notes: '',
-      status: 'None Selected',
+    this.state = {
+      title: this.props.job.title || '',
+      link: this.props.job.link || '',
+      type: this.props.job.type || '',
+      notes: this.props.job.notes || '',
+      status: this.props.job.status || 'None Selected',
+      jobId: this.props.jobId,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -30,7 +31,9 @@ export default class JobModal extends Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ 
+      [e.target.name]: e.target.value,
+    });
   };
 
   handleSelectChange(event, index, value) {
@@ -49,7 +52,6 @@ export default class JobModal extends Component {
     return (
       <Dialog
         title='Add a job'
-        actions={this.props.actions}
         modal={false}
         open={this.props.open}>
 
@@ -58,7 +60,7 @@ export default class JobModal extends Component {
             name='title'
             value={this.state.title}
             onChange={this.handleChange}
-            hintText="Add a job"
+            hintText={this.props.titleHintText}
             floatingLabelText="Job Title"
             floatingLabelFixed={true}
             errorText="This field is required"
@@ -68,18 +70,19 @@ export default class JobModal extends Component {
             name='link'
             value={this.state.link}
             onChange={this.handleChange}
-            hintText="Add a job"
+            hintText={this.props.linkHintText}
             floatingLabelText="Job Link"
             floatingLabelFixed={true}
             errorText="This field is required"
-            errorStyle={styles.errorStyle}                   
+            errorStyle={styles.errorStyle}
           /><br />
           <SelectField
             floatingLabelText='Job Status'
             value={this.state.status}
             onChange={this.handleSelectChange}
             errorText="This field is required"   
-            errorStyle={styles.errorStyle}                   
+            errorStyle={styles.errorStyle}           
+            hintText={this.props.statusHintText}
             required>
             <MenuItem value={'Application Submitted'} primaryText="Application Submitted" />
             <MenuItem value={'Phone Interview'} primaryText="Phone Interview" />
@@ -92,7 +95,7 @@ export default class JobModal extends Component {
             name='type'
             value={this.state.type}
             onChange={this.handleChange}
-            hintText="Add a job"
+            hintText={this.props.typeHintText}
             floatingLabelText="Job Type"
             floatingLabelFixed={true}
           /><br />
@@ -100,7 +103,7 @@ export default class JobModal extends Component {
             name='notes'
             value={this.state.notes}
             onChange={this.handleChange}
-            hintText="Additional Notes"
+            hintText={this.props.notesHintText}
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
