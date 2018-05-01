@@ -17,12 +17,13 @@ const styles = {
 export default class JobModal extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      title: '',
-      link: '',
-      type: '',
-      notes: '',
-      status: 'None Selected',
+    this.state = {
+      title: this.props.job.title || '',
+      link: this.props.job.link || '',
+      type: this.props.job.type || '',
+      notes: this.props.job.notes || '',
+      status: this.props.job.status || 'None Selected',
+      jobId: this.props.jobId,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -30,7 +31,9 @@ export default class JobModal extends Component {
   }
 
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ 
+      [e.target.name]: e.target.value,
+    });
   };
 
   handleSelectChange(event, index, value) {
@@ -55,7 +58,7 @@ export default class JobModal extends Component {
         <div>
           <TextField
             name='title'
-            value={this.props.job.title}
+            value={this.state.title}
             onChange={this.handleChange}
             hintText={this.props.titleHintText}
             floatingLabelText="Job Title"
@@ -65,7 +68,7 @@ export default class JobModal extends Component {
           /><br />
           <TextField
             name='link'
-            value={this.props.job.link}
+            value={this.state.link}
             onChange={this.handleChange}
             hintText={this.props.linkHintText}
             floatingLabelText="Job Link"
@@ -75,10 +78,11 @@ export default class JobModal extends Component {
           /><br />
           <SelectField
             floatingLabelText='Job Status'
-            value={this.props.job.status}
+            value={this.state.status}
             onChange={this.handleSelectChange}
             errorText="This field is required"   
-            errorStyle={styles.errorStyle}           hintText={this.props.statusHintText}
+            errorStyle={styles.errorStyle}           
+            hintText={this.props.statusHintText}
             required>
             <MenuItem value={'Application Submitted'} primaryText="Application Submitted" />
             <MenuItem value={'Phone Interview'} primaryText="Phone Interview" />
@@ -89,7 +93,7 @@ export default class JobModal extends Component {
           </SelectField><br />
           <TextField
             name='type'
-            value={this.props.job.type}
+            value={this.state.type}
             onChange={this.handleChange}
             hintText={this.props.typeHintText}
             floatingLabelText="Job Type"
@@ -97,7 +101,7 @@ export default class JobModal extends Component {
           /><br />
           <TextField
             name='notes'
-            value={this.props.job.notes}
+            value={this.state.notes}
             onChange={this.handleChange}
             hintText={this.props.notesHintText}
             floatingLabelText="Notes"

@@ -61,10 +61,6 @@ class CompanyView extends Component {
       editMode: false,
     };
   }
-
-  // toggleEditMode() {
-  //   return this.setState({ editMode: false });
-  // }
   
   toggleModal(modalName) {
     return () => {
@@ -77,14 +73,14 @@ class CompanyView extends Component {
   }
   
   handleJobUpdateClick(job) {
-    return () => {
+    return() => {
       this.toggleModal('jobModalOpen')();
       this.setState({ job: job, editMode: true });
     };
   }
 
   handleContactClick(contact) {
-    return () => {
+    return() => {
       this.toggleModal('contactViewModalOpen')();
       this.setState({ contact : contact });
     };
@@ -105,7 +101,6 @@ class CompanyView extends Component {
   }
   
   render() {
-    console.log(this.state)
     const company = this.props.profile.companies.filter(company => 
       company._id === this.props.match.params.companyId
     )[0];
@@ -113,9 +108,7 @@ class CompanyView extends Component {
     return (
       <div>
         <div className='company-view'>
-          <Subheader 
-            style={{ padding: 0 }}
-          >{company.companyName}</Subheader>
+          <Subheader style={{ padding: 0 }}>{company.companyName}</Subheader>
         
           <section className='company-info'>
             <h3>Company Info</h3>
@@ -188,6 +181,7 @@ class CompanyView extends Component {
               open={this.state.jobModalOpen}
               company={company}
               job={this.state.job}
+              jobId={this.state.job._id || null }
               onComplete={this.state.editMode ? this.props.jobUpdate : this.props.jobCreate}
               modalClose={this.toggleModal('jobModalOpen')}
               titleHintText={this.state.editMode ? 'Update job title' : 'Job title'}
@@ -311,7 +305,7 @@ let mapDispatchToProps = (dispatch) => ({
   companyUpdate: (profile, company) => dispatch(companyUpdateRequest(profile, company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
   jobDelete: (job) => dispatch(jobDeleteRequest(job)),
-  jobUpdate: (job) => dispatch(jobUpdateRequest(job)),
+  jobUpdate: (company, job) => dispatch(jobUpdateRequest(company, job)),
   eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
   eventDelete: (jobEvent) => dispatch(eventDeleteRequest(jobEvent)),
   eventUpdate: (jobEvent) => dispatch(eventUpdateRequest(jobEvent)),
