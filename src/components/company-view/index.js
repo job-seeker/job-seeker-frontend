@@ -58,19 +58,31 @@ class CompanyView extends Component {
         notes: '',
         status: 'None Selected',
       },
+      editMode: false,
     };
-    this.toggleModal = this.toggleModal.bind(this);
   }
+
+  // toggleEditMode() {
+  //   return this.setState({ editMode: false });
+  // }
   
   toggleModal(modalName) {
     return () => {
       this.setState(prevState => ({
         [modalName]: !prevState[modalName],
+        editMode: false,
       })
       );
     };
   }
   
+  handleJobUpdateClick(job) {
+    return () => {
+      this.toggleModal('jobModalOpen')();
+      this.setState({ job: job, editMode: true });
+    };
+  }
+
   handleContactClick(contact) {
     return () => {
       this.toggleModal('contactViewModalOpen')();
@@ -93,10 +105,10 @@ class CompanyView extends Component {
   }
   
   render() {
+    console.log(this.state)
     const company = this.props.profile.companies.filter(company => 
       company._id === this.props.match.params.companyId
     )[0];
-    // const company = this.props.location.state.company;
     
     return (
       <div>
@@ -118,14 +130,15 @@ class CompanyView extends Component {
 
             <CompanyModal
               open={this.state.companyModalOpen}
-              onComplete={this.props.jobCreate}
               modalClose={this.toggleModal('companyModalOpen')}
               profile={this.props.profile}
               companyId={company._id}
               companyNameValue={company.companyName}
               websiteValue={company.website}
               cityStateValue={company.cityState}
+              cityStateHintText='Update city/state'
               companyNotesValue={company.companyNotes}
+              companyNotesHintText='Update company notes'
               onComplete={this.props.companyUpdate}
             />
             
@@ -159,7 +172,9 @@ class CompanyView extends Component {
                     primaryText={job.title} 
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
-                        <EditIcon className='edit-icon' onClick={() => this.props.jobUpdate(job)} />
+                        <EditIcon className='edit-icon' 
+                          onClick={this.handleJobUpdateClick(job)}
+                        />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
                     }
@@ -172,11 +187,17 @@ class CompanyView extends Component {
             <JobModal 
               open={this.state.jobModalOpen}
               company={company}
-              onComplete={this.props.jobCreate}
+              job={this.state.job}
+              onComplete={this.state.editMode ? this.props.jobUpdate : this.props.jobCreate}
               modalClose={this.toggleModal('jobModalOpen')}
+              titleHintText={this.state.editMode ? 'Update job title' : 'Job title'}
+              linkHintText={this.state.editMode ? 'Update job link' : 'Link to job posting'}
+              statusHintText={this.state.editMode ? 'Update job status' : 'Job application status'}
+              typeHintText={this.state.editMode ? 'Update job type' : 'Job type'}
+              notesHintText={this.state.editMode ? 'Update job notes' : 'Additional notes'}
             />
 
-            <JobViewModal 
+            <JobViewModal
               open={this.state.jobViewModalOpen}
               job={this.state.job}
               modalClose={this.toggleModal('jobViewModalOpen')}

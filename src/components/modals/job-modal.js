@@ -49,16 +49,15 @@ export default class JobModal extends Component {
     return (
       <Dialog
         title='Add a job'
-        actions={this.props.actions}
         modal={false}
         open={this.props.open}>
 
         <div>
           <TextField
             name='title'
-            value={this.state.title}
+            value={this.props.job.title}
             onChange={this.handleChange}
-            hintText="Add a job"
+            hintText={this.props.titleHintText}
             floatingLabelText="Job Title"
             floatingLabelFixed={true}
             errorText="This field is required"
@@ -66,20 +65,20 @@ export default class JobModal extends Component {
           /><br />
           <TextField
             name='link'
-            value={this.state.link}
+            value={this.props.job.link}
             onChange={this.handleChange}
-            hintText="Add a job"
+            hintText={this.props.linkHintText}
             floatingLabelText="Job Link"
             floatingLabelFixed={true}
             errorText="This field is required"
-            errorStyle={styles.errorStyle}                   
+            errorStyle={styles.errorStyle}
           /><br />
           <SelectField
             floatingLabelText='Job Status'
-            value={this.state.status}
+            value={this.props.job.status}
             onChange={this.handleSelectChange}
             errorText="This field is required"   
-            errorStyle={styles.errorStyle}                   
+            errorStyle={styles.errorStyle}           hintText={this.props.statusHintText}
             required>
             <MenuItem value={'Application Submitted'} primaryText="Application Submitted" />
             <MenuItem value={'Phone Interview'} primaryText="Phone Interview" />
@@ -90,17 +89,17 @@ export default class JobModal extends Component {
           </SelectField><br />
           <TextField
             name='type'
-            value={this.state.type}
+            value={this.props.job.type}
             onChange={this.handleChange}
-            hintText="Add a job"
+            hintText={this.props.typeHintText}
             floatingLabelText="Job Type"
             floatingLabelFixed={true}
           /><br />
           <TextField
             name='notes'
-            value={this.state.notes}
+            value={this.props.job.notes}
             onChange={this.handleChange}
-            hintText="Additional Notes"
+            hintText={this.props.notesHintText}
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />
