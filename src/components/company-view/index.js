@@ -73,15 +73,35 @@ class CompanyView extends Component {
   
   toggleEditMode(modalName) {
     return () => {
+      this.setState({
+        contact: {
+          name: '',
+          email: '',
+          phone: '',
+        },
+        event: {
+          eventTitle: '',
+          eventType: '',
+          eventDate: new Date(),
+          eventNotes: '',
+        },
+        job: { 
+          title: '',
+          link: '',
+          type: '',
+          notes: '',
+          status: 'None Selected',
+        },
+        editMode: false,
+      });
       this.toggleModal(modalName)();
-      this.setState({ editMode: false });
     };
   }
   
-  handleJobUpdateClick(job) {
+  handleUpdateClick(itemName, item) {
     return() => {
-      this.toggleModal('jobModalOpen')();
-      this.setState({ job: job, editMode: true });
+      this.toggleModal(`${itemName}ModalOpen`)();
+      this.setState({ [itemName]: item, editMode: true });
     };
   }
 
@@ -107,7 +127,6 @@ class CompanyView extends Component {
   }
   
   render() {
-    console.log(this.state)
     const company = this.props.profile.companies.filter(company => 
       company._id === this.props.match.params.companyId
     )[0];
@@ -173,7 +192,7 @@ class CompanyView extends Component {
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' 
-                          onClick={this.handleJobUpdateClick(job)}
+                          onClick={this.handleUpdateClick('job', job)}
                         />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
