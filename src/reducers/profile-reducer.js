@@ -9,6 +9,7 @@ export default (state=null, action) => {
   case 'LOGOUT': 
     return null;
 
+  // COMPANY REDUCERS
   case 'COMPANY_CREATE': {
     const updatedCompanies = [...state.companies, payload];
     return Object.assign({}, state, { companies: updatedCompanies });
@@ -28,7 +29,8 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-  
+
+  // JOB REDUCERS
   case 'JOB_CREATE': {
     const updatedCompanies = state.companies.map(company => {
       if (company._id === payload.companyId) {
@@ -42,8 +44,23 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-  case 'JOB_UPDATE':
-    return state.map(item => item._id === payload._id ? payload: item);
+  case 'JOB_UPDATE': {
+    const updatedCompanies = state.companies.map(company => {
+      if (company._id === payload.companyId) {
+        const updatedCompany = Object.assign({}, company);
+        const updatedJobs = company.jobPosting.map(job => {
+          if (job._id === payload._id) {
+            return job = payload;
+          }
+          return job;
+        });
+        updatedCompany.jobPosting = updatedJobs;
+        return updatedCompany;
+      }
+      return company;
+    });
+    return Object.assign({}, state, { companies: updatedCompanies });
+  }
   case 'JOB_DELETE': {
     const updatedCompanies = state.companies.map(company => {
       if (company._id === payload.companyId) {
@@ -59,7 +76,8 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-    
+  
+  // EVENT REDUCERS
   case 'EVENT_CREATE': {
     const updatedCompanies = state.companies.map(company => {
       if (company._id === payload.companyId) {
@@ -73,8 +91,23 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-  case 'EVENT_UPDATE':
-    return state.map(item => item._id === payload._id ? payload: item);
+  case 'EVENT_UPDATE': {
+    const updatedCompanies = state.companies.map(company => {
+      if (company._id === payload.companyId) {
+        const updatedCompany = Object.assign({}, company);
+        const updatedEvents = company.events.map(event => {
+          if (event._id === payload._id) {
+            return event = payload;
+          }
+          return event;
+        });
+        updatedCompany.events = updatedEvents;
+        return updatedCompany;
+      }
+      return company;
+    });
+    return Object.assign({}, state, { companies: updatedCompanies });
+  }
   case 'EVENT_DELETE': {
     const updatedCompanies = state.companies.map(company => {
       if (company._id === payload.companyId) {
@@ -90,7 +123,8 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-  
+
+  // CONTACT REDUCERS
   case 'CONTACT_CREATE': {
     const updatedCompanies = state.companies.map(company => {
       if (company._id === payload.companyId) {
@@ -104,8 +138,23 @@ export default (state=null, action) => {
     });
     return Object.assign({}, state, { companies: updatedCompanies });
   }
-  case 'CONTACT_UPDATE':
-    return state.map(item => item._id === payload._id ? payload: item);
+  case 'CONTACT_UPDATE': {
+    const updatedCompanies = state.companies.map(company => {
+      if (company._id === payload.companyId) {
+        const updatedCompany = Object.assign({}, company);
+        const updatedContacts = company.contacts.map(contact => {
+          if (contact._id === payload._id) {
+            return contact = payload;
+          }
+          return contact;
+        });
+        updatedCompany.contacts = updatedContacts;
+        return updatedCompany;
+      }
+      return company;
+    });
+    return Object.assign({}, state, { companies: updatedCompanies });
+  }
   case 'CONTACT_DELETE': {
     const updatedCompanies = state.companies.map(company => {
       if (company._id === payload.companyId) {

@@ -23,11 +23,33 @@ export default class JobModal extends Component {
       type: this.props.job.type || '',
       notes: this.props.job.notes || '',
       status: this.props.job.status || 'None Selected',
-      jobId: this.props.jobId,
+      _id: this.props.job._id,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props._id !== nextProps.job._id) {
+      this.setState({ 
+        title: nextProps.job.title,
+        link: nextProps.job.link,
+        type: nextProps.job.type,
+        notes: nextProps.job.notes,
+        status: nextProps.job.status,
+        _id: nextProps.job._id,
+      });
+    } else if (!this.props._id) {
+      this.setState({ 
+        title: nextProps.job.title,
+        link: nextProps.job.link,
+        type: nextProps.job.type,
+        notes: nextProps.job.notes,
+        status: nextProps.job.status,
+        _id: nextProps.job._id,
+      });
+    }
   }
 
   handleChange(e) {
@@ -77,6 +99,7 @@ export default class JobModal extends Component {
             errorStyle={styles.errorStyle}
           /><br />
           <SelectField
+            name='status'
             floatingLabelText='Job Status'
             value={this.state.status}
             onChange={this.handleSelectChange}

@@ -61,21 +61,47 @@ class CompanyView extends Component {
       editMode: false,
     };
   }
-  
+
   toggleModal(modalName) {
     return () => {
       this.setState(prevState => ({
         [modalName]: !prevState[modalName],
-        editMode: false,
       })
       );
     };
+  }  
+  
+  toggleEditMode(modalName) {
+    return () => {
+      this.setState({
+        contact: {
+          name: '',
+          email: '',
+          phone: '',
+        },
+        event: {
+          eventTitle: '',
+          eventType: '',
+          eventDate: new Date(),
+          eventNotes: '',
+        },
+        job: { 
+          title: '',
+          link: '',
+          type: '',
+          notes: '',
+          status: 'None Selected',
+        },
+        editMode: false,
+      });
+      this.toggleModal(modalName)();
+    };
   }
   
-  handleJobUpdateClick(job) {
+  handleUpdateClick(itemName, item) {
     return() => {
-      this.toggleModal('jobModalOpen')();
-      this.setState({ job: job, editMode: true });
+      this.toggleModal(`${itemName}ModalOpen`)();
+      this.setState({ [itemName]: item, editMode: true });
     };
   }
 
@@ -166,7 +192,7 @@ class CompanyView extends Component {
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
                         <EditIcon className='edit-icon' 
-                          onClick={this.handleJobUpdateClick(job)}
+                          onClick={this.handleUpdateClick('job', job)}
                         />
                         <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
                       </IconButton>
@@ -181,9 +207,8 @@ class CompanyView extends Component {
               open={this.state.jobModalOpen}
               company={company}
               job={this.state.job}
-              jobId={this.state.job._id || null }
               onComplete={this.state.editMode ? this.props.jobUpdate : this.props.jobCreate}
-              modalClose={this.toggleModal('jobModalOpen')}
+              modalClose={this.state.editMode ? this.toggleEditMode('jobModalOpen') : this.toggleModal('jobModalOpen')}
               titleHintText={this.state.editMode ? 'Update job title' : 'Job title'}
               linkHintText={this.state.editMode ? 'Update job link' : 'Link to job posting'}
               statusHintText={this.state.editMode ? 'Update job status' : 'Job application status'}
