@@ -61,14 +61,20 @@ class CompanyView extends Component {
       editMode: false,
     };
   }
-  
+
   toggleModal(modalName) {
     return () => {
       this.setState(prevState => ({
         [modalName]: !prevState[modalName],
-        editMode: false,
       })
       );
+    };
+  }  
+  
+  toggleEditMode(modalName) {
+    return () => {
+      this.toggleModal(modalName)();
+      this.setState({ editMode: false });
     };
   }
   
@@ -101,6 +107,7 @@ class CompanyView extends Component {
   }
   
   render() {
+    console.log(this.state)
     const company = this.props.profile.companies.filter(company => 
       company._id === this.props.match.params.companyId
     )[0];
@@ -181,9 +188,8 @@ class CompanyView extends Component {
               open={this.state.jobModalOpen}
               company={company}
               job={this.state.job}
-              jobId={this.state.job._id || null }
               onComplete={this.state.editMode ? this.props.jobUpdate : this.props.jobCreate}
-              modalClose={this.toggleModal('jobModalOpen')}
+              modalClose={this.state.editMode ? this.toggleEditMode('jobModalOpen') : this.toggleModal('jobModalOpen')}
               titleHintText={this.state.editMode ? 'Update job title' : 'Job title'}
               linkHintText={this.state.editMode ? 'Update job link' : 'Link to job posting'}
               statusHintText={this.state.editMode ? 'Update job status' : 'Job application status'}
