@@ -19,15 +19,26 @@ export default class EventModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      eventType: '',
-      eventTitle: '',
-      eventDate: null,
-      eventNotes: '',
+      eventType: this.props.event.eventType || '',
+      eventTitle: this.props.event.eventTitle || '',
+      eventDate: this.props.event.eventDate || null,
+      eventNotes: this.props.event.eventNotes || '',
+      _id: this.props.event._id,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ 
+      eventType: nextProps.event.eventType,
+      eventTitle: nextProps.event.eventTitle,
+      eventDate: nextProps.event.eventDate,
+      eventNotes: nextProps.event.eventNotes,
+      _id: nextProps.event._id,
+    });
   }
 
   handleChange(e) {
@@ -79,7 +90,7 @@ export default class EventModal extends Component {
             name='eventTitle'
             value={this.state.eventTitle}
             onChange={this.handleChange}
-            hintText="Add an event"
+            hintText={this.props.titleHintText}
             floatingLabelText="Event Title"
             floatingLabelFixed={true}
             errorText="This field is required"   
@@ -96,7 +107,7 @@ export default class EventModal extends Component {
             name='eventNotes'
             value={this.state.eventNotes}
             onChange={this.handleChange}
-            hintText="Additional Notes"
+            hintText={this.props.notesHintText}
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />

@@ -16,14 +16,26 @@ export default class ContactModal extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      name: '',
-      email: '',
-      phone: '',
-      linkedIn: '',
-      notes: '',
+      name: this.props.contact.name || '',
+      email: this.props.contact.email || '',
+      phone: this.props.contact.phone || '',
+      linkedIn: this.props.contact.linkedIn || '',
+      notes: this.props.contact.notes || '',
+      _id: this.props.contact._id,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ 
+      name: nextProps.contact.name,
+      email: nextProps.contact.email,
+      phone: nextProps.contact.phone,
+      linkedIn: nextProps.contact.linkedIn,
+      notes: nextProps.contact.notes,
+      _id: nextProps.contact._id,
+    });
   }
 
   handleChange(e) {
@@ -51,7 +63,7 @@ export default class ContactModal extends Component {
             name='name'
             value={this.state.name}
             onChange={this.handleChange}
-            hintText="Add a Contact"
+            hintText={this.props.nameHintText}
             floatingLabelText="Contact Name"
             floatingLabelFixed={true}
             errorText="This field is required"
@@ -61,7 +73,7 @@ export default class ContactModal extends Component {
             name='email'
             value={this.state.email}
             onChange={this.handleChange}
-            hintText="Add a Contact"
+            hintText={this.props.emailHintText}
             floatingLabelText="Contact Email"
             floatingLabelFixed={true}
             errorText="This field is required"   
@@ -71,7 +83,7 @@ export default class ContactModal extends Component {
             name='phone'
             value={this.state.phone}
             onChange={this.handleChange}
-            hintText="Add a Contact"
+            hintText={this.props.phoneHintText}
             floatingLabelText="Contact Phone"
             floatingLabelFixed={true}
           /><br />
@@ -79,7 +91,7 @@ export default class ContactModal extends Component {
             name='linkedIn'
             value={this.state.linkedIn}
             onChange={this.handleChange}
-            hintText="Add a Contact"
+            hintText={this.props.linkedInHintText}
             floatingLabelText="Contact LinkedIn"
             floatingLabelFixed={true}
           /><br />
@@ -87,7 +99,7 @@ export default class ContactModal extends Component {
             name='notes'
             value={this.state.notes}
             onChange={this.handleChange}
-            hintText="Additional Notes"
+            hintText={this.props.notesInHintText}
             floatingLabelText="Notes"
             floatingLabelFixed={true}
           /><br />

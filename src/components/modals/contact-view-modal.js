@@ -26,13 +26,25 @@ export default class ContactViewModal extends Component {
           <CardText>
             <List style={{ paddingTop: 0 }}>
               <ListItem
-                style={{ paddingTop: 0 }}
-                leftIcon={<CommunicationCall color={indigo500} />}
-                primaryText={this.props.contact.phone}
+                // leftIcon={<CommunicationEmail color={indigo500} />}
+                primaryText='Email'
+                secondaryText={this.props.contact.email}
+              />
+              {this.props.contact.phone !== '' 
+                ? <ListItem
+                  style={{ paddingTop: 0 }}
+                  // leftIcon={<CommunicationCall color={indigo500} />}
+                  primaryText='Phone'
+                  secondaryText={this.props.contact.phone}
+                />
+                : undefined}
+              <ListItem 
+                primaryText='LinkedIn'
+                secondaryText={this.props.contact.linkedIn} 
               />
               <ListItem
-                leftIcon={<CommunicationEmail color={indigo500} />}
-                primaryText={this.props.contact.email}
+                primaryText='Notes'
+                secondaryText={this.props.contact.notes} 
               />
             </List>
           </CardText>

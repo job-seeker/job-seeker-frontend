@@ -44,6 +44,8 @@ class CompanyView extends Component {
         name: '',
         email: '',
         phone: '',
+        linkedIn: '',
+        notes: '',
       },
       event: {
         eventTitle: '',
@@ -78,6 +80,8 @@ class CompanyView extends Component {
           name: '',
           email: '',
           phone: '',
+          linkedIn: '',
+          notes: '',  
         },
         event: {
           eventTitle: '',
@@ -105,24 +109,10 @@ class CompanyView extends Component {
     };
   }
 
-  handleContactClick(contact) {
+  handleItemClick(itemName, item) {
     return() => {
-      this.toggleModal('contactViewModalOpen')();
-      this.setState({ contact : contact });
-    };
-  }
-
-  handleEventClick(event) {
-    return() => {
-      this.toggleModal('eventViewModalOpen')();
-      this.setState({ event: event });
-    };
-  }
-
-  handleJobClick(job) {
-    return() => {
-      this.toggleModal('jobViewModalOpen')();
-      this.setState({ job: job });
+      this.toggleModal(`${itemName}ViewModalOpen`)();
+      this.setState({ [itemName]: item });
     };
   }
   
@@ -172,7 +162,6 @@ class CompanyView extends Component {
 
           <section className='company-job-postings'>
             <h3>Job Postings</h3>
-
             <div className='add-buttons'>
               <IconButton 
                 iconStyle={{ height: 24, width: 24, display: 'inline-block' }}
@@ -187,14 +176,20 @@ class CompanyView extends Component {
                 {company.jobPosting.map(job => 
                   <ListItem
                     key={job._id} 
-                    onClick={this.handleJobClick(job)}
+                    onClick={this.handleItemClick('job', job)}
                     primaryText={job.title} 
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
-                        <EditIcon className='edit-icon' 
+                      <IconButton 
+                        style={{ width: 80 }} 
+                        iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
+                        <EditIcon 
+                          className='edit-icon' 
                           onClick={this.handleUpdateClick('job', job)}
                         />
-                        <DeleteIcon className='delete-icon' onClick={() => this.props.jobDelete(job)} />
+                        <DeleteIcon 
+                          className='delete-icon' 
+                          onClick={() => this.props.jobDelete(job)} 
+                        />
                       </IconButton>
                     }
                   />
@@ -240,11 +235,19 @@ class CompanyView extends Component {
                   <ListItem 
                     key={event._id}
                     primaryText={event.eventTitle} 
-                    onClick={this.handleEventClick(event)}
+                    onClick={this.handleItemClick('event', event)}
                     rightIconButton={
-                      <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
-                        <EditIcon className='edit-icon' onClick={() => this.props.eventUpdate(event)} />
-                        <DeleteIcon className='delete-icon' onClick={() => this.props.eventDelete(event)} />
+                      <IconButton 
+                        style={{ width: 80 }} 
+                        iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
+                        <EditIcon 
+                          className='edit-icon' 
+                          onClick={this.handleUpdateClick('event', event)}
+                        />
+                        <DeleteIcon 
+                          className='delete-icon' 
+                          onClick={() => this.props.eventDelete(event)} 
+                        />
                       </IconButton>
                     }
                   />
@@ -256,8 +259,11 @@ class CompanyView extends Component {
             <EventModal 
               open={this.state.eventModalOpen}
               company={company}
-              onComplete={this.props.eventCreate}
-              modalClose={this.toggleModal('eventModalOpen')}
+              event={this.state.event}
+              onComplete={this.state.editMode ? this.props.eventUpdate : this.props.eventCreate}
+              modalClose={this.state.editMode ? this.toggleEditMode('eventModalOpen') : this.toggleModal('eventModalOpen')}
+              titleHintText={this.state.editMode ? 'Update event title' : 'Event title'}
+              notesHintText={this.state.editMode ? 'Update event notes' : 'Additional notes'}
             />
 
             <EventViewModal 
@@ -285,18 +291,22 @@ class CompanyView extends Component {
                 {company.contacts.map(contact => 
                   <ListItem 
                     key={contact._id} 
-                    onClick={this.handleContactClick(contact)}
+                    onClick={this.handleItemClick('contact', contact)}
                     primaryText={contact.name}
                     rightIconButton={
                       <IconButton style={{ width: 80 }} iconStyle={{ 'marginRight': 10, height: 15, width: 15 }}>
-                        <EditIcon className='edit-icon' onClick={() => this.props.contactUpdate(contact)} />
-                        <DeleteIcon className='delete-icon' onClick={() => this.props.contactDelete(contact)} />
+                        <EditIcon 
+                          className='edit-icon' 
+                          onClick={this.handleUpdateClick('contact', contact)}
+                        />
+                        <DeleteIcon 
+                          className='delete-icon' 
+                          onClick={() => this.props.contactDelete(contact)} 
+                        />
                       </IconButton>
-
                     }
                   />
                 )}
-
               </List>
               : undefined
             }
@@ -304,8 +314,15 @@ class CompanyView extends Component {
             <ContactModal 
               open={this.state.contactModalOpen}
               company={company}
-              onComplete={this.props.contactCreate}
-              modalClose={this.toggleModal('contactModalOpen')}
+              contact={this.state.contact}
+              onComplete={this.state.editMode ? this.props.contactUpdate : this.props.contactCreate}
+              modalClose={this.state.editMode ? this.toggleEditMode('contactModalOpen') : this.toggleModal('contactModalOpen')}
+              nameHintText={this.state.editMode ? 'Update contact name' : 'Contact name'}
+              emailHintText={this.state.editMode ? 'Update contact email' : 'Contact email'}
+              nameHintText={this.state.editMode ? 'Update contact name' : 'Contact name'}
+              phoneHintText={this.state.editMode ? 'Update contact phone' : 'Contact phone'}
+              linkedInHintText={this.state.editMode ? 'Update contact LinkedIn' : 'Contact LinkedIn'}
+              notesHintText={this.state.editMode ? 'Update contact notes' : 'Additional notes'}
             />
 
             <ContactViewModal
@@ -333,10 +350,10 @@ let mapDispatchToProps = (dispatch) => ({
   jobUpdate: (company, job) => dispatch(jobUpdateRequest(company, job)),
   eventCreate: (company, jobEvent) => dispatch(eventCreateRequest(company, jobEvent)),
   eventDelete: (jobEvent) => dispatch(eventDeleteRequest(jobEvent)),
-  eventUpdate: (jobEvent) => dispatch(eventUpdateRequest(jobEvent)),
+  eventUpdate: (company, jobEvent) => dispatch(eventUpdateRequest(company, jobEvent)),
   contactCreate: (company, contact) => dispatch(contactCreateRequest(company, contact)),
   contactDelete: (contact) => dispatch(contactDeleteRequest(contact)),
-  contactUpdate: (contact) => dispatch(contactUpdateRequest(contact)),
+  contactUpdate: (company, contact) => dispatch(contactUpdateRequest(company, contact)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompanyView);

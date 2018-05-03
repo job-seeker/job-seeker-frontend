@@ -31,8 +31,12 @@ export default class EventViewModal extends Component {
                 secondaryText={this.props.event.eventTitle}
               />
               <ListItem
+                primaryText='Event Type'
+                secondaryText={this.props.event.eventType}
+              />
+              <ListItem
                 primaryText='Event Date'
-                secondaryText={this.props.event.eventDate.toString().split('T')[0]}
+                secondaryText={new Date(this.props.event.eventDate).toDateString()}
               />
               <ListItem 
                 primaryText='Notes'
