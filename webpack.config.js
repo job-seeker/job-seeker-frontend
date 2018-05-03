@@ -13,7 +13,6 @@ const env = process.env.NODE_ENV;
 const AUTH0_CLIENTID = '7GRVNGAy44r55fc6s27M6VpF6SgfQwwH';
 const AUTH0_DOMAIN = 'jobseeker.auth0.com';
 
-
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractPlugin('bundle-[hash].css'),

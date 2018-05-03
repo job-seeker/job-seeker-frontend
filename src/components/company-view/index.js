@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { profileFetchRequest } from '../../actions/profile-actions';
 import { singleCompanyFetchRequest, companyUpdateRequest } from '../../actions/company-actions';
 import { jobCreateRequest, jobDeleteRequest, jobUpdateRequest } from '../../actions/job-actions';
 import { eventCreateRequest, eventDeleteRequest, eventUpdateRequest } from '../../actions/event-actions';
@@ -343,6 +344,7 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = (dispatch) => ({
+  profileFetch: (profile) => dispatch(profileFetchRequest(profile)),
   companyFetch: (company) => dispatch(singleCompanyFetchRequest(company)),
   companyUpdate: (profile, company) => dispatch(companyUpdateRequest(profile, company)),
   jobCreate: (company, job) => dispatch(jobCreateRequest(company, job)),
