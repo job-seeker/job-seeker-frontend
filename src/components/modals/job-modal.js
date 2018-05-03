@@ -31,25 +31,14 @@ export default class JobModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props._id !== nextProps.job._id) {
-      this.setState({ 
-        title: nextProps.job.title,
-        link: nextProps.job.link,
-        type: nextProps.job.type,
-        notes: nextProps.job.notes,
-        status: nextProps.job.status,
-        _id: nextProps.job._id,
-      });
-    } else if (!this.props._id) {
-      this.setState({ 
-        title: nextProps.job.title,
-        link: nextProps.job.link,
-        type: nextProps.job.type,
-        notes: nextProps.job.notes,
-        status: nextProps.job.status,
-        _id: nextProps.job._id,
-      });
-    }
+    this.setState({ 
+      title: nextProps.job.title,
+      link: nextProps.job.link,
+      type: nextProps.job.type,
+      notes: nextProps.job.notes,
+      status: nextProps.job.status,
+      _id: nextProps.job._id,
+    });
   }
 
   handleChange(e) {

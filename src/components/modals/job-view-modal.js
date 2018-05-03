@@ -34,6 +34,10 @@ export default class JobViewModal extends Component {
                 primaryText='Job Status'
                 secondaryText={this.props.job.status}
               />
+              <ListItem
+                primaryText='Job Type'
+                secondaryText={this.props.job.type}
+              />
               <ListItem 
                 primaryText='Notes'
                 secondaryText={this.props.job.notes}
