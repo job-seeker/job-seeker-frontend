@@ -24,7 +24,6 @@
   * [node-sass](https://www.npmjs.com/package/node-sass)
   * [react](https://www.npmjs.com/package/react)
   * [react-dom](https://www.npmjs.com/package/react-dom)
-  * [react-hot-loader](https://www.npmjs.com/package/react-hot-loader)
   * [react-redux](https://www.npmjs.com/package/react-redux)
   * [react-router-dom](https://www.npmjs.com/package/react-router-dom)
   * [redux](https://www.npmjs.com/package/redux)
